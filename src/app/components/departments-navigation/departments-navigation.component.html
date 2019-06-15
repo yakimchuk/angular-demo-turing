@@ -1,0 +1,30 @@
+<div class="mat-headline no-margin">Departments</div>
+
+<mat-divider></mat-divider>
+
+<app-component-preloader [@fade]="!departments && !error ? 'open' : 'closed'">
+  <app-fake-placeholder type="block" [progress]="true"></app-fake-placeholder>
+  <app-fake-placeholder type="line"></app-fake-placeholder>
+  <app-fake-placeholder type="line"></app-fake-placeholder>
+</app-component-preloader>
+
+<app-component-error [@fade]="!departments && error ? 'open' : 'closed'">
+  <message>
+    We cannot load departments list<br/>
+    Please, press the button to try again<br/>
+  </message>
+  <actions>
+    <app-button-reload (click)="reload()"></app-button-reload>
+    <app-button-close-website></app-button-close-website>
+  </actions>
+</app-component-error>
+
+<div [@slideTop]="departments ? 'open' : 'closed'">
+
+  <div class="department" *ngFor="let department of departments">
+    <div class="mat-title no-margin">{{ department.name }}</div>
+    <div class="mat-small department__description"><small>{{ department.description }}</small></div>
+    <app-department-categories [departmentId]="department.department_id"></app-department-categories>
+  </div>
+
+</div>

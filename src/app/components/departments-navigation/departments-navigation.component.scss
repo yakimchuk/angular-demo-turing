@@ -1,0 +1,26 @@
+:host {
+  display: block;
+  padding: 15px;
+  min-height: 400px;
+}
+
+app-component-preloader, app-component-error {
+  position: absolute;
+  width: calc(100% - 30px);
+}
+
+.department {
+  margin-bottom: 25px;
+
+  &__description {
+    margin-bottom: 10px;
+  }
+
+  &:last-of-type {
+    margin: 0;
+  }
+}
+
+mat-divider {
+  margin: 15px 0;
+}

@@ -1,0 +1,42 @@
+:host {
+  display: block;
+  min-height: 80px;
+}
+
+app-component-preloader, app-component-error {
+  position: absolute;
+  width: calc(100% - 30px);
+  min-height: 80px;
+}
+
+.categories {
+
+  width: calc(100% + 30px);
+
+  margin: 0;
+  padding: 0;
+
+  margin-left: -15px;
+
+  list-style-type: none;
+
+  li {
+    background: rgba(69, 186, 255, 0.04);
+    transition: background-color ease-out 0.1s;
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+
+    &:hover {
+      background: rgba(69, 186, 255, 0.15);
+      box-shadow: 0 0 2px rgba(0,0,0,0.07);
+    }
+
+    a {
+      width: 100%;
+      padding: 10px 15px;
+    }
+
+    &:last-of-type {
+      border: none;
+    }
+  }
+}

@@ -1,0 +1,33 @@
+:host {
+  display: block;
+}
+
+.container {
+  background: rgba(0, 0, 0, 0.05);
+  margin: 0;
+
+  &_line {
+    width: 100%;
+    height: 18px;
+    border-radius: 7px;
+  }
+
+  &_line_short {
+    width: 75%;
+    height: 18px;
+    border-radius: 7px;
+  }
+
+  &_block {
+    width: 100%;
+    height: 64px;
+    border-radius: 7px;
+  }
+
+  &_spacer {
+    width: 100%;
+    height: 24px;
+    background: none;
+  }
+
+}

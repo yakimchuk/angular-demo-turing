@@ -1,0 +1,25 @@
+<app-component-preloader [@fade]="!categories && !error ? 'open' : 'closed'">
+  <app-fake-placeholder type="line" [progress]="true"></app-fake-placeholder>
+  <app-fake-placeholder type="line"></app-fake-placeholder>
+  <app-fake-placeholder type="line_short"></app-fake-placeholder>
+</app-component-preloader>
+
+<app-component-error [@fade]="!categories && error ? 'open' : 'closed'">
+  <message>
+    We cannot load department categories<br/>
+    Please, press the button to try again<br/>
+  </message>
+  <actions>
+    <app-button-reload (click)="reload()"></app-button-reload>
+    <app-button-close-website></app-button-close-website>
+  </actions>
+</app-component-error>
+
+<ul class="categories" [@slideTop]="categories ? 'open' : 'closed'">
+  <li *ngFor="let category of categories" matRipple matRippleColor="#c7ebff" matRippleRadius="50">
+    <a href="#" class="row align-center justify-space-between">
+      <span>{{ category.name }}</span>
+      <mat-icon>chevron_right</mat-icon>
+    </a>
+  </li>
+</ul>

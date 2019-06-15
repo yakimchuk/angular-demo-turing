@@ -1,0 +1,14 @@
+@import '~@angular/material/theming';
+@include mat-core();
+
+$turing-app-primary: mat-palette($mat-blue);
+$turing-app-accent:  mat-palette($mat-blue, A200, A100, A400);
+$turing-app-warn:    mat-palette($mat-red);
+$turing-app-theme:   mat-light-theme($turing-app-primary, $turing-app-accent, $turing-app-warn);
+
+@include angular-material-theme($turing-app-theme);
+
+.mat-primary-dark {
+  color: #ffffff;
+  background-color: darken(map-get($mat-blue, 500), 20%);
+}
