@@ -2,9 +2,17 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
-      <trans-unit id="Test" datatype="html">
-        <source>Test</source>
-        <target>Тест! </target>
+      <trans-unit id="route.home.breadcrumb" datatype="html">
+        <source>Wow!</source>
+        <target>Wow2!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/template-sidebar/template-sidebar.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="project.name" datatype="html">
+        <source>Buy &amp; Try E-Commerce</source>
+        <target>lalala!</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/template-sidebar/template-sidebar.component.html</context>
           <context context-type="linenumber">2</context>

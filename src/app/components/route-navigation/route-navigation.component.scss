@@ -1,0 +1,37 @@
+:host {
+  display: block;
+}
+
+.header {
+  padding: 15px;
+}
+
+.caption {
+  color: #03599c;
+  font-weight: 500;
+}
+
+.breadcrumbs {
+  padding: 0 0 0 15px;
+  height: 40px;
+
+  button {
+    border-radius: 0;
+  }
+
+  .list {
+
+    .divider {
+      color: #cccccc;
+    }
+
+    > * {
+      margin-right: 6px;
+
+      &:last-child {
+        margin: 0;
+      }
+    }
+
+  }
+}

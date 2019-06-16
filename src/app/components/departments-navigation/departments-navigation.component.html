@@ -9,14 +9,14 @@
 </app-component-preloader>
 
 <app-component-error [@fade]="!departments && error ? 'open' : 'closed'">
-  <message>
+  <div message>
     We cannot load departments list<br/>
     Please, press the button to try again<br/>
-  </message>
-  <actions>
+  </div>
+  <div actions>
     <app-button-reload (click)="reload()"></app-button-reload>
     <app-button-close-website></app-button-close-website>
-  </actions>
+  </div>
 </app-component-error>
 
 <div [@slideTop]="departments ? 'open' : 'closed'">

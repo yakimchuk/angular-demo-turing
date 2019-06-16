@@ -1,0 +1,42 @@
+<div class="header row align-center justify-space-between">
+
+  <div>
+    <h1 class="caption mat-headline no-margin">
+      <ng-content select="[caption]"></ng-content>
+    </h1>
+
+    <div class="mat-body-1 text-note">
+      <ng-content select="[description]"></ng-content>
+    </div>
+  </div>
+
+  <div>
+    <ng-content select="[actions]"></ng-content>
+  </div>
+
+</div>
+
+<mat-divider></mat-divider>
+
+<div class="breadcrumbs row justify-space-between">
+
+  <div class="list row align-center">
+    <span class="root" i18n="@@breadcrumb.root">Store</span>
+
+    <ng-container *ngFor="let breadcrumb of breadcrumbs">
+      <span class="divider">></span>
+      <!-- @todo Finish links navigation -->
+      <a class="link" href="{{ breadcrumb.url }}">
+        <app-breadcrumb-i18n-hack [routeId]="breadcrumb.id"></app-breadcrumb-i18n-hack>
+      </a>
+    </ng-container>
+
+  </div>
+
+  <!-- @todo Finish this feature -->
+  <button mat-button color="primary">
+    <mat-icon>arrow_upward</mat-icon> Jump into parent page
+  </button>
+</div>
+
+<mat-divider></mat-divider>

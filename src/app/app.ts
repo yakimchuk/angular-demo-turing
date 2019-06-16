@@ -33,6 +33,9 @@ import { ButtonCloseWebsiteComponent } from '@app/components/button-close-websit
 import { SearchComponent } from '@app/components/search/search.component';
 import { CartButtonMenuComponent } from '@app/components/cart-button-menu/cart-button-menu.component';
 import { ProfileButtonMenuComponent } from '@app/components/profile-button-menu/profile-button-menu.component';
+import { RouteNavigationComponent } from '@app/components/route-navigation/route-navigation.component';
+import { BreadcrumbI18nHackComponent } from '@app/components/breadcrumb-i18n-hack/breadcrumb-i18n-hack.component';
+import { ProductsNavigatorComponent } from '@app/components/products-navigator/products-navigator.component';
 
 const vendor = {
   framework: [
@@ -73,7 +76,10 @@ const components = {
     ButtonCloseWebsiteComponent,
     SearchComponent,
     CartButtonMenuComponent,
-    ProfileButtonMenuComponent
+    ProfileButtonMenuComponent,
+    RouteNavigationComponent,
+    BreadcrumbI18nHackComponent,
+    ProductsNavigatorComponent
   ]
 };
 

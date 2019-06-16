@@ -5,14 +5,14 @@
 </app-component-preloader>
 
 <app-component-error [@fade]="!categories && error ? 'open' : 'closed'">
-  <message>
+  <div message>
     We cannot load department categories<br/>
     Please, press the button to try again<br/>
-  </message>
-  <actions>
+  </div>
+  <div actions>
     <app-button-reload (click)="reload()"></app-button-reload>
     <app-button-close-website></app-button-close-website>
-  </actions>
+  </div>
 </app-component-error>
 
 <ul class="categories" [@slideTop]="categories ? 'open' : 'closed'">
