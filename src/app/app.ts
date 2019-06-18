@@ -1,5 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, CurrencyPipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { HomeComponent } from '@app/routes/home/home.component';
 
@@ -7,9 +7,9 @@ import { options, routes } from '@app/routing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
-  MatButtonModule, MatDividerModule,
+  MatButtonModule, MatCardModule, MatDividerModule,
   MatExpansionModule,
-  MatIconModule, MatListModule,
+  MatIconModule, MatListModule, MatPaginatorIntl, MatPaginatorModule,
   MatProgressSpinnerModule, MatRippleModule,
   MatSidenavModule,
   MatToolbarModule
@@ -36,6 +36,11 @@ import { ProfileButtonMenuComponent } from '@app/components/profile-button-menu/
 import { RouteNavigationComponent } from '@app/components/route-navigation/route-navigation.component';
 import { BreadcrumbI18nHackComponent } from '@app/components/breadcrumb-i18n-hack/breadcrumb-i18n-hack.component';
 import { ProductsNavigatorComponent } from '@app/components/products-navigator/products-navigator.component';
+import { ImageComponent } from '@app/components/image/image.component';
+import { getPaginationIntl } from '@app/common/paginator.i18n';
+import { ExcerptPipe } from '@app/pipes/excerpt';
+import { pipe } from 'rxjs';
+import { MoneyPipe } from '@app/pipes/currency';
 
 const vendor = {
   framework: [
@@ -54,6 +59,8 @@ const vendor = {
     MatDividerModule,
     MatListModule,
     MatRippleModule,
+    MatCardModule,
+    MatPaginatorModule,
     DeviceDetectorModule.forRoot()
   ]
 };
@@ -79,22 +86,39 @@ const components = {
     ProfileButtonMenuComponent,
     RouteNavigationComponent,
     BreadcrumbI18nHackComponent,
-    ProductsNavigatorComponent
+    ProductsNavigatorComponent,
+    ImageComponent
   ]
 };
 
+const pipes = [
+  ExcerptPipe,
+  MoneyPipe
+];
+
 const directives = [
+];
+
+const providers = [
+  CurrencyPipe,
+  {
+    provide: MatPaginatorIntl, useValue: getPaginationIntl()
+  }
 ];
 
 @NgModule({
   declarations: [
     ...components.routes,
     ...components.ui,
-    ...directives
+    ...directives,
+    ...pipes
   ],
   imports: [
     ...vendor.framework,
     ...vendor.external
+  ],
+  providers: [
+    ...providers
   ],
   bootstrap: [ContainerComponent],
   schemas: [NO_ERRORS_SCHEMA]

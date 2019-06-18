@@ -15,14 +15,6 @@ export const routes: Routes = [
       id: makeRouteId('home')
     }
 
-    // children: [
-    //   {
-    //
-    //     path: '/'
-    //
-    //   }
-    // ]
-
   }
 ];
 

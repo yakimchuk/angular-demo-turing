@@ -1,3 +1,42 @@
-<div class="row justify-space-around">
-  Catalog
+<app-component-preloader [@fade]="!products ? 'open' : 'closed'">
+  <app-fake-placeholder type="square" [progress]="true"></app-fake-placeholder>
+  <app-fake-placeholder type="square"></app-fake-placeholder>
+  <app-fake-placeholder type="square"></app-fake-placeholder>
+  <app-fake-placeholder type="square"></app-fake-placeholder>
+  <app-fake-placeholder type="square"></app-fake-placeholder>
+</app-component-preloader>
+
+<mat-paginator
+  [@slideTop]="!products || products?.count === 0 ? 'closed' : 'open'"
+  [pageSize]="limit"
+  [pageSizeOptions]="[5, 10, 25, 100, 200]"
+  [length]="products?.count"
+  (page)="onFilterChange($event)"></mat-paginator>
+
+<div class="products row justify-space-around" [@slideTop]="products ? 'open' : 'closed'">
+  <div class="product mat-card" *ngFor="let product of products?.rows; let i = index;">
+    <div class="title mat-title text-overflow no-margin">{{ product.name }}</div>
+    <mat-divider></mat-divider>
+    <app-image [url]="'http://lorempixel.com/300/250?' + i"></app-image>
+    <mat-divider></mat-divider>
+    <div class="description mat-body-1">{{ product.description | excerpt:75 }}</div>
+    <mat-divider></mat-divider>
+    <div class="actions">
+      <button mat-stroked-button color="primary" class="col">
+        Know more
+      </button>
+
+      <button mat-raised-button color="primary" class="col">
+        <mat-icon>add_shopping_cart</mat-icon>
+        Add to cart,
+        <span> </span>
+        <span [ngSwitch]="product.discounted_price == 0 || product.price == 0">
+          <b *ngSwitchCase="true">FREE</b>
+          <span *ngSwitchCase="false">{{ product.discounted_price || product.price | money }}</span>
+        </span>
+        <span>&nbsp;</span>
+        <s class="text-darken" *ngIf="product.discounted_price !== product.price">{{ product.price | money }}</s>
+      </button>
+    </div>
+  </div>
 </div>

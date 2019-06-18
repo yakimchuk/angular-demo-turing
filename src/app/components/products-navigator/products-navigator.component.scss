@@ -1,0 +1,49 @@
+:host {
+  display: block;
+  padding: 15px;
+}
+
+.product {
+  max-width: 300px;
+  height: 510px;
+  margin: 10px;
+}
+
+.title {
+  padding: 15px;
+}
+
+.description {
+  padding: 15px;
+  height: 80px;
+}
+
+.actions {
+  padding: 15px;
+
+  button {
+    width: 100%;
+    margin-bottom: 10px;
+
+    &:last-of-type {
+      margin: 0;
+    }
+  }
+
+}
+
+app-component-preloader {
+  position: absolute;
+  min-height: 250px;
+  width: calc(100% - 30px);
+  margin-top: 15px;
+}
+
+app-fake-placeholder {
+  float: left;
+  margin: 4px;
+}
+
+app-image {
+  height: 250px;
+}

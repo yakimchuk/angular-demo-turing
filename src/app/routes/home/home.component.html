@@ -9,4 +9,4 @@
   </div>
 </app-route-navigation>
 
-<app-products-navigator></app-products-navigator>
+<app-products-navigator (onPagination)="onPagination($event)" [products]="products" [page]="a"></app-products-navigator>

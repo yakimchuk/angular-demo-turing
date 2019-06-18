@@ -22,3 +22,10 @@ mat-icon {
 
 .text-danger { color: #e64727; }
 .text-note { color: #3592c7; }
+.text-darken { color: rgba(0,0,0,0.45); }
+
+.text-overflow {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

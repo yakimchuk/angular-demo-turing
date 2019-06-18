@@ -1,0 +1,19 @@
+:host {
+  display: flex;
+  min-height: 150px;
+  position: relative;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+
+app-component-preloader {
+  position: absolute;
+  width: 100%;
+  top: 15px;
+}
+
+app-component-error {
+  position: absolute;
+  padding: 15px;
+}

@@ -3,7 +3,7 @@
 <mat-divider></mat-divider>
 
 <app-component-preloader [@fade]="!departments && !error ? 'open' : 'closed'">
-  <app-fake-placeholder type="block" [progress]="true"></app-fake-placeholder>
+  <app-fake-placeholder type="rectangle"></app-fake-placeholder>
   <app-fake-placeholder type="line"></app-fake-placeholder>
   <app-fake-placeholder type="line"></app-fake-placeholder>
 </app-component-preloader>
@@ -14,7 +14,7 @@
     Please, press the button to try again<br/>
   </div>
   <div actions>
-    <app-button-reload (click)="reload()"></app-button-reload>
+    <app-button-reload (click)="reload()">Reload departments</app-button-reload>
     <app-button-close-website></app-button-close-website>
   </div>
 </app-component-error>

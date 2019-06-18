@@ -4,8 +4,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { api } from '@app/config';
 import { Observable } from 'rxjs';
-import { Category, Department, schemas } from '@app/networking/schemas';
+import { Category, Department, ListResponse, Product, schemas } from '@app/networking/schemas';
 import * as ajv from 'ajv';
+import { PaginationFilter } from '@app/components/products-navigator/products-navigator.component';
+import * as _ from 'lodash';
 
 const schemasConverter = new ajv();
 
@@ -44,6 +46,19 @@ export class Resources {
       })
     });
   }
+
+  products = {
+    get: (filter: PaginationFilter) => {
+
+      return this.guard<ListResponse<Product>>(
+        this.http.get<ListResponse<Product>>(this.toResourceUrl(api.endpoint, '/products'), {
+          params: _.mapValues(filter, (value) => value + '')
+        }),
+        schemas.products.get
+      );
+
+    }
+  };
 
   departments = {
     get: () => {

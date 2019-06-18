@@ -1,0 +1,20 @@
+<app-component-preloader [@fade]="!image && !error ? 'open' : 'closed'">
+  <app-fake-placeholder type="rectangle" [progress]="true"></app-fake-placeholder>
+  <app-fake-placeholder type="line"></app-fake-placeholder>
+  <app-fake-placeholder type="line_short"></app-fake-placeholder>
+</app-component-preloader>
+
+<app-component-error [@fade]="!image && error ? 'open' : 'closed'">
+  <span message>
+    Could not load an image<br/>
+    <br/>
+    Possibly, it is problems with your network connection, or on our side<br/>
+    <br/>
+    <b>You can try load this image again by pressing the button below</b>
+  </span>
+  <div actions>
+    <app-button-reload (click)="reload()">Reload image</app-button-reload>
+  </div>
+</app-component-error>
+
+<img [src]="image?.src" [@zoom]="ready ? 'open' : 'closed'" />
