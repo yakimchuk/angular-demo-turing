@@ -1,0 +1,36 @@
+.items {
+
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+
+  li {
+    border-bottom: 1px dotted rgba(0, 0, 0, 0.1);
+    padding: 3px 0;
+  }
+}
+
+app-component-preloader {
+  position: absolute;
+  width: calc(100% - 25px);
+}
+
+.step-description {
+
+  sup {
+    margin-right: 3px;
+  }
+
+}
+
+.shipping {
+  small {
+    line-height: 12px;
+    display: block;
+  }
+}
+
+.sign {
+  font-weight: 400;
+  color: #74c0ec;
+}

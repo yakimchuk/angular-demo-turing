@@ -1,0 +1,74 @@
+<fieldset>
+  <table mat-table [dataSource]="cart.items">
+
+    <ng-container matColumnDef="number">
+      <th mat-header-cell *matHeaderCellDef>#</th>
+      <td mat-cell *matCellDef="let i = index"> {{ i + 1 }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="image">
+      <th mat-header-cell *matHeaderCellDef>Pic.</th>
+      <td mat-cell *matCellDef="let item; let i = index" class="item__image">
+        <app-image-thumbnail [url]="'http://lorempixel.com/300/250?' + i"></app-image-thumbnail>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <td mat-cell *matCellDef="let item">
+        <div class="mat-body-1">{{ item.name }}</div>
+        <div class="mat-small">{{ item.attributes }}</div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="price">
+      <th mat-header-cell *matHeaderCellDef>Price</th>
+      <td mat-cell *matCellDef="let item"> {{ item.price | money }} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="quantity">
+      <th mat-header-cell *matHeaderCellDef>Quan.</th>
+      <td mat-cell *matCellDef="let item" class="column-quantity">
+
+        <mat-form-field>
+          <input matInput
+                 type="number"
+                 value="{{ item.quantity }}"
+                 min="1"
+                 max="100"
+                 #quantity
+                 (change)="updateItemQuantity(item, quantity.value)">
+        </mat-form-field>
+
+        <button mat-icon-button color="warn" (click)="removeItem(item)">
+          <mat-icon>clear</mat-icon>
+        </button>
+
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="subtotal">
+      <th mat-header-cell *matHeaderCellDef>Subt.</th>
+      <td mat-cell *matCellDef="let item"> {{ item.subtotal | money }} </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['number', 'image', 'name', 'price', 'quantity', 'subtotal']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['number', 'image', 'name', 'price', 'quantity', 'subtotal'];"></tr>
+  </table>
+</fieldset>
+
+<ng-template #toast_item_quantity_update_success>
+  The product quantity was updated
+</ng-template>
+
+<ng-template #toast_item_quantity_update_error>
+  The problem, we unable to update product quantity
+</ng-template>
+
+<ng-template #toast_item_removal_success>
+  The product was removed from your cart
+</ng-template>
+
+<ng-template #toast_item_removal_error>
+  The problem, we unable to remove product from your cart
+</ng-template>

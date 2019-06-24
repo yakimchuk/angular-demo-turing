@@ -7,3 +7,9 @@ export const pagination = {
   page: 1,
   debounce: 1000
 };
+
+export const network = {
+  aggregation: {
+    time: 50
+  }
+};

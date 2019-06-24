@@ -1,0 +1,50 @@
+.cart__loader {
+  padding: 50px 0;
+
+  mat-progress-spinner {
+    margin-right: 10px;
+  }
+}
+
+.cart__empty {
+  display: flex;
+  flex-direction: column;
+  padding: 50px;
+  color: #0e80da;
+  text-align: center;
+
+  mat-icon {
+    width: auto;
+    height: auto;
+    margin-right: 0;
+    margin-bottom: 24px;
+    font-size: 56px;
+  }
+
+  button {
+    margin-top: 24px;
+  }
+}
+
+.cart__items,
+.cart__checkout {
+
+  > div:first-of-type {
+    padding-right: 25px;
+    border-right: 1px solid rgba(0,0,0,0.05);
+  }
+
+  > div:last-of-type {
+    padding-left: 25px;
+  }
+
+}
+
+:host ::ng-deep .mat-horizontal-stepper-header-container {
+  border-bottom: 1px solid rgba(0,0,0,0.05);
+  margin-bottom: 25px;
+}
+
+.step-actions {
+  margin-top: 24px;
+}

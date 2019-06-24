@@ -1,12 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Route, Router, RouterEvent } from '@angular/router';
-import { ListResponse, Product } from '@app/networking/schemas';
+import { IListResponse, IProduct } from '@app/services/schemas';
 import { PageEvent } from '@angular/material';
-import { extractNaturalNumber } from '@app/common/extractor';
+import { extractNaturalNumber } from '@app/utilities/extractor';
 import { pagination } from '@app/config';
 import { from, fromEvent } from 'rxjs';
 import { debounceTime, throttleTime } from 'rxjs/operators';
-import { fade, slideTop } from '@app/common/transitions';
+import { fade, slideTop } from '@app/utilities/transitions';
 
 export interface PaginationFilter {
   page: number,
@@ -21,7 +21,7 @@ export interface PaginationFilter {
 })
 export class ProductsNavigatorComponent implements OnInit {
 
-  @Input('products') products: ListResponse<Product>;
+  @Input('products') products: IListResponse<IProduct>;
 
   @Input('page') page: number = pagination.page;
   @Input('limit') limit: number = pagination.limit;
@@ -59,13 +59,10 @@ export class ProductsNavigatorComponent implements OnInit {
   }
 
   private async reload() {
-    console.log('reload in', this.getFilter());
     this.onPagination.emit(this.getFilter());
   }
 
   private extractQuery() {
-
-    console.log('extract');
 
     this.page = extractNaturalNumber(this.route.snapshot.queryParamMap.get('page'), pagination.page);
     this.limit = extractNaturalNumber(this.route.snapshot.queryParamMap.get('limit'), pagination.limit);
@@ -80,15 +77,6 @@ export class ProductsNavigatorComponent implements OnInit {
       this.extractQuery();
       this.reload();
     });
-
-    // setTimeout(() => {
-    //
-    //   this.router.navigate([], {
-    //     queryParams: {
-    //       page: 2122
-    //     }
-    //   });
-    // }, 2000);
 
   }
 

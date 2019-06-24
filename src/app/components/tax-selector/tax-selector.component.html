@@ -1,0 +1,20 @@
+<app-component-preloader [@slideTop]="!taxes.state.ready ? 'open' : 'closed'">
+  <app-fake-placeholder type="rectangle" [progress]="true"></app-fake-placeholder>
+  <app-fake-placeholder type="line"></app-fake-placeholder>
+</app-component-preloader>
+
+<app-component-error [@slideTop]="taxes.state.ready && taxes.list.length === 0 ? 'open' : 'closed'">
+  <span message>Something goes wrong, we cannot find taxes for your order</span>
+  <span actions>
+    <app-button-reload (click)="reload()">Reload</app-button-reload>
+  </span>
+</app-component-error>
+
+<mat-form-field [@slideTop]="taxes.state.ready && taxes.list.length > 0 ? 'open' : 'closed'">
+  <mat-label>Taxation option</mat-label>
+  <mat-select (valueChange)="onTaxSelection($event)" [value]="tax">
+    <mat-option *ngFor="let tax of taxes.list" [value]="tax">
+      {{ tax.tax_type }}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

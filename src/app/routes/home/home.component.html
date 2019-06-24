@@ -9,4 +9,14 @@
   </div>
 </app-route-navigation>
 
-<app-products-navigator (onPagination)="onPagination($event)" [products]="products" [page]="a"></app-products-navigator>
+<app-products-navigator (onPagination)="onPagination($event)" [products]="products" [@slideTop]="!error ? 'open' : 'closed'"></app-products-navigator>
+
+<app-component-error [@fade]="!products && error ? 'open' : 'closed'">
+  <span message>
+    We encountered problems while loading catalog<br/>
+    Press the button below to try to load this catalog again
+  </span>
+  <div actions>
+    <app-button-reload (click)="reload(filter)">Reload catalog</app-button-reload>
+  </div>
+</app-component-error>

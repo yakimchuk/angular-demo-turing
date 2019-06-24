@@ -1,0 +1,23 @@
+<button mat-button color="primary" [@fade]="!cart.state.ready ? 'open' : 'closed'" class="col" [disabled]="true">
+  <mat-progress-spinner diameter="13" mode="indeterminate" color="primary"></mat-progress-spinner> <span>Loading your cart</span>
+</button>
+
+<button mat-raised-button color="primary" class="col" [@fade]="cart.state.ready && !cart.hasItem(productId) ? 'open' : 'closed'" (click)="add()">
+  <mat-icon>add_shopping_cart</mat-icon>Add to cart, {{ price | money }}
+</button>
+
+<button mat-stroked-button
+        color="primary"
+        class="col"
+        [@fade]="cart.state.ready && cart.hasItem(productId) ? 'open' : 'closed'"
+        routerLink="/cart">
+  <mat-icon>check</mat-icon> Already in your cart
+</button>
+
+<ng-template #toast_add_success>
+  The product was added to your cart
+</ng-template>
+
+<ng-template #toast_add_error>
+  The problem, we unable to add your product to the cart
+</ng-template>

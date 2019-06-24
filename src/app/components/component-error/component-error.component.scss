@@ -2,6 +2,15 @@
   display: block;
 }
 
+.row {
+  flex-wrap: nowrap;
+}
+
+.row .description {
+  margin: 0;
+  margin-right: 6px;
+}
+
 .description {
   margin-bottom: 10px;
 }

@@ -21,20 +21,18 @@
 <div class="breadcrumbs row justify-space-between">
 
   <div class="list row align-center">
-    <span class="root" i18n="@@breadcrumb.root">Store</span>
+    <a class="root link" i18n="@@breadcrumb.root" routerLink="/">Store</a>
 
     <ng-container *ngFor="let breadcrumb of breadcrumbs">
       <span class="divider">></span>
-      <!-- @todo Finish links navigation -->
-      <a class="link" href="{{ breadcrumb.url }}">
+      <a class="link" [routerLink]="breadcrumb.url">
         <app-breadcrumb-i18n-hack [routeId]="breadcrumb.id"></app-breadcrumb-i18n-hack>
       </a>
     </ng-container>
 
   </div>
 
-  <!-- @todo Finish this feature -->
-  <button mat-button color="primary">
+  <button mat-button color="primary" (click)="goToParent()" [@slideRight]="breadcrumbs.length > 1 ? 'open' : 'closed'">
     <mat-icon>arrow_upward</mat-icon> Jump into parent page
   </button>
 </div>

@@ -1,0 +1,46 @@
+<app-component-preloader [@fade]="!cart.state.ready || !taxes.state.ready ? 'open' : 'closed'">
+  <app-fake-placeholder type="block" [progress]="true"></app-fake-placeholder>
+</app-component-preloader>
+
+<app-component-error [@slideTop]="(cart.state.ready && taxes.state.ready) && (cart.state.error || taxes.state.error) ? 'open' : 'closed'">
+  <span message>We could not load data to calculate total price</span>
+  <div actions>
+    <app-button-reload (click)="reload()">Reload</app-button-reload>
+  </div>
+</app-component-error>
+
+<div [@slideTop]="(cart.state.ready && taxes.state.ready) && (!cart.state.error && !taxes.state.error) ? 'open' : 'closed'">
+
+  <ul class="items">
+    <li class="row align-center">
+      <div class="mat-body-1">Cart subtotal</div>
+      <div class="col"></div>
+      <div class="mat-body-2">{{ cart.total | money }}</div>
+    </li>
+    <li class="row align-center" [@slideTop]="tax ? 'open' : 'closed'">
+      <div class="mat-body-1">{{ tax?.tax_type }}</div>
+      <div class="col"></div>
+      <div class="mat-body-2"><span class="sign">+</span> {{ cart.total * (tax?.tax_percentage / 100) | money }}</div>
+    </li>
+    <li class="shipping row align-flex-start justify-space-between" [@slideTop]="shipping ? 'open' : 'closed'">
+      <div class="mat-body-1">
+        Shipping<br/>
+        <small class="text-note">
+          {{ shipping?.area.name }}<br/>
+          {{ shipping?.variant.name }}
+        </small>
+      </div>
+      <div class="mat-body-2"><span class="sign">+</span> {{ shipping?.variant.cost | money }}</div>
+    </li>
+  </ul>
+
+  <div class="row justify-flex-end align-flex-start">
+    <div class="mat-title no-margin"><span class="sign">=</span> {{ getSubtotal() | money }}</div>
+  </div>
+
+  <!--<p class="mat-body-1 text-right step-description text-danger" [@slideTop]="!tax || !shipping ? 'open' : 'closed'">-->
+    <!--<span [@slideTop]="!tax ? 'open' : 'closed'">Current subtotal is without selected tax option.</span><br/>-->
+    <!--<span [@slideTop]="!shipping ? 'open' : 'closed'">Current subtotal is without delivery.</span>-->
+  <!--</p>-->
+
+</div>

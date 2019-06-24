@@ -7,11 +7,12 @@ import { options, routes } from '@app/routing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
+  MatBadgeModule,
   MatButtonModule, MatCardModule, MatDividerModule,
-  MatExpansionModule,
-  MatIconModule, MatListModule, MatPaginatorIntl, MatPaginatorModule,
-  MatProgressSpinnerModule, MatRippleModule,
-  MatSidenavModule,
+  MatExpansionModule, MatFormFieldModule,
+  MatIconModule, MatInputModule, MatListModule, MatPaginatorIntl, MatPaginatorModule,
+  MatProgressSpinnerModule, MatRippleModule, MatSelectModule,
+  MatSidenavModule, MatSnackBarModule, MatStepperModule, MatTableModule, MatTabsModule,
   MatToolbarModule
 } from '@angular/material';
 
@@ -36,11 +37,23 @@ import { ProfileButtonMenuComponent } from '@app/components/profile-button-menu/
 import { RouteNavigationComponent } from '@app/components/route-navigation/route-navigation.component';
 import { BreadcrumbI18nHackComponent } from '@app/components/breadcrumb-i18n-hack/breadcrumb-i18n-hack.component';
 import { ProductsNavigatorComponent } from '@app/components/products-navigator/products-navigator.component';
-import { ImageComponent } from '@app/components/image/image.component';
-import { getPaginationIntl } from '@app/common/paginator.i18n';
+import { LargeImageComponent, ThumbnailImageComponent } from '@app/components/image/image.component';
+import { getPaginationIntl } from '@app/utilities/paginator.i18n';
 import { ExcerptPipe } from '@app/pipes/excerpt';
 import { pipe } from 'rxjs';
 import { MoneyPipe } from '@app/pipes/currency';
+import { Resources } from '@app/services/resources';
+import { IStorage, UserStorage } from '@app/services/storage';
+import { ButtonPurchaseComponent } from '@app/components/button-purchase/button-purchase.component';
+import { RemoteCart } from '@app/services/cart';
+import { UserMessages } from '@app/services/messages';
+import { CartComponent } from '@app/routes/cart/cart.component';
+import { OrderSubtotalComponent } from '@app/components/order-subtotal/order-subtotal.component';
+import { Taxes } from '@app/services/taxes';
+import { TaxSelectorComponent } from '@app/components/tax-selector/tax-selector.component';
+import { CartEditorComponent } from '@app/components/cart-editor/cart-editor.component';
+import { ShippingSelectorComponent } from '@app/components/shipping-selector/shipping-selector.component';
+import { Shipping } from '@app/services/shipping';
 
 const vendor = {
   framework: [
@@ -61,6 +74,14 @@ const vendor = {
     MatRippleModule,
     MatCardModule,
     MatPaginatorModule,
+    MatBadgeModule,
+    MatSnackBarModule,
+    MatTabsModule,
+    MatStepperModule,
+    MatTableModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatSelectModule,
     DeviceDetectorModule.forRoot()
   ]
 };
@@ -68,7 +89,8 @@ const vendor = {
 const components = {
   routes: [
     ContainerComponent,
-    HomeComponent
+    HomeComponent,
+    CartComponent
   ],
   ui: [
     TemplateHeaderComponent,
@@ -87,7 +109,13 @@ const components = {
     RouteNavigationComponent,
     BreadcrumbI18nHackComponent,
     ProductsNavigatorComponent,
-    ImageComponent
+    LargeImageComponent,
+    ThumbnailImageComponent,
+    ButtonPurchaseComponent,
+    OrderSubtotalComponent,
+    TaxSelectorComponent,
+    CartEditorComponent,
+    ShippingSelectorComponent
   ]
 };
 
@@ -101,6 +129,12 @@ const directives = [
 
 const providers = [
   CurrencyPipe,
+  Resources,
+  RemoteCart,
+  UserStorage,
+  UserMessages,
+  Taxes,
+  Shipping,
   {
     provide: MatPaginatorIntl, useValue: getPaginationIntl()
   }

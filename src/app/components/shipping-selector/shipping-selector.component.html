@@ -1,0 +1,42 @@
+<app-component-preloader [@slideTop]="!shipping.state.ready ? 'open' : 'closed'">
+  <app-fake-placeholder type="rectangle" [progress]="true"></app-fake-placeholder>
+  <app-fake-placeholder type="line"></app-fake-placeholder>
+</app-component-preloader>
+
+<app-component-error [@slideTop]="shipping.state.ready && (shipping.state.error || shipping.areas.length === 0) ? 'open' : 'closed'">
+  <span message>Something goes wrong, we cannot find shipping areas</span>
+  <span actions>
+    <app-button-reload (click)="reload()">Reload shipping areas</app-button-reload>
+  </span>
+</app-component-error>
+
+<mat-form-field [@slideTop]="shipping.state.ready && shipping.areas.length > 0 ? 'open' : 'closed'">
+  <mat-label>Select your area</mat-label>
+  <mat-select [(value)]="area" (valueChange)="reloadVariants($event.id)" required>
+    <mat-option *ngFor="let area of shipping.areas" [value]="area">
+      {{ area.name }}
+    </mat-option>
+  </mat-select>
+  <mat-hint>Where do you want to receive your order?</mat-hint>
+</mat-form-field>
+
+<app-component-error [@slideTop]="error || (area && variants?.length === 0) ? 'open' : 'closed'">
+  <span message>Something goes wrong, we cannot find shipping variants to the selected area</span>
+  <span actions>
+    <app-button-reload (click)="reloadVariants(area.id)">Reload shipping variants</app-button-reload>
+  </span>
+</app-component-error>
+
+<mat-form-field [@slideTop]="area && variants?.length > 0 ? 'open' : 'closed'">
+  <mat-label>Select shipping variant</mat-label>
+  <mat-select [(value)]="variant" (valueChange)="onVariantSelection(area, $event)" required>
+    <mat-option *ngFor="let variant of variants" [value]="variant">
+      {{ variant.name }}
+    </mat-option>
+  </mat-select>
+  <mat-hint>How do you want to receive your order?</mat-hint>
+</mat-form-field>
+
+<p class="mat-body-1 text-note">
+  If you do not see your area or suitable shipping option, please contact us at shipping@turing-demo.world
+</p>

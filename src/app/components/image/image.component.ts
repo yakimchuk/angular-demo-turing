@@ -1,15 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { fade, zoom } from '@app/common/transitions';
+import { fade, zoom } from '@app/utilities/transitions';
 
-@Component({
-  selector: 'app-image',
-  templateUrl: './image.component.html',
-  styleUrls: ['./image.component.scss'],
-  animations: [fade, zoom]
-})
-export class ImageComponent implements OnInit {
+abstract class ImageComponent implements OnInit {
 
-  @Input('url') url: string;
+  protected url: string;
 
   public image: HTMLImageElement;
   public ready: boolean = false;
@@ -35,9 +29,37 @@ export class ImageComponent implements OnInit {
   }
 
   ngOnInit() {
-
     this.reload();
-
   }
 
+}
+
+@Component({
+  selector: 'app-image-large',
+  templateUrl: './image.large.component.html',
+  styleUrls: ['./image.large.component.scss'],
+  animations: [fade, zoom]
+})
+export class LargeImageComponent extends ImageComponent {
+
+  @Input('url') url: string;
+
+  ngOnInit() {
+    super.ngOnInit();
+  }
+}
+
+@Component({
+  selector: 'app-image-thumbnail',
+  templateUrl: './image.thumbnail.component.html',
+  styleUrls: ['./image.thumbnail.component.scss'],
+  animations: [fade, zoom]
+})
+export class ThumbnailImageComponent extends ImageComponent {
+
+  @Input('url') url: string;
+
+  ngOnInit() {
+    super.ngOnInit();
+  }
 }

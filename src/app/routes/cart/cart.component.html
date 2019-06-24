@@ -1,0 +1,137 @@
+<app-route-navigation>
+  <div caption>Cart</div>
+  <div description>Your online shopping basket</div>
+  <div actions>
+    <button mat-raised-button color="primary">
+      <mat-icon>delete_sweep</mat-icon> Clear cart
+    </button>
+  </div>
+</app-route-navigation>
+
+<div [@slideTop]="!cart.state.ready ? 'open' : 'closed'" class="cart__loader row align-center justify-center mat-body-1 text-note">
+  <mat-progress-spinner diameter="13" mode="indeterminate" color="primary"></mat-progress-spinner> <span>We are loading your cart</span>
+</div>
+
+<div [@slideTop]="cart.state.ready && cart.items.length === 0 ? 'open' : 'closed'" class="cart__empty align-center justify-center">
+  <mat-icon class="cart__icon">shopping_cart</mat-icon>
+  <div class="md-body-1">
+    Cart <b>is empty!</b>
+  </div>
+  <div>
+    <button mat-raised-button color="primary" routerLink="/">
+      Begin shopping!
+    </button>
+  </div>
+</div>
+
+<div [@slideTop]="cart.state.ready && cart.items.length > 0 && stepIndex >= 0 ? 'open' : 'closed'">
+
+  <mat-horizontal-stepper [linear]="true" (selectionChange)="onStepChange($event)" [selectedIndex]="stepIndex" *ngIf="stepIndex >= 0">
+
+    <!-- Cart -->
+    <mat-step>
+      <ng-template matStepLabel>Cart</ng-template>
+      <div class="cart__items row">
+        <div class="col-8">
+
+          <div i18n *ngIf="cart.items" class="mat-title">
+            There are {cart.items.length, plural, =1 {one item} other {{{cart.items.length}} items}} in your cart
+          </div>
+
+          <app-cart-editor></app-cart-editor>
+
+        </div>
+        <div class="col-4">
+
+          <div class="mat-title">Subtotal</div>
+
+          <app-order-subtotal [tax]="tax"></app-order-subtotal>
+
+          <div class="step-actions row align-center justify-flex-end">
+            <button mat-raised-button color="primary" matStepperNext [disabled]="cart.items.length === 0">
+              <mat-icon>arrow_forward</mat-icon> Checkout
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </mat-step>
+
+    <!-- Checkout -->
+    <mat-step>
+      <ng-template matStepLabel>Checkout</ng-template>
+      <div class="cart__checkout row">
+        <div class="col-8">
+
+          <div class="mat-title">Tax</div>
+
+          <p class="md-body-2">Please select suitable taxation for your order</p>
+          <app-tax-selector [(value)]="tax"></app-tax-selector>
+
+          <p class="md-body-2">How you'd like to receive your order?</p>
+          <app-shipping-selector [(value)]="shipping"></app-shipping-selector>
+
+        </div>
+        <div class="col-4">
+
+          <div class="mat-title">Subtotal</div>
+
+          <app-order-subtotal [tax]="tax" [shipping]="shipping"></app-order-subtotal>
+
+          <div class="step-actions row align-center justify-flex-end">
+            <button mat-raised-button color="primary" [disabled]="cart.items.length === 0 || !tax || !shipping" (click)="createOrder(cart.id, tax, shipping)">
+              <mat-icon>arrow_forward</mat-icon> Confirm order
+            </button>
+          </div>
+
+        </div>
+      </div>
+    </mat-step>
+
+    <mat-step>
+      <ng-template matStepLabel>Payment</ng-template>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Done</ng-template>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </mat-step>
+  </mat-horizontal-stepper>
+
+</div>
+
+<!--<mat-tab-group [@slideTop]="cart.state.ready && cart.items.length > 0 ? 'open' : 'closed'">-->
+
+  <!--<mat-tab>-->
+    <!--<ng-template mat-tab-label>1. Check items in your cart</ng-template>-->
+
+    <!--Cart contents-->
+
+  <!--</mat-tab>-->
+
+  <!--<mat-tab>-->
+    <!--<ng-template mat-tab-label>2. Fill up delivery details</ng-template>-->
+
+    <!--Delivery details-->
+
+  <!--</mat-tab>-->
+
+  <!--<mat-tab>-->
+    <!--<ng-template mat-tab-label>3. Check your order (confirmation)</ng-template>-->
+
+    <!--Checking order-->
+
+  <!--</mat-tab>-->
+
+  <!--<mat-tab>-->
+    <!--<ng-template mat-tab-label>4. Order sent</ng-template>-->
+
+    <!--Done-->
+
+  <!--</mat-tab>-->
+
+<!--</mat-tab-group>-->

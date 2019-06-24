@@ -2,10 +2,15 @@
   <div class="col">
     <app-search></app-search>
   </div>
-  <div>
+  <div class="row align-center justify-flex-end">
     <app-cart-button-menu></app-cart-button-menu>
     <app-profile-button-menu></app-profile-button-menu>
   </div>
 </app-template-header>
 
-<router-outlet></router-outlet>
+<div class="routes"
+     [@routeTransition]="getRouteName(outlet)"
+     (@routeTransition.start)="onRouteTransitionStart()"
+     (@routeTransition.done)="onRouteTransitionDone()">
+  <router-outlet #outlet="outlet"></router-outlet>
+</div>

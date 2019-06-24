@@ -1,0 +1,7 @@
+<mat-progress-spinner color="primary" mode="indeterminate" diameter="14" [@fade]="!image && !error ? 'open' : 'closed'"></mat-progress-spinner>
+
+<button class="error" mat-icon-button color="warn" (click)="reload()" [@fade]="!image && error ? 'open' : 'closed'">
+  <mat-icon>refresh</mat-icon>
+</button>
+
+<img [src]="image?.src" [@zoom]="ready ? 'open' : 'closed'" />

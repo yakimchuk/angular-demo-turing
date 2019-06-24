@@ -1,0 +1,13 @@
+:host {
+  display: block;
+  min-height: 70px;
+}
+
+app-component-preloader {
+  position: absolute;
+  width: calc(100% - 15px);
+}
+
+mat-form-field {
+  width: 100%;
+}

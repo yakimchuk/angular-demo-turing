@@ -1,7 +1,7 @@
 import { Component, OnInit, HostBinding } from '@angular/core';
-import { fade, slideTop } from '@app/common/transitions';
-import { Resources } from '@app/networking/resources';
-import { Department } from '@app/networking/schemas';
+import { fade, slideTop } from '@app/utilities/transitions';
+import { Resources } from '@app/services/resources';
+import { IDepartment } from '@app/services/schemas';
 
 @Component({
   selector: 'app-departments-navigation',
@@ -11,7 +11,7 @@ import { Department } from '@app/networking/schemas';
 })
 export class DepartmentsNavigationComponent implements OnInit {
 
-  public departments: Department[];
+  public departments: IDepartment[];
   public error: ErrorEvent;
 
   private resources: Resources;
@@ -25,7 +25,7 @@ export class DepartmentsNavigationComponent implements OnInit {
     delete this.error;
 
     try {
-      this.departments = await this.resources.departments.get();
+      this.departments = await this.resources.departments.getDepartments();
     } catch (error) {
       this.error = error;
     }

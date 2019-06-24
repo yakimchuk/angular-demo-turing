@@ -9,7 +9,6 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 })
 export class ContainerComponent implements OnInit {
 
-  public test: boolean = false;
   private device: DeviceDetectorService;
   public isOpenedMenu: boolean;
 

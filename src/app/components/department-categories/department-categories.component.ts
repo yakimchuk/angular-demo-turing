@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
-import { fade, slideTop } from '@app/common/transitions';
-import { Category } from '@app/networking/schemas';
-import { Resources } from '@app/networking/resources';
+import { fade, slideTop } from '@app/utilities/transitions';
+import { ICategory } from '@app/services/schemas';
+import { Resources } from '@app/services/resources';
 import * as _ from 'lodash';
 
 @Component({
@@ -14,7 +14,7 @@ export class DepartmentCategoriesComponent implements OnChanges {
 
   @Input('departmentId') departmentId: number;
 
-  public categories: Category[];
+  public categories: ICategory[];
   public error: ErrorEvent;
 
   private resources: Resources;
@@ -28,7 +28,7 @@ export class DepartmentCategoriesComponent implements OnChanges {
     delete this.error;
 
     try {
-      this.categories = await this.resources.categories.byDepartment.get(this.departmentId);
+      this.categories = await this.resources.categories.getDepartmentCategories(this.departmentId);
     } catch (error) {
       this.error = error;
     }
