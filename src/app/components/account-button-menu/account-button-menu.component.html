@@ -1,0 +1,7 @@
+<button mat-icon-button color="primary" [@slideRight]="user.model ? 'open' : 'closed'" routerLink="/account">
+  <mat-icon>lock_open</mat-icon>
+</button>
+
+<button mat-icon-button color="primary" [@slideRight]="!user.model ? 'open' : 'closed'" (click)="auth()">
+  <mat-icon>account_circle</mat-icon>
+</button>

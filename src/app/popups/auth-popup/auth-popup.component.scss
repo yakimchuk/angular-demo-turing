@@ -1,0 +1,31 @@
+:host {
+  display: block;
+  width: 600px;
+}
+
+.container {
+
+  > div {
+    border-right: 1px solid rgba(0,0,0,0.1);
+    padding: 0 25px;
+
+    &:first-of-type {
+      padding-left: 0;
+    }
+
+    &:last-of-type {
+      border: none;
+      padding-right: 0;
+    }
+  }
+
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+.preloader {
+  display: inline-block;
+  margin-right: 5px;
+}

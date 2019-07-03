@@ -4,12 +4,25 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { api } from '../config';
 import { Observable } from 'rxjs';
-import { ICartId, ICartItem, ICategory, IDepartment, IListResponse, IProduct, ITax, IShippingVariant as IShippingRemoteVariant, IShippingRegion, schemas } from './schemas';
+import {
+  ICartId,
+  ICartItem,
+  ICategory,
+  IDepartment,
+  IListResponse,
+  IProduct,
+  ITax,
+  IShippingVariant as IShippingRemoteVariant,
+  IShippingRegion,
+  schemas,
+  IUser, IAuthCredentials, IAccessToken
+} from './schemas';
 import * as ajv from 'ajv';
 import { PaginationFilter } from '../components/products-navigator/products-navigator.component';
 import * as _ from 'lodash';
 import { toFormData } from '@app/utilities/adapters';
 import { IShippingArea, IShippingVariant } from '@app/services/shipping';
+import { IUserModel } from '@app/services/user';
 
 const schemasConverter = new ajv();
 
@@ -43,6 +56,15 @@ export interface IRemoteShippingData {
   getVariantsByArea(areaId: number): Promise<IShippingVariant[]>;
 }
 
+export interface IRemoteUsersData {
+  create(name: string, email: string, password: string): Promise<any>;
+  get(): Promise<IUserModel>
+}
+
+export interface IRemoteUsersGateway {
+  login(email: string, password: string): Promise<IAccessToken>;
+}
+
 export interface IRemoteData {
   cart: IRemoteCartData;
   products: IRemoteProductsData;
@@ -50,6 +72,8 @@ export interface IRemoteData {
   categories: IRemoteCategoriesData;
   taxes: IRemoteTaxesData;
   shipping: IRemoteShippingData;
+  users: IRemoteUsersData;
+  auth: IRemoteUsersGateway;
 }
 
 @Injectable()
@@ -70,21 +94,97 @@ export class Resources implements IRemoteData {
   }
 
   private guard<T>(request: Observable<T>, schema: object): Promise<T> {
-    return new Promise<T> (function (resolve) {
+    return new Promise<T> (function (resolve, reject) {
 
-      let validate = schemasConverter.compile(schema);
+      let validate;
 
-      request.subscribe(response => {
+      try {
+        validate = schemasConverter.compile(schema);
+      } catch (error) {
+        reject(error);
+        return;
+      }
 
-        if (!validate(response)) {
-          throw new TypeError(`Response has an invalid format, expected schema ${JSON.stringify(schema)} but got value "${JSON.stringify(response)}"`)
-        }
+      request.subscribe(
+  response => {
 
-        resolve(response);
+          if (!validate(response)) {
+            reject(new TypeError(`Response has an invalid format, expected schema ${JSON.stringify(schema)} but got value "${JSON.stringify(response)}"`));
+            return;
+          }
 
-      })
+          resolve(response);
+
+        },
+  error => reject(error)
+      );
+
     });
   }
+
+  users: IRemoteUsersData = {
+
+    get: async () => {
+
+      let data = await this.guard<IUser>(
+        this.http.get<IUser>(this.toResourceUrl(api.endpoint, `/customer`)),
+        schemas.customers.get
+      );
+      
+      let result: IUserModel = {
+        id: data.customer_id,
+        name: data.name,
+        address1: data.address_1,
+        address2: data.address_2,
+        city: data.city,
+        region: data.region,
+        regionId: data.shipping_region_id,
+        postalCode: data.postal_code,
+        country: data.country,
+        phone: {
+          day: data.day_phone,
+          evening: data.eve_phone,
+          mobile: data.mob_phone,
+        },
+        creditCard: data.credit_card
+      };
+
+      return result;
+
+    },
+
+    create: async (name: string, email: string, password: string) => {
+
+      await this.guard<void>(
+        this.http.post<void>(this.toResourceUrl(api.endpoint, `/customers`), toFormData({
+          name,
+          email,
+          password
+        })),
+        schemas.customers.create
+      );
+
+    }
+  };
+
+  auth: IRemoteUsersGateway = {
+
+    login: async (email: string, password: string) => {
+
+      let data = await this.guard<IAuthCredentials>(
+          this.http.post<IAuthCredentials>(this.toResourceUrl(api.endpoint, `/customers/login`), toFormData({
+            email, password
+          })),
+          schemas.customers.login
+        );
+
+      console.log('login response', data);
+
+      return data.accessToken;
+
+    },
+
+  };
 
   shipping: IRemoteShippingData = {
 

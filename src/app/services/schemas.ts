@@ -40,6 +40,31 @@ export interface IProduct {
   thumbnail: string
 }
 
+export type IAccessToken = string;
+
+export interface IUser {
+  customer_id: number;
+  name: string;
+  email: string;
+  address_1: string;
+  address_2: string;
+  city: string;
+  region: string;
+  postal_code: string;
+  country: string;
+  shipping_region_id: number;
+  day_phone: string;
+  eve_phone: string;
+  mob_phone: string;
+  credit_card: string;
+}
+
+export interface IAuthCredentials {
+  customer: IUser;
+  accessToken: IAccessToken;
+  expires_in: string;
+}
+
 export interface IListResponse <T> {
   count: number,
   rows: T[]
@@ -61,6 +86,372 @@ export interface ICartId {
 }
 
 export const schemas = {
+  customers: {
+    login: {
+      "definitions": {},
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "customers.login",
+      "type": "object",
+      "title": "The Root Schema",
+      "required": [
+        "customer",
+        "accessToken",
+        "expires_in"
+      ],
+      "properties": {
+        "customer": {
+          "$id": "#/properties/customer",
+          "type": "object",
+          "title": "The Customer Schema",
+          "properties": {
+            "customer_id": {
+              "$id": "#/properties/customer/properties/schema/properties/customer_id",
+              "type": "integer",
+              "title": "The Customer_id Schema",
+              "default": 0,
+              "examples": [
+                1
+              ]
+            },
+            "name": {
+              "$id": "#/properties/customer/properties/schema/properties/name",
+              "type": "string",
+              "title": "The Name Schema",
+              "default": "",
+              "examples": [
+                "Lannucci"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "email": {
+              "$id": "#/properties/customer/properties/schema/properties/email",
+              "type": "string",
+              "title": "The Email Schema",
+              "default": "",
+              "examples": [
+                "lannucci@hotmail.com"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "address_1": {
+              "$id": "#/properties/customer/properties/schema/properties/address_1",
+              "type": ["string", "null"],
+              "title": "The Address_1 Schema",
+              "default": "",
+              "examples": [
+                "QI 19"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "address_2": {
+              "$id": "#/properties/customer/properties/schema/properties/address_2",
+              "type": ["string", "null"],
+              "title": "The Address_2 Schema",
+              "default": "",
+              "examples": [
+                ""
+              ],
+              "pattern": "^(.*)$"
+            },
+            "city": {
+              "$id": "#/properties/customer/properties/schema/properties/city",
+              "type": ["string", "null"],
+              "title": "The City Schema",
+              "default": "",
+              "examples": [
+                ""
+              ],
+              "pattern": "^(.*)$"
+            },
+            "region": {
+              "$id": "#/properties/customer/properties/schema/properties/region",
+              "type": ["string", "null"],
+              "title": "The Region Schema",
+              "default": "",
+              "examples": [
+                ""
+              ],
+              "pattern": "^(.*)$"
+            },
+            "postal_code": {
+              "$id": "#/properties/customer/properties/schema/properties/postal_code",
+              "type": ["string", "null"],
+              "title": "The Postal_code Schema",
+              "default": "",
+              "examples": [
+                ""
+              ],
+              "pattern": "^(.*)$"
+            },
+            "country": {
+              "$id": "#/properties/customer/properties/schema/properties/country",
+              "type": ["string", "null"],
+              "title": "The Country Schema",
+              "default": "",
+              "examples": [
+                ""
+              ],
+              "pattern": "^(.*)$"
+            },
+            "shipping_region_id": {
+              "$id": "#/properties/customer/properties/schema/properties/shipping_region_id",
+              "type": "integer",
+              "title": "The Shipping_region_id Schema",
+              "default": 0,
+              "examples": [
+                1
+              ]
+            },
+            "day_phone": {
+              "$id": "#/properties/customer/properties/schema/properties/day_phone",
+              "type": ["string", "null"],
+              "title": "The Day_phone Schema",
+              "default": "",
+              "examples": [
+                "+351323213511235"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "eve_phone": {
+              "$id": "#/properties/customer/properties/schema/properties/eve_phone",
+              "type": ["string", "null"],
+              "title": "The Eve_phone Schema",
+              "default": "",
+              "examples": [
+                "+452436143246123"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "mob_phone": {
+              "$id": "#/properties/customer/properties/schema/properties/mob_phone",
+              "type": ["string", "null"],
+              "title": "The Mob_phone Schema",
+              "default": "",
+              "examples": [
+                "+351323213511235"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "credit_card": {
+              "$id": "#/properties/customer/properties/schema/properties/credit_card",
+              "type": ["string", "null"],
+              "title": "The Credit_card Schema",
+              "default": "",
+              "examples": [
+                "XXXXXXXX5100"
+              ],
+              "pattern": "^(.*)$"
+            }
+          }
+        },
+        "accessToken": {
+          "$id": "#/properties/accessToken",
+          "type": "string",
+          "title": "The Accesstoken Schema",
+          "default": "",
+          "examples": [
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE1NTA0MjQ0OTgsImV4cCI6MTU1MDUxMDg5OH0.aEFrNUPRWuRWx0IOEL-_A4J4Ti39iXEHAScm6GI61RR"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "expires_in": {
+          "$id": "#/properties/expires_in",
+          "type": "string",
+          "title": "The Expires_in Schema",
+          "default": "",
+          "examples": [
+            "24h"
+          ],
+          "pattern": "^(.*)$"
+        }
+      }
+    },
+    create: {
+      "definitions": {},
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "customers.create",
+      "type": "object",
+      "title": "The Root Schema",
+      "required": [
+        "accessToken"
+      ],
+      "properties": {
+        "accessToken": {
+          "$id": "#/properties/accessToken",
+          "type": "string",
+          "title": "The Accesstoken Schema",
+          "default": "",
+          "examples": [
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE1NTA0MjQ0OTgsImV4cCI6MTU1MDUxMDg5OH0.aEFrNUPRWuRWx0IOEL-_A4J4Ti39iXEHAScm6GI61RR"
+          ],
+          "pattern": "^(.*)$"
+        }
+      }
+    },
+    get: {
+      "definitions": {},
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "customers.get",
+      "type": "object",
+      "title": "The Root Schema",
+      "required": [
+        "customer_id",
+        "name",
+        "email",
+        "address_1",
+        "address_2",
+        "city",
+        "region",
+        "postal_code",
+        "country",
+        "shipping_region_id",
+        "day_phone",
+        "eve_phone",
+        "mob_phone",
+        "credit_card"
+      ],
+      "properties": {
+        "customer_id": {
+          "$id": "#/properties/customer/properties/schema/properties/customer_id",
+          "type": "integer",
+          "title": "The Customer_id Schema",
+          "default": 0,
+          "examples": [
+            1
+          ]
+        },
+        "name": {
+          "$id": "#/properties/customer/properties/schema/properties/name",
+          "type": "string",
+          "title": "The Name Schema",
+          "default": "",
+          "examples": [
+            "Lannucci"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "email": {
+          "$id": "#/properties/customer/properties/schema/properties/email",
+          "type": "string",
+          "title": "The Email Schema",
+          "default": "",
+          "examples": [
+            "lannucci@hotmail.com"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "address_1": {
+          "$id": "#/properties/customer/properties/schema/properties/address_1",
+          "type": ["string", "null"],
+          "title": "The Address_1 Schema",
+          "default": "",
+          "examples": [
+            "QI 19"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "address_2": {
+          "$id": "#/properties/customer/properties/schema/properties/address_2",
+          "type": ["string", "null"],
+          "title": "The Address_2 Schema",
+          "default": "",
+          "examples": [
+            ""
+          ],
+          "pattern": "^(.*)$"
+        },
+        "city": {
+          "$id": "#/properties/customer/properties/schema/properties/city",
+          "type": ["string", "null"],
+          "title": "The City Schema",
+          "default": "",
+          "examples": [
+            ""
+          ],
+          "pattern": "^(.*)$"
+        },
+        "region": {
+          "$id": "#/properties/customer/properties/schema/properties/region",
+          "type": ["string", "null"],
+          "title": "The Region Schema",
+          "default": "",
+          "examples": [
+            ""
+          ],
+          "pattern": "^(.*)$"
+        },
+        "postal_code": {
+          "$id": "#/properties/customer/properties/schema/properties/postal_code",
+          "type": ["string", "null"],
+          "title": "The Postal_code Schema",
+          "default": "",
+          "examples": [
+            ""
+          ],
+          "pattern": "^(.*)$"
+        },
+        "country": {
+          "$id": "#/properties/customer/properties/schema/properties/country",
+          "type": ["string", "null"],
+          "title": "The Country Schema",
+          "default": "",
+          "examples": [
+            ""
+          ],
+          "pattern": "^(.*)$"
+        },
+        "shipping_region_id": {
+          "$id": "#/properties/customer/properties/schema/properties/shipping_region_id",
+          "type": "integer",
+          "title": "The Shipping_region_id Schema",
+          "default": 0,
+          "examples": [
+            1
+          ]
+        },
+        "day_phone": {
+          "$id": "#/properties/customer/properties/schema/properties/day_phone",
+          "type": ["string", "null"],
+          "title": "The Day_phone Schema",
+          "default": "",
+          "examples": [
+            "+351323213511235"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "eve_phone": {
+          "$id": "#/properties/customer/properties/schema/properties/eve_phone",
+          "type": ["string", "null"],
+          "title": "The Eve_phone Schema",
+          "default": "",
+          "examples": [
+            "+452436143246123"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "mob_phone": {
+          "$id": "#/properties/customer/properties/schema/properties/mob_phone",
+          "type": ["string", "null"],
+          "title": "The Mob_phone Schema",
+          "default": "",
+          "examples": [
+            "+351323213511235"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "credit_card": {
+          "$id": "#/properties/customer/properties/schema/properties/credit_card",
+          "type": ["string", "null"],
+          "title": "The Credit_card Schema",
+          "default": "",
+          "examples": [
+            "XXXXXXXX5100"
+          ],
+          "pattern": "^(.*)$"
+        }
+      }
+    }
+  },
   shipping: {
     regions: {
       concrete: {

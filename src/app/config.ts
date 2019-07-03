@@ -13,3 +13,10 @@ export const network = {
     time: 50
   }
 };
+
+export const ui = {
+  toasts: {
+    duration: 5000,
+    delay: 1000
+  }
+};

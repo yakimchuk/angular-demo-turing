@@ -1,0 +1,128 @@
+<div class="row align-flex-start container">
+
+  <div class="col-6">
+
+    {{ user.model | json }}
+
+    <div class="mat-title">Sign In</div>
+
+    <form #loginForm="ngForm" (ngSubmit)="login(models.login)">
+
+      <fieldset [disabled]="progress">
+
+        <mat-form-field>
+          <input name="email"
+                 type="text"
+                 [(ngModel)]="models.login.email"
+                 matInput
+                 email
+                 i18n-placeholder="@@test"
+                 placeholder="E-Mail"
+                 required />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input name="password"
+                 type="password"
+                 matInput
+                 [(ngModel)]="models.login.password"
+                 i18n-placeholder="@@test"
+                 placeholder="Password"
+                 required />
+        </mat-form-field>
+
+        <div class="row justify-flex-end align-center">
+          <button mat-raised-button color="primary" [disabled]="progress || loginForm.invalid">
+            Sign In <mat-icon>arrow_forward</mat-icon>
+          </button>
+        </div>
+
+      </fieldset>
+
+    </form>
+
+  </div>
+
+  <div class="col-6">
+
+    <div class="mat-title">Sign Up</div>
+
+    <form #regForm="ngForm" (ngSubmit)="register(models.registration)">
+
+      <fieldset [disabled]="progress">
+
+        <mat-form-field>
+          <input name="username"
+                 type="text"
+                 [(ngModel)]="models.registration.name"
+                 matInput
+                 i18n-placeholder="@@test"
+                 placeholder="Username"
+                 required />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input
+            name="email"
+            type="email"
+            [(ngModel)]="models.registration.email"
+            matInput
+            email
+            placeholder="E-Mail"
+            required />
+        </mat-form-field>
+
+        <mat-form-field>
+          <input name="password"
+                 type="password"
+                 matInput
+                 [(ngModel)]="models.registration.password"
+                 i18n-placeholder="@@test"
+                 placeholder="Password"
+                 required />
+        </mat-form-field>
+
+        <div class="row justify-flex-end align-center">
+          <button mat-raised-button color="primary" [disabled]="progress || regForm.invalid">
+            <span class="preloader" [@slideRight]="progress ? 'open' : 'closed'">
+              <mat-progress-spinner color="primary" diameter="14" mode="indeterminate"></mat-progress-spinner>
+            </span>
+            <mat-icon [@slideRight]="!progress ? 'open' : 'closed'">arrow_forward</mat-icon> Sign Up
+          </button>
+        </div>
+
+      </fieldset>
+
+    </form>
+
+  </div>
+
+</div>
+
+<ng-template #auth_success>
+  You have been successfully singed in
+</ng-template>
+
+<ng-template #auth_manual_error>
+  We cannot authorize you at this time, please try again or later
+</ng-template>
+
+<ng-template #auth_manual_credentials_error>
+  Such combination of email and password is not found, please check entered data
+</ng-template>
+
+<ng-template #register_success>
+  You have been successfully registered
+</ng-template>
+
+<ng-template #register_unknown_error>
+  We cannot register you at this time, please try again or later
+</ng-template>
+
+<ng-template #register_in_use_error>
+  This email is already in use, please use other one or sign in using the left form
+</ng-template>
+
+<ng-template #register_email_error>
+  You have entered incorrect email (incorrect characters)
+</ng-template>

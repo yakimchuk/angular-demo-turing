@@ -8,7 +8,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import {
   MatBadgeModule,
-  MatButtonModule, MatCardModule, MatDividerModule,
+  MatButtonModule, MatCardModule, MatDialogModule, MatDividerModule,
   MatExpansionModule, MatFormFieldModule,
   MatIconModule, MatInputModule, MatListModule, MatPaginatorIntl, MatPaginatorModule,
   MatProgressSpinnerModule, MatRippleModule, MatSelectModule,
@@ -24,7 +24,7 @@ import { DeviceDetectorModule } from 'ngx-device-detector';
 import { DepartmentsNavigationComponent } from '@app/components/departments-navigation/departments-navigation.component';
 import { ComponentPreloaderComponent } from '@app/components/component-preloader/component-preloader.component';
 import { FakePlaceholderComponent } from '@app/components/fake-placeholder/fake-placeholder.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 
 import 'ajv';
 import { DepartmentCategoriesComponent } from '@app/components/department-categories/department-categories.component';
@@ -33,7 +33,6 @@ import { ButtonReloadComponent } from '@app/components/button-reload/button-relo
 import { ButtonCloseWebsiteComponent } from '@app/components/button-close-website/button-close-website.component';
 import { SearchComponent } from '@app/components/search/search.component';
 import { CartButtonMenuComponent } from '@app/components/cart-button-menu/cart-button-menu.component';
-import { ProfileButtonMenuComponent } from '@app/components/profile-button-menu/profile-button-menu.component';
 import { RouteNavigationComponent } from '@app/components/route-navigation/route-navigation.component';
 import { BreadcrumbI18nHackComponent } from '@app/components/breadcrumb-i18n-hack/breadcrumb-i18n-hack.component';
 import { ProductsNavigatorComponent } from '@app/components/products-navigator/products-navigator.component';
@@ -54,10 +53,17 @@ import { TaxSelectorComponent } from '@app/components/tax-selector/tax-selector.
 import { CartEditorComponent } from '@app/components/cart-editor/cart-editor.component';
 import { ShippingSelectorComponent } from '@app/components/shipping-selector/shipping-selector.component';
 import { Shipping } from '@app/services/shipping';
+import { User } from '@app/services/user';
+import { Users } from '@app/services/users';
+import { AccountButtonMenuComponent } from '@app/components/account-button-menu/account-button-menu.component';
+import { AuthPopupComponent } from '@app/popups/auth-popup/auth-popup.component';
+import { FormsModule } from '@angular/forms';
+import { Auth, IAuth } from '@app/services/auth';
 
 const vendor = {
   framework: [
     CommonModule,
+    FormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     RouterModule.forRoot(routes, options)
@@ -82,6 +88,7 @@ const vendor = {
     MatFormFieldModule,
     MatInputModule,
     MatSelectModule,
+    MatDialogModule,
     DeviceDetectorModule.forRoot()
   ]
 };
@@ -105,7 +112,6 @@ const components = {
     ButtonCloseWebsiteComponent,
     SearchComponent,
     CartButtonMenuComponent,
-    ProfileButtonMenuComponent,
     RouteNavigationComponent,
     BreadcrumbI18nHackComponent,
     ProductsNavigatorComponent,
@@ -115,9 +121,14 @@ const components = {
     OrderSubtotalComponent,
     TaxSelectorComponent,
     CartEditorComponent,
-    ShippingSelectorComponent
+    ShippingSelectorComponent,
+    AccountButtonMenuComponent
   ]
 };
+
+const popups = [
+  AuthPopupComponent
+];
 
 const pipes = [
   ExcerptPipe,
@@ -135,8 +146,20 @@ const providers = [
   UserMessages,
   Taxes,
   Shipping,
+  User,
+  Users,
+  Auth,
   {
-    provide: MatPaginatorIntl, useValue: getPaginationIntl()
+    provide: MatPaginatorIntl,
+    useValue: getPaginationIntl()
+  },
+  {
+    provide: HTTP_INTERCEPTORS,
+    useFactory: (auth: IAuth): IAuth => {
+      return auth;
+    },
+    deps: [Auth],
+    multi: true
   }
 ];
 
@@ -144,6 +167,7 @@ const providers = [
   declarations: [
     ...components.routes,
     ...components.ui,
+    ...popups,
     ...directives,
     ...pipes
   ],
@@ -153,6 +177,9 @@ const providers = [
   ],
   providers: [
     ...providers
+  ],
+  entryComponents: [
+    ...popups
   ],
   bootstrap: [ContainerComponent],
   schemas: [NO_ERRORS_SCHEMA]
