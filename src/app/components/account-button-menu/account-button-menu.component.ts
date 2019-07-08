@@ -18,11 +18,9 @@ export class AccountButtonMenuComponent implements OnInit {
   constructor(user: User, dialog: MatDialog) {
     this.user = user;
     this.dialog = dialog;
-    console.log(this);
   }
 
   public auth() {
-    console.log(this);
     this.dialog.open(AuthPopupComponent);
   }
 

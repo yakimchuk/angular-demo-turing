@@ -1,0 +1,61 @@
+<app-route-navigation>
+  <div caption>Account</div>
+  <div description>Your personal data (orders and information management)</div>
+  <div actions>
+    <button mat-raised-button color="primary" (click)="logout()" [@slideRight]="user.model ? 'open' : 'closed'">
+      <mat-icon>exit_to_app</mat-icon> Logout
+    </button>
+  </div>
+</app-route-navigation>
+
+<div class="sign-note" [@slideTop]="!user.model ? 'open' : 'closed'">
+
+  <p class="text-danger text-center mat-body-2" [@slideTop]="error === 'session' ? 'open' : 'closed'">
+    Your session has expired, sign in again, please
+  </p>
+
+  <p class="text-note mat-body-1 text-center">
+    You must sign in in order manage your account
+  </p>
+
+  <div class="text-center">
+    <button mat-raised-button color="primary" (click)="auth()">
+      <mat-icon>account_circle</mat-icon> Sign In
+    </button>
+  </div>
+
+</div>
+
+<mat-tab-group [@slideTop]="user.model ? 'open' : 'closed'">
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      Profile
+    </ng-template>
+
+    <div class="mat-title">Profile</div>
+
+    edit
+
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      Orders
+    </ng-template>
+
+    <div class="mat-title">Orders</div>
+
+    <app-orders></app-orders>
+
+  </mat-tab>
+
+</mat-tab-group>
+
+<ng-template #user_logout_success>
+  You have successfully logged out from the account
+</ng-template>
+
+<ng-template #user_logout_error>
+  Cannot log you out at this time, please try again or later
+</ng-template>

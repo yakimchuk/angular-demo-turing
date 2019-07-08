@@ -15,7 +15,7 @@ import {
   IShippingVariant as IShippingRemoteVariant,
   IShippingRegion,
   schemas,
-  IUser, IAuthCredentials, IAccessToken
+  IUser, IAuthCredentials, IAccessToken, IPaymentResponse
 } from './schemas';
 import * as ajv from 'ajv';
 import { PaginationFilter } from '../components/products-navigator/products-navigator.component';
@@ -23,6 +23,8 @@ import * as _ from 'lodash';
 import { toFormData } from '@app/utilities/adapters';
 import { IShippingArea, IShippingVariant } from '@app/services/shipping';
 import { IUserModel } from '@app/services/user';
+import { IOrder, IOrderItem, OrderState } from '@app/services/orders';
+import { IOrder as IRemoteOrder, IOrderItem as IRemoteOrderItem } from '@app/services/schemas.ts';
 
 const schemasConverter = new ajv();
 
@@ -65,6 +67,16 @@ export interface IRemoteUsersGateway {
   login(email: string, password: string): Promise<IAccessToken>;
 }
 
+export interface IRemoteOrdersData {
+  getCurrentUserOrders(): Promise<IOrder[]>;
+  getOrderItems(orderId: number): Promise<IOrderItem[]>;
+  create(cartId: string, shippingVariantId: number, taxId: number): Promise<number>;
+}
+
+export interface IRemotePaymentData {
+  charge(token: string, orderId: number, description: string, amount: number, currency: string): Promise<IPaymentResponse>;
+}
+
 export interface IRemoteData {
   cart: IRemoteCartData;
   products: IRemoteProductsData;
@@ -74,6 +86,8 @@ export interface IRemoteData {
   shipping: IRemoteShippingData;
   users: IRemoteUsersData;
   auth: IRemoteUsersGateway;
+  orders: IRemoteOrdersData;
+  payment: IRemotePaymentData;
 }
 
 @Injectable()
@@ -93,14 +107,15 @@ export class Resources implements IRemoteData {
     return url.toString();
   }
 
-  private guard<T>(request: Observable<T>, schema: object): Promise<T> {
+  private guard<T>(request: Observable<T>, schema: object|null): Promise<T> {
     return new Promise<T> (function (resolve, reject) {
 
       let validate;
 
       try {
-        validate = schemasConverter.compile(schema);
+        validate = schema === null ? () => true : schemasConverter.compile(schema);
       } catch (error) {
+        console.error(`Response schema complation errors`, error, schemasConverter.errors);
         reject(error);
         return;
       }
@@ -109,6 +124,7 @@ export class Resources implements IRemoteData {
   response => {
 
           if (!validate(response)) {
+            console.error(`Response schema validation errors`, validate.errors);
             reject(new TypeError(`Response has an invalid format, expected schema ${JSON.stringify(schema)} but got value "${JSON.stringify(response)}"`));
             return;
           }
@@ -122,6 +138,87 @@ export class Resources implements IRemoteData {
     });
   }
 
+  payment: IRemotePaymentData = {
+
+    charge: async (token: string, orderId: number, description: string, amount: number, currency: string) => {
+      return await this.guard<IPaymentResponse>(
+        this.http.post<IPaymentResponse>(this.toResourceUrl(api.endpoint, `/stripe/charge`), toFormData({
+          stripeToken: token,
+          order_id: orderId,
+          description: description,
+          amount: amount * 100,
+          currency: currency
+        })),
+        null
+      );
+    },
+
+  };
+
+  orders: IRemoteOrdersData = {
+
+    getOrderItems: async (orderId: number) => {
+
+      let data = await this.guard<IRemoteOrderItem[]>(
+        this.http.get<IRemoteOrderItem[]>(this.toResourceUrl(api.endpoint, `/orders/${orderId}`)),
+        schemas.orders.info
+      );
+
+      return data.map<IOrderItem>((item: IRemoteOrderItem) => ({
+        productId: item.product_id,
+        name: item.product_name,
+        cost: parseFloat(item.unit_cost),
+        quantity: item.quantity,
+        subtotal: parseFloat(item.subtotal)
+      }));
+
+    },
+
+    create: async (cartId: string, shippingId: number, taxId: number) => {
+
+      let data = await this.guard<{ orderId: number }>(
+        this.http.post<{ orderId: number }>(this.toResourceUrl(api.endpoint, `/orders`), toFormData({
+          cart_id: cartId,
+          shipping_id: shippingId,
+          tax_id: taxId
+        })),
+        schemas.orders.create
+      );
+
+      return data.orderId;
+
+    },
+
+    getCurrentUserOrders: async () => {
+
+      let data = await this.guard<IRemoteOrder[]>(
+        this.http.get<IRemoteOrder[]>(this.toResourceUrl(api.endpoint, `/orders/inCustomer`)),
+        schemas.orders.byCustomer
+      );
+
+      let result: IOrder[] = data.map<IOrder>((order: IRemoteOrder) => {
+
+        if (!(order.status in OrderState)) {
+          throw new TypeError(`Order format is incompatible`);
+        }
+
+        return {
+          id: order.order_id,
+          name: order.name,
+          created: new Date(order.created_on),
+          shipped: order.shipped_on === null ? null : new Date(order.shipped_on),
+          // @ts-ignore: This value is correct due to the check above
+          status: order.status as OrderState,
+          cost: parseFloat(order.total_amount)
+        };
+      });
+
+      return result;
+
+    },
+
+  };
+
   users: IRemoteUsersData = {
 
     get: async () => {
@@ -134,6 +231,7 @@ export class Resources implements IRemoteData {
       let result: IUserModel = {
         id: data.customer_id,
         name: data.name,
+        email: data.email,
         address1: data.address_1,
         address2: data.address_2,
         city: data.city,

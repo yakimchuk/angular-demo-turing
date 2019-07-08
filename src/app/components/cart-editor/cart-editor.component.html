@@ -2,19 +2,19 @@
   <table mat-table [dataSource]="cart.items">
 
     <ng-container matColumnDef="number">
-      <th mat-header-cell *matHeaderCellDef>#</th>
+      <th mat-header-cell *matHeaderCellDef class="text-center">#</th>
       <td mat-cell *matCellDef="let i = index"> {{ i + 1 }} </td>
     </ng-container>
 
     <ng-container matColumnDef="image">
-      <th mat-header-cell *matHeaderCellDef>Pic.</th>
+      <th mat-header-cell *matHeaderCellDef class="text-center">Pic.</th>
       <td mat-cell *matCellDef="let item; let i = index" class="item__image">
         <app-image-thumbnail [url]="'http://lorempixel.com/300/250?' + i"></app-image-thumbnail>
       </td>
     </ng-container>
 
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef>Name</th>
+      <th mat-header-cell *matHeaderCellDef class="text-center">Name</th>
       <td mat-cell *matCellDef="let item">
         <div class="mat-body-1">{{ item.name }}</div>
         <div class="mat-small">{{ item.attributes }}</div>
@@ -22,12 +22,12 @@
     </ng-container>
 
     <ng-container matColumnDef="price">
-      <th mat-header-cell *matHeaderCellDef>Price</th>
+      <th mat-header-cell *matHeaderCellDef class="text-center">Price</th>
       <td mat-cell *matCellDef="let item"> {{ item.price | money }} </td>
     </ng-container>
 
     <ng-container matColumnDef="quantity">
-      <th mat-header-cell *matHeaderCellDef>Quan.</th>
+      <th mat-header-cell *matHeaderCellDef class="text-center">Quan.</th>
       <td mat-cell *matCellDef="let item" class="column-quantity">
 
         <mat-form-field>
@@ -48,7 +48,7 @@
     </ng-container>
 
     <ng-container matColumnDef="subtotal">
-      <th mat-header-cell *matHeaderCellDef>Subt.</th>
+      <th mat-header-cell *matHeaderCellDef class="text-center">Subt.</th>
       <td mat-cell *matCellDef="let item"> {{ item.subtotal | money }} </td>
     </ng-container>
 

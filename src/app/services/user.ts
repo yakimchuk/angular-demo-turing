@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
 import { IRemoteData, Resources } from '@app/services/resources';
 import { Auth, IAuth } from '@app/services/auth';
+import { IOrder } from '@app/services/orders';
 
 export interface IUserModel {
 
   id: number;
   name: string;
+  email: string;
   address1: string;
   address2: string;
   city: string;
@@ -25,6 +27,7 @@ export interface IUserModel {
 export interface IUser {
 
   model?: IUserModel;
+  orders?: IOrder[];
 
   logout(): Promise<any>;
   reload(): Promise<any>;
@@ -49,13 +52,21 @@ export class User implements IUser {
   }
 
   model: IUserModel;
+  orders: IOrder[] = [];
 
-  logout(): Promise<any> {
-    return undefined;
+  async logout(): Promise<any> {
+
+    await this.auth.logout();
+
+    delete this.model;
+    delete this.orders;
+
+    this.orders = [];
   }
 
   async reload() {
     this.model = await this.resources.users.get();
+    this.orders = await this.resources.orders.getCurrentUserOrders();
   }
 
   // @todo: Implement this service

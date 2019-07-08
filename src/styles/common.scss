@@ -38,16 +38,8 @@ button {
 }
 
 th {
-  text-align: center !important;
-  padding: 6px 0 !important;
-}
-
-td.mat-cell:last-of-type, td.mat-footer-cell:last-of-type, th.mat-header-cell:last-of-type {
-  padding-right: 0 !important;
-}
-
-td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type, th.mat-header-cell:first-of-type {
-  padding-left: 0 !important;
+  padding-top: 6px !important;
+  padding-bottom: 6px !important;
 }
 
 .mat-error {
@@ -57,7 +49,9 @@ td.mat-cell:first-of-type, td.mat-footer-cell:first-of-type, th.mat-header-cell:
 .no-margin { margin: 0; }
 
 .text-right { text-align: right; }
+.text-center { text-align: center; }
 
+.text-success { color: #6ea02a; }
 .text-danger { color: #e64727; }
 .text-note { color: #3592c7; }
 .text-darken { color: rgba(0,0,0,0.45); }

@@ -85,7 +85,223 @@ export interface ICartId {
   cart_id: string
 }
 
+export interface IOrder {
+  order_id: number;
+  total_amount: string;
+  created_on: string;
+  shipped_on: string;
+  status: number;
+  name: string;
+}
+
+export interface IOrderItem {
+  order_id: number;
+  product_id: number;
+  attributes: string;
+  product_name: string;
+  quantity: number;
+  unit_cost: string;
+  subtotal: string;
+}
+
+export interface IPaymentResponse {
+  paid: boolean;
+}
+
 export const schemas = {
+  orders: {
+    info: {
+      "definitions": {},
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "orders.info",
+      "type": "array",
+      "title": "The Root Schema",
+      "items": {
+        "$id": "#/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "order_id",
+          "product_id",
+          "attributes",
+          "product_name",
+          "quantity",
+          "unit_cost",
+          "subtotal"
+        ],
+        "properties": {
+          "order_id": {
+            "$id": "#/items/properties/order_id",
+            "type": "integer",
+            "title": "The Order_id Schema",
+            "default": 0,
+            "examples": [
+              1
+            ]
+          },
+          "product_id": {
+            "$id": "#/items/properties/product_id",
+            "type": "integer",
+            "title": "The Product_id Schema",
+            "default": 0,
+            "examples": [
+              1
+            ]
+          },
+          "attributes": {
+            "$id": "#/items/properties/attributes",
+            "type": "string",
+            "title": "The Attributes Schema",
+            "default": "",
+            "examples": [
+              "LG, Red"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "product_name": {
+            "$id": "#/items/properties/product_name",
+            "type": "string",
+            "title": "The Product_name Schema",
+            "default": "",
+            "examples": [
+              "Arc d'Triomphe"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "quantity": {
+            "$id": "#/items/properties/quantity",
+            "type": "integer",
+            "title": "The Quantity Schema",
+            "default": 0,
+            "examples": [
+              1
+            ]
+          },
+          "unit_cost": {
+            "$id": "#/items/properties/unit_cost",
+            "type": "string",
+            "title": "The Unit_cost Schema",
+            "default": "",
+            "examples": [
+              "14.99"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "subtotal": {
+            "$id": "#/items/properties/subtotal",
+            "type": "string",
+            "title": "The Subtotal Schema",
+            "default": "",
+            "examples": [
+              "14.99"
+            ],
+            "pattern": "^(.*)$"
+          }
+        }
+      }
+    },
+    create: {
+      "definitions": {},
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "orders.create",
+      "type": "object",
+      "title": "The Root Schema",
+      "required": [
+        "orderId"
+      ],
+      "properties": {
+        "orderId": {
+          "$id": "#/properties/orderId",
+          "type": "integer",
+          "title": "The Orderid Schema",
+          "default": 0,
+          "examples": [
+            1
+          ]
+        }
+      }
+    },
+    byCustomer: {
+      "definitions": {},
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "orders.byCustomer",
+      "type": "array",
+      "title": "The Root Schema",
+      "items": {
+        "$id": "#/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "order_id",
+          "total_amount",
+          "created_on",
+          "shipped_on",
+          "status",
+          "name"
+        ],
+        "properties": {
+          "order_id": {
+            "$id": "#/items/properties/order_id",
+            "type": "integer",
+            "title": "The Order_id Schema",
+            "default": 0,
+            "examples": [
+              1
+            ]
+          },
+          "total_amount": {
+            "$id": "#/items/properties/total_amount",
+            "type": "string",
+            "title": "The Total_amount Schema",
+            "default": "",
+            "examples": [
+              "0.00"
+            ]
+          },
+          "created_on": {
+            "$id": "#/items/properties/created_on",
+            "type": "string",
+            "title": "The Created_on Schema",
+            "default": "",
+            "examples": [
+              ""
+            ],
+            "pattern": "^(.*)$"
+          },
+          "shipped_on": {
+            "$id": "#/items/properties/shipped_on",
+            "type": ["string", "null"],
+            "title": "The Shipped_on Schema",
+            "default": "",
+            "examples": [
+              ""
+            ],
+            "pattern": "^(.*)$"
+          },
+          "status": {
+            "$id": "#/items/properties/status",
+            "type": "number",
+            "title": "The Status Schema",
+            "default": 0,
+            "examples": [
+              0
+            ],
+            "pattern": "^(.*)$"
+          },
+          "name": {
+            "$id": "#/items/properties/name",
+            "type": "string",
+            "title": "The Name Schema",
+            "default": "",
+            "examples": [
+              "Test"
+            ],
+            "pattern": "^(.*)$"
+          }
+        }
+      }
+    }
+  },
   customers: {
     login: {
       "definitions": {},

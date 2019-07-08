@@ -1,0 +1,31 @@
+:host ::ng-deep .StripeElement {
+  margin: 15px;
+  padding: 10px;
+  box-shadow: 0 0 2px rgba(0,0,0,0.2);
+}
+
+.mat-table {
+  width: 100%;
+  margin-bottom: 24px;
+
+  tr {
+    height: 32px;
+  }
+
+  th {
+    padding-top: 0 !important;
+  }
+}
+
+:host {
+  display: block;
+}
+
+.total {
+  small {
+    line-height: 12px;
+    display: block;
+    padding-bottom: 4px;
+    font-size: 10px;
+  }
+}

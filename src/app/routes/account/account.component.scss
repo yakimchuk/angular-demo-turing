@@ -1,0 +1,11 @@
+:host ::ng-deep mat-tab-body {
+  padding: 25px;
+}
+
+.sign-note {
+  padding: 25px;
+}
+
+:host ::ng-deep .mat-tab-body-content {
+  overflow: visible;
+}

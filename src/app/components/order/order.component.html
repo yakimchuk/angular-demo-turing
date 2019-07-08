@@ -1,0 +1,93 @@
+<!-- @todo: Apply animation here, for now they do not work if condition is met (!order = true and animation does not work) -->
+<p *ngIf="!order" class="mat-body-1 text-danger">
+  We cannot show you information about the order at this time.<br/>
+  Please, reopen this page or try later
+</p>
+
+<div [@slideTop]="order ? 'open' : 'closed'">
+
+  <div [@slideTop]="items?.length > 0 ? 'open' : 'closed'">
+
+    <table class="mat-table">
+      <thead class="rowgroup">
+      <tr class="mat-row">
+        <th class="mat-header-cell">Product</th>
+        <th class="mat-header-cell">Cost</th>
+        <th class="mat-header-cell">Quantity</th>
+        <th class="mat-header-cell">Subtotal</th>
+      </tr>
+      </thead>
+      <tbody class="rowgroup">
+        <tr *ngFor="let item of items" class="mat-row">
+          <td class="mat-cell">{{ item.name }}</td>
+          <td class="mat-cell">{{ item.cost | money }}</td>
+          <td class="mat-cell">{{ item.quantity }}</td>
+          <td class="mat-cell">{{ item.subtotal | money }}</td>
+        </tr>
+        <tr>
+          <td class="mat-cell" colspan="3"></td>
+          <td class="mat-cell mat-body-2 total">
+            {{ order?.cost | money }} in total<br/>
+            <small class="mat-body-1 text-note">Products + Tax + Shipping</small>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+
+  <p [@slideTop]="items?.length === 0 ? 'open' : 'closed'" class="mat-body-1 text-note">
+    For some reasons we cannot load list with your ordered items, but do not worry, we know your order contents
+  </p>
+
+  <p [@slideTop]="order?.status === states.Paid ? 'open' : 'closed'" class="mat-body-1 text-note">
+
+    Your order has been successfully paid!<br/>
+    Await for delivery, please. Shipping date will be available above.
+
+  </p>
+
+  <div [@slideTop]="order?.status === states.Unpaid ? 'open' : 'closed'">
+
+    <div class="mat-title">Pay your order #{{ order?.id }}</div>
+
+    <form (ngSubmit)="pay()">
+      <fieldset [disabled]="progress">
+
+        <div class="form-row">
+
+          <label class="mat-title">
+            Credit or debit card
+          </label>
+
+          <div #container>
+            <!-- A Stripe Element will be inserted here. -->
+          </div>
+
+        </div>
+
+        <button mat-raised-button color="primary">Submit Payment</button>
+
+      </fieldset>
+    </form>
+
+  </div>
+
+  <p [@slideTop]="!states[order?.status] ? 'open' : 'closed'" class="mat-body-1 text-danger">
+    Your order is in unknown status.<br/>
+    Please send us a message to the email support@turing-demo.world.
+  </p>
+
+</div>
+
+<ng-template #payment_success>
+  Your order has been successfully paid
+</ng-template>
+
+<ng-template #payment_error>
+  We faced issues at try to process your order
+</ng-template>
+
+<ng-template #user_reload_error>
+  You have paid your order, but we cannot reload it to show you its new status, please, reload the page manually
+</ng-template>

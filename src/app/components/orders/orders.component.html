@@ -1,0 +1,63 @@
+<div class="mat-body-1 text-note" [@slideTop]="user.orders.length === 0 ? 'open' : 'closed'">
+  At this moment you did not order anything... <a routerLink="/">Begin shopping?</a>
+</div>
+
+<table mat-table [dataSource]="user.orders" multiTemplateDataRows class="mat-elevation-z2 orders">
+
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>Number</th>
+    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="created">
+    <th mat-header-cell *matHeaderCellDef>Created</th>
+    <td mat-cell *matCellDef="let element">{{ element.created | date:'d MMM y, h:mm' }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="shipped">
+    <th mat-header-cell *matHeaderCellDef>Shipped</th>
+    <td mat-cell *matCellDef="let element">
+      <span *ngIf="element.shipped">{{ element.shipped | date:'d MMM y, h:mm' }}</span>
+      <span *ngIf="!element.shipped">—</span>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="cost">
+    <th mat-header-cell *matHeaderCellDef>Cost</th>
+    <td mat-cell *matCellDef="let element">{{ element.cost | money }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="status">
+    <th mat-header-cell *matHeaderCellDef>Status</th>
+    <td mat-cell *matCellDef="let element">
+      <div [ngSwitch]="element.status">
+        <div *ngSwitchCase="states.Unpaid" class="text-danger">Unpaid</div>
+        <div *ngSwitchCase="states.Paid" class="text-success">Paid</div>
+        <div *ngSwitchDefault class="text-danger">Unknown</div>
+      </div>
+    </td>
+  </ng-container>
+
+  <ng-container matColumnDef="order">
+    <td mat-cell *matCellDef="let element" [attr.colspan]="6">
+      <div class="expander" [@slideTop]="order === element ? 'open' : 'closed'">
+        <app-order [order]="element"></app-order>
+      </div>
+    </td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="['id', 'name', 'created', 'shipped', 'cost', 'status']"></tr>
+
+  <!-- @todo: Use MatRipple here, but for now he is too buggy -->
+  <tr mat-row *matRowDef="let element; columns: ['id', 'name', 'created', 'shipped', 'cost', 'status'];"
+      class="order"
+      [class.example-expanded-row]="order === element"
+      (click)="order = order === element ? null : element">
+  </tr>
+  <tr mat-row *matRowDef="let row; columns: ['order']" class="order-details"></tr>
+</table>

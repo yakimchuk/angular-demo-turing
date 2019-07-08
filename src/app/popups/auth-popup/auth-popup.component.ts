@@ -1,9 +1,10 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, Inject, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { IUser, User } from '@app/services/user';
 import { slideRight, slideTop } from '@app/utilities/transitions';
 import { IUsers, Users } from '@app/services/users';
 import { IMessages, UserMessages } from '@app/services/messages';
 import { Auth, IAuth } from '@app/services/auth';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
 interface IUserCredentials {
   email: string;
@@ -12,6 +13,10 @@ interface IUserCredentials {
 
 interface IUserData extends IUserCredentials {
   name: string;
+}
+
+class DialogData {
+  caption?: TemplateRef<any>
 }
 
 @Component({
@@ -24,6 +29,7 @@ export class AuthPopupComponent implements OnInit {
 
   public user: IUser;
   public progress: boolean = false;
+  public caption: TemplateRef<any>;
 
   public models: {
     login: IUserCredentials;
@@ -43,6 +49,7 @@ export class AuthPopupComponent implements OnInit {
   private users: IUsers;
   private messages: IMessages;
   private auth: IAuth;
+  private dialog: MatDialogRef<AuthPopupComponent>;
 
   @ViewChild('register_success', { static: true }) private registrationSuccessToastTemplate: TemplateRef<any>;
   @ViewChild('register_unknown_error', { static: true }) private registrationUnknownErrorToastTemplate: TemplateRef<any>;
@@ -53,11 +60,24 @@ export class AuthPopupComponent implements OnInit {
   @ViewChild('auth_manual_error', { static: true }) private loginManualErrorToastTemplate: TemplateRef<any>;
   @ViewChild('auth_manual_credentials_error', { static: true }) private loginManualCredentialsErrorTemplate: TemplateRef<any>;
 
-  constructor(user: User, users: Users, messages: UserMessages, auth: Auth) {
+  constructor(
+    user: User,
+    users: Users,
+    messages: UserMessages,
+    auth: Auth,
+    dialog: MatDialogRef<AuthPopupComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {
+
     this.user = user;
     this.users = users;
     this.messages = messages;
     this.auth = auth;
+    this.dialog = dialog;
+
+    if (data && data.caption) {
+      this.caption = data.caption;
+    }
+
   }
 
   public async register(model: IUserData) {
@@ -134,6 +154,8 @@ export class AuthPopupComponent implements OnInit {
 
     this.progress = false;
     this.messages.openFromTemplate(this.loginSuccessToastTemplate);
+
+    this.dialog.close();
 
   }
 

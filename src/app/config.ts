@@ -1,3 +1,5 @@
+export { environment } from '@app/../environments/environment'
+
 export const api = {
   endpoint: 'https://backendapi.turing.com'
 };

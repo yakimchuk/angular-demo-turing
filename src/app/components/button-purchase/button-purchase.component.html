@@ -9,8 +9,7 @@
 <button mat-stroked-button
         color="primary"
         class="col"
-        [@fade]="cart.state.ready && cart.hasItem(productId) ? 'open' : 'closed'"
-        routerLink="/cart">
+        [@fade]="cart.state.ready && cart.hasItem(productId) ? 'open' : 'closed'">
   <mat-icon>check</mat-icon> Already in your cart
 </button>
 

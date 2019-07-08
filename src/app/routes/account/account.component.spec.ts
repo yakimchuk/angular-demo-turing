@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HomeRouteComponent } from './home.component';
+import { AccountRouteComponent } from './account.component';
 
-describe('HomeRouteComponent', () => {
-  let component: HomeRouteComponent;
-  let fixture: ComponentFixture<HomeRouteComponent>;
+describe('AccountRouteComponent', () => {
+  let component: AccountRouteComponent;
+  let fixture: ComponentFixture<AccountRouteComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomeRouteComponent ]
+      declarations: [ AccountRouteComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HomeRouteComponent);
+    fixture = TestBed.createComponent(AccountRouteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

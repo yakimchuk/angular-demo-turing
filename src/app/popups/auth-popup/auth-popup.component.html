@@ -1,8 +1,13 @@
+<div *ngIf="caption" class="mat-body-1 text-note text-center caption">
+  <p>
+    <ng-container [ngTemplateOutlet]="caption"></ng-container>
+  </p>
+  <mat-divider></mat-divider>
+</div>
+
 <div class="row align-flex-start container">
 
   <div class="col-6">
-
-    {{ user.model | json }}
 
     <div class="mat-title">Sign In</div>
 
@@ -33,7 +38,10 @@
 
         <div class="row justify-flex-end align-center">
           <button mat-raised-button color="primary" [disabled]="progress || loginForm.invalid">
-            Sign In <mat-icon>arrow_forward</mat-icon>
+            <span class="preloader" [@slideRight]="progress ? 'open' : 'closed'">
+              <mat-progress-spinner color="primary" diameter="14" mode="indeterminate"></mat-progress-spinner>
+            </span>
+            <mat-icon [@slideRight]="!progress ? 'open' : 'closed'">arrow_forward</mat-icon> Sign In
           </button>
         </div>
 

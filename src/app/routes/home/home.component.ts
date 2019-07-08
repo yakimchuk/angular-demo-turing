@@ -10,7 +10,7 @@ import { fade, slideTop } from '@app/utilities/transitions';
   styleUrls: ['./home.component.scss'],
   animations: [slideTop, fade]
 })
-export class HomeComponent implements OnInit {
+export class HomeRouteComponent implements OnInit {
 
   public products: IListResponse<IProduct>;
   public error: ErrorEvent;

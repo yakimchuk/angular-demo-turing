@@ -1,7 +1,7 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { CommonModule, CurrencyPipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { HomeComponent } from '@app/routes/home/home.component';
+import { HomeRouteComponent } from '@app/routes/home/home.component';
 
 import { options, routes } from '@app/routing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -46,7 +46,7 @@ import { IStorage, UserStorage } from '@app/services/storage';
 import { ButtonPurchaseComponent } from '@app/components/button-purchase/button-purchase.component';
 import { RemoteCart } from '@app/services/cart';
 import { UserMessages } from '@app/services/messages';
-import { CartComponent } from '@app/routes/cart/cart.component';
+import { CartRouteComponent } from '@app/routes/cart/cart.component';
 import { OrderSubtotalComponent } from '@app/components/order-subtotal/order-subtotal.component';
 import { Taxes } from '@app/services/taxes';
 import { TaxSelectorComponent } from '@app/components/tax-selector/tax-selector.component';
@@ -59,6 +59,13 @@ import { AccountButtonMenuComponent } from '@app/components/account-button-menu/
 import { AuthPopupComponent } from '@app/popups/auth-popup/auth-popup.component';
 import { FormsModule } from '@angular/forms';
 import { Auth, IAuth } from '@app/services/auth';
+import { Orders } from '@app/services/orders';
+import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
+import { OrderComponent } from '@app/components/order/order.component';
+import { AccountRouteComponent } from '@app/routes/account/account.component';
+import { AccountNavigationComponent } from '@app/components/account-navigation/account-navigation.component';
+import { OrdersComponent } from '@app/components/orders/orders.component';
+import { environment } from '@app/config';
 
 const vendor = {
   framework: [
@@ -96,8 +103,9 @@ const vendor = {
 const components = {
   routes: [
     ContainerComponent,
-    HomeComponent,
-    CartComponent
+    HomeRouteComponent,
+    CartRouteComponent,
+    AccountRouteComponent
   ],
   ui: [
     TemplateHeaderComponent,
@@ -122,7 +130,10 @@ const components = {
     TaxSelectorComponent,
     CartEditorComponent,
     ShippingSelectorComponent,
-    AccountButtonMenuComponent
+    AccountButtonMenuComponent,
+    OrderComponent,
+    AccountNavigationComponent,
+    OrdersComponent
   ]
 };
 
@@ -149,6 +160,7 @@ const providers = [
   User,
   Users,
   Auth,
+  Orders,
   {
     provide: MatPaginatorIntl,
     useValue: getPaginationIntl()
@@ -160,8 +172,18 @@ const providers = [
     },
     deps: [Auth],
     multi: true
+  },
+  {
+    provide: STEPPER_GLOBAL_OPTIONS,
+    useValue: { showError: true }
+  },
+  {
+    provide: LOCALE_ID,
+    useValue: environment.locale
   }
 ];
+
+console.log(environment);
 
 @NgModule({
   declarations: [

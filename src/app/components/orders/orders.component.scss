@@ -1,0 +1,28 @@
+.orders {
+  width: 100%;
+}
+
+.order-details {
+
+  height: 0;
+
+  td {
+    border: 0;
+  }
+
+}
+
+.order {
+
+  transition: background-color ease-out 0.2s;
+
+  &:hover {
+    background: rgba(69, 186, 255, 0.15);
+    cursor: pointer;
+  }
+
+}
+
+.expander {
+  padding: 25px 0;
+}
