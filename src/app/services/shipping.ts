@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
-import { IServiceState } from '@app/types/common';
+import { IEvent, IServiceState, ServiceEvents } from '@app/types/common';
 import { IRemoteData, Resources } from '@app/services/resources';
+import { Subject } from 'rxjs';
 
-export interface IShipping {
+export interface IShipping extends Subject<IEvent> {
 
   state: IServiceState;
   areas: IShippingArea[];
@@ -31,7 +32,7 @@ const defaultState: IServiceState = {
 };
 
 @Injectable()
-export class Shipping implements IShipping {
+export class Shipping extends Subject<IEvent> implements IShipping {
 
   public state: IServiceState = defaultState;
   public areas: IShippingArea[] = [];
@@ -39,6 +40,9 @@ export class Shipping implements IShipping {
   private resources: IRemoteData;
 
   constructor(resources: Resources) {
+
+    super();
+
     this.resources = resources;
     this.reload();
   }
@@ -62,6 +66,10 @@ export class Shipping implements IShipping {
     } finally {
       this.state.ready = true;
     }
+
+    this.next({
+      name: ServiceEvents.Update
+    });
 
   }
 

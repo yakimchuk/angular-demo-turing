@@ -42,10 +42,15 @@ export interface IProduct {
 
 export type IAccessToken = string;
 
-export interface IUser {
-  customer_id: number;
+export interface IUserProfile {
   name: string;
   email: string;
+  day_phone: string;
+  eve_phone: string;
+  mob_phone: string;
+}
+
+export interface IUserAddress {
   address_1: string;
   address_2: string;
   city: string;
@@ -53,9 +58,10 @@ export interface IUser {
   postal_code: string;
   country: string;
   shipping_region_id: number;
-  day_phone: string;
-  eve_phone: string;
-  mob_phone: string;
+}
+
+export interface IUser extends IUserProfile, IUserAddress {
+  customer_id: number;
   credit_card: string;
 }
 

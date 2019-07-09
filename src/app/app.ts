@@ -66,6 +66,8 @@ import { AccountRouteComponent } from '@app/routes/account/account.component';
 import { AccountNavigationComponent } from '@app/components/account-navigation/account-navigation.component';
 import { OrdersComponent } from '@app/components/orders/orders.component';
 import { environment } from '@app/config';
+import { ProfileCommonEditorComponent } from '@app/components/profile-common-editor/profile-common-editor.component';
+import { ProfileShippingEditorComponent } from '@app/components/profile-shipping-editor/profile-shipping-editor.component';
 
 const vendor = {
   framework: [
@@ -133,7 +135,9 @@ const components = {
     AccountButtonMenuComponent,
     OrderComponent,
     AccountNavigationComponent,
-    OrdersComponent
+    OrdersComponent,
+    ProfileCommonEditorComponent,
+    ProfileShippingEditorComponent
   ]
 };
 

@@ -2,29 +2,35 @@ import { Injectable } from '@angular/core';
 import { IRemoteData, Resources } from '@app/services/resources';
 import { Auth, IAuth } from '@app/services/auth';
 import { IOrder } from '@app/services/orders';
+import { Subject } from 'rxjs';
+import { IEvent, ServiceEvents } from '@app/types/common';
 
-export interface IUserModel {
-
-  id: number;
+export interface IUserProfile {
   name: string;
   email: string;
+  phone: {
+    day?: string;
+    evening?: string;
+    mobile?: string;
+  };
+}
+
+export interface IUserAddress {
   address1: string;
   address2: string;
   city: string;
   region: string;
-  regionId: number;
+  shippingRegionId: number;
   postalCode: string;
   country: string;
-  phone: {
-    day: string;
-    evening: string;
-    mobile: string;
-  };
-  creditCard: string;
-
 }
 
-export interface IUser {
+export interface IUserModel extends IUserProfile, IUserAddress {
+  id: number;
+  creditCard: string;
+}
+
+export interface IUser extends Subject<IEvent> {
 
   model?: IUserModel;
   orders?: IOrder[];
@@ -35,12 +41,14 @@ export interface IUser {
 }
 
 @Injectable()
-export class User implements IUser {
+export class User extends Subject<IEvent> implements IUser {
 
   private resources: IRemoteData;
   private auth: IAuth;
 
   constructor(resources: Resources, auth: Auth) {
+
+    super();
 
     this.resources = resources;
     this.auth = auth;
@@ -65,10 +73,11 @@ export class User implements IUser {
   }
 
   async reload() {
+
     this.model = await this.resources.users.get();
     this.orders = await this.resources.orders.getCurrentUserOrders();
-  }
 
-  // @todo: Implement this service
+    this.next({ name: ServiceEvents.Update });
+  }
 
 }

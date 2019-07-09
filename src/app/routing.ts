@@ -32,6 +32,13 @@ export const routes: Routes = [
     data: {
       id: makeRouteId('account')
     }
+  },
+  {
+    path: 'account/:section',
+    component: AccountRouteComponent,
+    data: {
+      id: makeRouteId('account')
+    }
   }
 
 ];

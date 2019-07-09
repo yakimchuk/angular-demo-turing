@@ -1,0 +1,71 @@
+<div [@slideTop]="model ? 'open' : 'closed'">
+
+  <div class="text-danger mat-body-1" [@slideTop]="!shipping.state.ready ? 'open' : 'closed'">
+    <app-component-preloader>
+      <app-fake-placeholder type="rectangle" [progress]="true"></app-fake-placeholder>
+      <app-fake-placeholder type="line"></app-fake-placeholder>
+      <app-fake-placeholder type="line-short"></app-fake-placeholder>
+    </app-component-preloader>
+  </div>
+
+  <form #form="ngForm" [@slideTop]="shipping.state.ready && shipping.areas.length > 0 ? 'open' : 'closed'">
+    <fieldset [disabled]="progress">
+
+      <mat-form-field>
+        <input matInput type="text" name="address1" [(ngModel)]="model.address1" placeholder="Address Line 1" required />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="text" name="address2" [(ngModel)]="model.address2" placeholder="Address Line 2" />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="text" name="city" [(ngModel)]="model.city" placeholder="City" required />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="text" name="region" [(ngModel)]="model.region" placeholder="Region" required />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="text" name="postalCode" [(ngModel)]="model.postalCode" placeholder="Postal code" required />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="text" name="country" [(ngModel)]="model.country" placeholder="Country" required />
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Select your area</mat-label>
+        <mat-select name="shippingRegionId" [(value)]="model.shippingRegionId" required>
+          <mat-option *ngFor="let area of shipping.areas" [value]="area.id">
+            {{ area.name }}
+          </mat-option>
+        </mat-select>
+        <mat-hint>Where do you want to receive your order?</mat-hint>
+      </mat-form-field>
+
+      <div class="text-right">
+        <button mat-raised-button color="primary" [disabled]="!form.valid || progress" (click)="update()">
+          <mat-icon>save</mat-icon> Save
+        </button>
+      </div>
+
+    </fieldset>
+  </form>
+
+</div>
+
+<div [@slideTop]="!model ? 'open' : 'closed'">
+  <p class="mat-body-1 text-danger">
+    For now we cannot find your profile. Did you forget to sign in?
+  </p>
+</div>
+
+<ng-template #update_error>
+  We could not update your shipping details at this time, please try again or later
+</ng-template>
+
+<ng-template #update_success>
+  Your shipping details has been successfully updated
+</ng-template>

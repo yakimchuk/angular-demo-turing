@@ -22,7 +22,7 @@ import { PaginationFilter } from '../components/products-navigator/products-navi
 import * as _ from 'lodash';
 import { toFormData } from '@app/utilities/adapters';
 import { IShippingArea, IShippingVariant } from '@app/services/shipping';
-import { IUserModel } from '@app/services/user';
+import { IUserAddress, IUserModel, IUserProfile } from '@app/services/user';
 import { IOrder, IOrderItem, OrderState } from '@app/services/orders';
 import { IOrder as IRemoteOrder, IOrderItem as IRemoteOrderItem } from '@app/services/schemas.ts';
 
@@ -60,7 +60,9 @@ export interface IRemoteShippingData {
 
 export interface IRemoteUsersData {
   create(name: string, email: string, password: string): Promise<any>;
-  get(): Promise<IUserModel>
+  get(): Promise<IUserModel>;
+  updateProfile(model: IUserProfile, password: string): Promise<any>;
+  updateShipping(model: IUserAddress): Promise<any>;
 }
 
 export interface IRemoteUsersGateway {
@@ -236,7 +238,7 @@ export class Resources implements IRemoteData {
         address2: data.address_2,
         city: data.city,
         region: data.region,
-        regionId: data.shipping_region_id,
+        shippingRegionId: data.shipping_region_id,
         postalCode: data.postal_code,
         country: data.country,
         phone: {
@@ -248,6 +250,39 @@ export class Resources implements IRemoteData {
       };
 
       return result;
+
+    },
+
+    updateProfile: async (model: IUserProfile, password: string) => {
+
+      await this.guard<void>(
+        this.http.put<void>(this.toResourceUrl(api.endpoint, `/customer`), toFormData({
+          name: model.name,
+          email: model.email,
+          password: password,
+          day_phone: model.phone.day,
+          eve_phone: model.phone.evening,
+          mob_phone: model.phone.mobile
+        })),
+        null
+      );
+
+    },
+
+    updateShipping: async (model: IUserAddress) => {
+
+      await this.guard<void>(
+        this.http.put<void>(this.toResourceUrl(api.endpoint, `/customers/address`), toFormData({
+          address_1: model.address1,
+          address_2: model.address2,
+          city: model.city,
+          region: model.region,
+          postal_code: model.postalCode,
+          country: model.country,
+          shipping_region_id: model.shippingRegionId
+        })),
+        null
+      );
 
     },
 

@@ -8,6 +8,12 @@ import { AuthPopupComponent } from '@app/popups/auth-popup/auth-popup.component'
 import { IOrder } from '@app/services/orders';
 import { from } from 'rxjs';
 
+enum AccountTabNames {
+  profile,
+  shipping,
+  orders
+}
+
 @Component({
   selector: 'app-account',
   templateUrl: './account.component.html',
@@ -18,6 +24,8 @@ export class AccountRouteComponent implements OnInit {
 
   public user: IUser;
   public error: string;
+
+  public tabIndex: number = AccountTabNames.profile;
 
   private router: Router;
   private messages: IMessages;
@@ -52,6 +60,21 @@ export class AccountRouteComponent implements OnInit {
     this.dialog.open(AuthPopupComponent);
   }
 
+  public onTabChange(tabIndex: number) {
+    this.router.navigate(['/account', AccountTabNames[tabIndex]]);
+  }
+
+  private updateTab() {
+
+    let section = this.route.snapshot.paramMap.get('section');
+
+    if (!section || !(section in AccountTabNames)) {
+      return;
+    }
+
+    this.tabIndex = AccountTabNames[section];
+  }
+
   ngOnInit() {
 
     from(this.route.queryParams).subscribe((query: any) => {
@@ -68,6 +91,7 @@ export class AccountRouteComponent implements OnInit {
 
     });
 
+    this.updateTab();
   }
 
 }

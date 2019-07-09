@@ -1,4 +1,4 @@
-:host ::ng-deep mat-tab-body {
+.tab-container {
   padding: 25px;
 }
 
@@ -7,5 +7,5 @@
 }
 
 :host ::ng-deep .mat-tab-body-content {
-  overflow: visible;
+  overflow: hidden;
 }

@@ -26,16 +26,36 @@
 
 </div>
 
-<mat-tab-group [@slideTop]="user.model ? 'open' : 'closed'">
+<mat-tab-group [@slideTop]="user.model ? 'open' : 'closed'"
+               [selectedIndex]="tabIndex"
+               (selectedIndexChange)="onTabChange($event)">
 
   <mat-tab>
     <ng-template mat-tab-label>
       Profile
     </ng-template>
 
-    <div class="mat-title">Profile</div>
+    <ng-template matTabContent>
+      <div class="tab-container">
+        <div class="mat-title">Profile</div>
+        <app-profile-common-editor></app-profile-common-editor>
+      </div>
+    </ng-template>
 
-    edit
+  </mat-tab>
+
+  <mat-tab>
+    <ng-template mat-tab-label>
+      Shipping
+    </ng-template>
+
+    <ng-template matTabContent>
+      <div class="tab-container">
+        <div class="mat-title">Shipping</div>
+        <app-profile-shipping-editor></app-profile-shipping-editor>
+      </div>
+    </ng-template>
+
 
   </mat-tab>
 
@@ -44,9 +64,12 @@
       Orders
     </ng-template>
 
-    <div class="mat-title">Orders</div>
-
-    <app-orders></app-orders>
+    <ng-template matTabContent>
+      <div class="tab-container">
+        <div class="mat-title">Orders</div>
+        <app-orders></app-orders>
+      </div>
+    </ng-template>
 
   </mat-tab>
 

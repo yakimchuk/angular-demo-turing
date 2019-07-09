@@ -1,0 +1,67 @@
+<div [@slideTop]="model ? 'open' : 'closed'">
+
+  <form #form="ngForm" (ngSubmit)="update()">
+    <fieldset [disabled]="progress">
+
+      <mat-form-field>
+        <input matInput type="text" name="name" [(ngModel)]="model.name" placeholder="Name" required />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="email" name="email" [(ngModel)]="model.email" placeholder="E-Mail" required />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input matInput type="password" name="password" [(ngModel)]="credentials.password"
+               placeholder="Password (enter current or new password)"
+               required />
+      </mat-form-field>
+
+      <mat-form-field>
+        <input #day="ngModel" matInput type="text" name="dayMobile" [(ngModel)]="model.phone.day"
+               placeholder="Day phone"
+               pattern="^[0-9+ ()-]+$" />
+        <mat-hint *ngIf="!day.invalid">You can enter number in any format with leading plus</mat-hint>
+        <mat-hint class="text-danger" *ngIf="day.invalid && day.errors.pattern">You can enter only plus, brackets, numbers and hyphen</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input #eve="ngModel" matInput type="text" name="eveningMobile" [(ngModel)]="model.phone.evening"
+               placeholder="Evening phone"
+               pattern="^[0-9+ ()-]+$" />
+        <mat-hint *ngIf="!eve.invalid">You can enter number in any format with leading plus</mat-hint>
+        <mat-hint class="text-danger" *ngIf="eve.invalid && eve.errors.pattern">You can enter only plus, brackets, numbers and hyphen</mat-hint>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input #mob="ngModel" matInput type="text" name="mobile" [(ngModel)]="model.phone.mobile"
+               placeholder="Primary mobile phone"
+               pattern="^[0-9+ ()-]+$" />
+        <mat-hint *ngIf="!mob.invalid">You can enter number in any format with leading plus</mat-hint>
+        <mat-hint class="text-danger" *ngIf="mob.invalid && mob.errors.pattern">You can enter only plus, brackets, numbers and hyphen</mat-hint>
+      </mat-form-field>
+
+      <div class="text-right">
+        <button mat-raised-button color="primary" [disabled]="!form.valid || progress">
+          <mat-icon>save</mat-icon> Save
+        </button>
+      </div>
+
+    </fieldset>
+  </form>
+
+</div>
+
+<div [@slideTop]="!model ? 'open' : 'closed'">
+  <p class="mat-body-1 text-danger">
+    For now we cannot find your profile. Did you forget to sign in?
+  </p>
+</div>
+
+<ng-template #update_error>
+  We could not update your profile at this time, please try again or later
+</ng-template>
+
+<ng-template #update_success>
+  Your profile has been successfully updated
+</ng-template>
