@@ -22,7 +22,9 @@
 <div [@slideTop]="departments ? 'open' : 'closed'">
 
   <div class="department" *ngFor="let department of departments">
-    <div class="mat-title no-margin">{{ department.name }}</div>
+    <div class="mat-title no-margin">
+      <a routerLink="/departments/{{ department.department_id }}" [skipLocationChange]="false">{{ department.name }}</a>
+    </div>
     <div class="mat-small department__description"><small>{{ department.description }}</small></div>
     <app-department-categories [departmentId]="department.department_id"></app-department-categories>
   </div>

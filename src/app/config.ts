@@ -22,3 +22,7 @@ export const ui = {
     delay: 1000
   }
 };
+
+export const images = {
+  directory: 'https://backendapi.turing.com/images/products/'
+};

@@ -1,6 +1,10 @@
-import { CUSTOM_ELEMENTS_SCHEMA, LOCALE_ID, NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import {
+  LOCALE_ID,
+  NgModule,
+  NO_ERRORS_SCHEMA
+} from '@angular/core';
 import { CommonModule, CurrencyPipe } from '@angular/common';
-import { RouterModule } from '@angular/router';
+import { RouterModule} from '@angular/router';
 import { HomeRouteComponent } from '@app/routes/home/home.component';
 
 import { options, routes } from '@app/routing';
@@ -39,10 +43,9 @@ import { ProductsNavigatorComponent } from '@app/components/products-navigator/p
 import { LargeImageComponent, ThumbnailImageComponent } from '@app/components/image/image.component';
 import { getPaginationIntl } from '@app/utilities/paginator.i18n';
 import { ExcerptPipe } from '@app/pipes/excerpt';
-import { pipe } from 'rxjs';
 import { MoneyPipe } from '@app/pipes/currency';
 import { Resources } from '@app/services/resources';
-import { IStorage, UserStorage } from '@app/services/storage';
+import { UserStorage } from '@app/services/storage';
 import { ButtonPurchaseComponent } from '@app/components/button-purchase/button-purchase.component';
 import { RemoteCart } from '@app/services/cart';
 import { UserMessages } from '@app/services/messages';
@@ -68,6 +71,7 @@ import { OrdersComponent } from '@app/components/orders/orders.component';
 import { environment } from '@app/config';
 import { ProfileCommonEditorComponent } from '@app/components/profile-common-editor/profile-common-editor.component';
 import { ProfileShippingEditorComponent } from '@app/components/profile-shipping-editor/profile-shipping-editor.component';
+import { DepartmentRouteComponent } from '@app/routes/department/department.component';
 
 const vendor = {
   framework: [
@@ -107,7 +111,8 @@ const components = {
     ContainerComponent,
     HomeRouteComponent,
     CartRouteComponent,
-    AccountRouteComponent
+    AccountRouteComponent,
+    DepartmentRouteComponent
   ],
   ui: [
     TemplateHeaderComponent,
@@ -186,8 +191,6 @@ const providers = [
     useValue: environment.locale
   }
 ];
-
-console.log(environment);
 
 @NgModule({
   declarations: [

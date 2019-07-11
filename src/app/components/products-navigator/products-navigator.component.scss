@@ -4,22 +4,24 @@
 }
 
 .product {
-  max-width: 300px;
-  height: 510px;
+  max-width: 130px;
+  height: 320px;
   margin: 10px;
 }
 
 .title {
-  padding: 15px;
+  padding: 6px 7px;
 }
 
 .description {
-  padding: 15px;
-  height: 80px;
+  padding: 9px;
+  height: 64px;
+  font-size: 12px;
+  line-height: 16px;
 }
 
 .actions {
-  padding: 15px;
+  padding: 9px;
 
   button {
     width: 100%;
@@ -44,5 +46,5 @@ app-fake-placeholder {
 }
 
 app-image-large {
-  height: 250px;
+  height: 120px;
 }

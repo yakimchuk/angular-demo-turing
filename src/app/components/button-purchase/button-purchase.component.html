@@ -3,14 +3,14 @@
 </button>
 
 <button mat-raised-button color="primary" class="col" [@fade]="cart.state.ready && !cart.hasItem(productId) ? 'open' : 'closed'" (click)="add()">
-  <mat-icon>add_shopping_cart</mat-icon>Add to cart, {{ price | money }}
+  <mat-icon>add_shopping_cart</mat-icon> {{ price | money }}
 </button>
 
 <button mat-stroked-button
         color="primary"
         class="col"
         [@fade]="cart.state.ready && cart.hasItem(productId) ? 'open' : 'closed'">
-  <mat-icon>check</mat-icon> Already in your cart
+  <mat-icon>check</mat-icon> In cart
 </button>
 
 <ng-template #toast_add_success>

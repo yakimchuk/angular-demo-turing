@@ -1,0 +1,22 @@
+<app-route-navigation>
+  <div caption>Department</div>
+  <div description>We sell the most inspiration ideas</div>
+  <div actions>
+    <!-- @todo Finish this feature -->
+    <button mat-raised-button color="primary">
+      <mat-icon>360</mat-icon> Make a tour!
+    </button>
+  </div>
+</app-route-navigation>
+
+<app-products-navigator (onPagination)="onPagination($event)" [products]="products" [@slideTop]="!error ? 'open' : 'closed'"></app-products-navigator>
+
+<app-component-error [@fade]="error ? 'open' : 'closed'">
+  <span message>
+    We encountered problems while loading catalog<br/>
+    Press the button below to try to load this catalog again
+  </span>
+  <div actions>
+    <app-button-reload (click)="reload(filter)">Reload catalog</app-button-reload>
+  </div>
+</app-component-error>

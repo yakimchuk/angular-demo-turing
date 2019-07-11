@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { fade, zoom } from '@app/utilities/transitions';
+import { images } from '@app/config';
 
 abstract class ImageComponent implements OnInit {
 
@@ -25,7 +26,10 @@ abstract class ImageComponent implements OnInit {
 
     image.onerror = () => this.error = true;
 
-    image.src = this.url;
+    let url = new URL(images.directory);
+    url.pathname = [url.pathname, this.url].join('/');
+
+    image.src = url.toString();
   }
 
   ngOnInit() {

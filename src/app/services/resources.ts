@@ -39,10 +39,13 @@ export interface IRemoteCartData {
 export interface IRemoteProductsData {
   search(pagination: PaginationFilter): Promise<IListResponse<IProduct>>;
   getProducts(pagination: PaginationFilter): Promise<IListResponse<IProduct>>;
+  getProductsByCategory(categoryId: number, pagination: PaginationFilter): Promise<IListResponse<IProduct>>;
+  getProductsByDepartment(departmentId: number, pagination: PaginationFilter): Promise<IListResponse<IProduct>>;
 }
 
 export interface IRemoteDepartmentsData {
   getDepartments(): Promise<IDepartment[]>;
+  getDepartment(departmentId: number): Promise<IDepartment>;
 }
 
 export interface IRemoteCategoriesData {
@@ -405,12 +408,28 @@ export class Resources implements IRemoteData {
   };
 
   products: IRemoteProductsData = {
+    getProductsByDepartment: (departmentId: number, filter: PaginationFilter) => {
+      return this.guard<IListResponse<IProduct>>(
+        this.http.get<IListResponse<IProduct>>(this.toResourceUrl(api.endpoint, `/products/inDepartment/${departmentId}`), {
+          params: _.mapValues(filter, (value) => value + '')
+        }),
+        schemas.products.list
+      );
+    },
+    getProductsByCategory: (categoryId: number, filter: PaginationFilter) => {
+      return this.guard<IListResponse<IProduct>>(
+        this.http.get<IListResponse<IProduct>>(this.toResourceUrl(api.endpoint, `/products/inCategory/${categoryId}`), {
+          params: _.mapValues(filter, (value) => value + '')
+        }),
+        schemas.products.list
+      );
+    },
     getProducts: (filter: PaginationFilter) => {
       return this.guard<IListResponse<IProduct>>(
         this.http.get<IListResponse<IProduct>>(this.toResourceUrl(api.endpoint, '/products'), {
           params: _.mapValues(filter, (value) => value + '')
         }),
-        schemas.products.get
+        schemas.products.list
       );
     },
     search: (filter: PaginationFilter) => {
@@ -418,16 +437,22 @@ export class Resources implements IRemoteData {
         this.http.get<IListResponse<IProduct>>(this.toResourceUrl(api.endpoint, '/products/search'), {
           params: _.mapValues(filter, (value) => value + '')
         }),
-        schemas.products.get
+        schemas.products.list
       );
     }
   };
 
   departments: IRemoteDepartmentsData = {
+    getDepartment: (departmentId) => {
+      return this.guard<IDepartment>(
+        this.http.get<IDepartment>(this.toResourceUrl(api.endpoint, `/departments/${departmentId}`)),
+        schemas.departments.get
+      );
+    },
     getDepartments: () => {
       return this.guard<IDepartment[]>(
         this.http.get<IDepartment[]>(this.toResourceUrl(api.endpoint, '/departments')),
-        schemas.departments.get
+        schemas.departments.all
       );
     }
   };

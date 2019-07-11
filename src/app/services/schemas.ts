@@ -975,7 +975,7 @@ export const schemas = {
     }
   },
   products: {
-    get: {
+    list: {
       "definitions": {},
       "$schema": "http://json-schema.org/draft-07/schema#",
       "$id": "products.get",
@@ -1141,6 +1141,49 @@ export const schemas = {
   },
   departments: {
     get: {
+      "definitions": {},
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "departments.get",
+      "type": "object",
+      "title": "The Root Schema",
+      "required": [
+        "department_id",
+        "name",
+        "description"
+      ],
+      "properties": {
+        "department_id": {
+          "$id": "#/properties/department_id",
+          "type": "integer",
+          "title": "The Department_id Schema",
+          "default": 0,
+          "examples": [
+            1
+          ]
+        },
+        "name": {
+          "$id": "#/properties/name",
+          "type": "string",
+          "title": "The Name Schema",
+          "default": "",
+          "examples": [
+            "Regional"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "description": {
+          "$id": "#/properties/description",
+          "type": "string",
+          "title": "The Description Schema",
+          "default": "",
+          "examples": [
+            "Proud of your country? Wear a T-shirt with a national symbol stamp!"
+          ],
+          "pattern": "^(.*)$"
+        }
+      }
+    },
+    all: {
       "definitions": {},
       "$schema": "http://json-schema.org/draft-07/schema#",
       "$id": "/departments",
