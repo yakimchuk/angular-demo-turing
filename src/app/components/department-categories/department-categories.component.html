@@ -17,7 +17,7 @@
 
 <ul class="categories" [@slideTop]="categories ? 'open' : 'closed'">
   <li *ngFor="let category of categories" matRipple matRippleColor="#c7ebff" matRippleRadius="50">
-    <a href="#" class="row align-center justify-space-between">
+    <a routerLink="/departments/{{ departmentId }}/categories/{{ category.category_id }}" class="row align-center justify-space-between">
       <span>{{ category.name }}</span>
       <mat-icon>chevron_right</mat-icon>
     </a>

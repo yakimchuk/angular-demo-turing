@@ -1,17 +1,17 @@
 <app-route-navigation>
   <div caption>
-    <div [@slideTop]="department ? 'open' : 'closed'">
-      {{ department?.name }} T-shirts
+    <div [@slideTop]="category ? 'open' : 'closed'">
+      {{ category?.name }} T-shirts
     </div>
-    <app-component-preloader [@fade]="!department ? 'open' : 'closed'">
+    <app-component-preloader [@fade]="!category ? 'open' : 'closed'">
       <app-fake-placeholder type="line_short"></app-fake-placeholder>
       <app-fake-placeholder type="line"></app-fake-placeholder>
       <app-fake-placeholder type="line"></app-fake-placeholder>
     </app-component-preloader>
   </div>
   <div description>
-    <div [@slideTop]="department ? 'open' : 'closed'">
-      {{ department?.description | excerpt:200 }}
+    <div [@slideTop]="category ? 'open' : 'closed'">
+      {{ category?.description | excerpt:200 }}
     </div>
   </div>
   <div actions>

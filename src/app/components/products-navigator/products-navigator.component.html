@@ -20,16 +20,19 @@
     <mat-divider></mat-divider>
     <app-image-large [url]="product.thumbnail"></app-image-large>
     <mat-divider></mat-divider>
-    <div class="description mat-body-1">{{ product.description | excerpt:45 }}</div>
+    <div class="description mat-body-1">{{ product.description | excerpt:40 }}</div>
     <mat-divider></mat-divider>
     <div class="actions">
-      <button mat-stroked-button color="primary" class="col">
+      <button mat-stroked-button color="primary" class="col" routerLink="products/{{ product.product_id }}">
         Know more
       </button>
-      <app-button-purchase
-        [productId]="product.product_id"
-        [price]="product.price"
-        [discount]="product.discounted_price"></app-button-purchase>
+      <button mat-stroked-button color="primary" class="col" (click)="add(product.product_id)">
+        Buy, {{ product.price | money }}
+      </button>
     </div>
   </div>
 </div>
+
+<ng-template #product_detail_info_load_error>
+  We cannot load detailed info about this product, please, try again or later
+</ng-template>

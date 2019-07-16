@@ -1462,10 +1462,11 @@ html {
 }
 
 .gaps > * {
-  margin-bottom: 10px;
-  margin-top: 10px;
-  margin-right: 10px;
-  margin-left: 10px;
+  margin-right: 5px;
+}
+
+.gaps > *:last-child {
+  margin-right: 0;
 }
 
 .bootstrap-wrapper .flex {

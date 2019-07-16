@@ -8,9 +8,4 @@
   </div>
 </app-template-header>
 
-<div class="routes"
-     [@routeTransition]="getRouteName(outlet)"
-     (@routeTransition.start)="onRouteTransitionStart()"
-     (@routeTransition.done)="onRouteTransitionDone()">
-  <router-outlet #outlet="outlet"></router-outlet>
-</div>
+<app-outlet></app-outlet>

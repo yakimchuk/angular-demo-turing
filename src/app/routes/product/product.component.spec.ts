@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AuthPopupComponent } from './auth-popup.component';
+import { AccountRouteComponent } from './product.component';
 
-describe('ProductPurchaseComponent', () => {
-  let component: AuthPopupComponent;
-  let fixture: ComponentFixture<AuthPopupComponent>;
+describe('AccountRouteComponent', () => {
+  let component: AccountRouteComponent;
+  let fixture: ComponentFixture<AccountRouteComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AuthPopupComponent ]
+      declarations: [ AccountRouteComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AuthPopupComponent);
+    fixture = TestBed.createComponent(AccountRouteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

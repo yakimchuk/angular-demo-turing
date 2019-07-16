@@ -5,6 +5,10 @@ import * as _ from 'lodash';
 export class ExcerptPipe implements PipeTransform {
   transform(value: string, length: number): string {
 
+    if (!_.isString(value)) {
+      return '';
+    }
+
     if (value.length <= length) {
       return value;
     }

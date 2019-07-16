@@ -15,7 +15,7 @@ import {
   IShippingVariant as IShippingRemoteVariant,
   IShippingRegion,
   schemas,
-  IUser, IAuthCredentials, IAccessToken, IPaymentResponse
+  IUser, IAuthCredentials, IAccessToken, IPaymentResponse, IProductDetails, TuringProductAttribute
 } from './schemas';
 import * as ajv from 'ajv';
 import { PaginationFilter } from '../components/products-navigator/products-navigator.component';
@@ -25,6 +25,7 @@ import { IShippingArea, IShippingVariant } from '@app/services/shipping';
 import { IUserAddress, IUserModel, IUserProfile } from '@app/services/user';
 import { IOrder, IOrderItem, OrderState } from '@app/services/orders';
 import { IOrder as IRemoteOrder, IOrderItem as IRemoteOrderItem } from '@app/services/schemas.ts';
+import { ProductAttribute } from '@app/services/products';
 
 const schemasConverter = new ajv();
 
@@ -38,9 +39,11 @@ export interface IRemoteCartData {
 
 export interface IRemoteProductsData {
   search(pagination: PaginationFilter): Promise<IListResponse<IProduct>>;
+  getProduct(productId: number): Promise<IProductDetails>;
   getProducts(pagination: PaginationFilter): Promise<IListResponse<IProduct>>;
   getProductsByCategory(categoryId: number, pagination: PaginationFilter): Promise<IListResponse<IProduct>>;
   getProductsByDepartment(departmentId: number, pagination: PaginationFilter): Promise<IListResponse<IProduct>>;
+  getProductAttributes(productId: number): Promise<ProductAttribute[]>;
 }
 
 export interface IRemoteDepartmentsData {
@@ -50,6 +53,7 @@ export interface IRemoteDepartmentsData {
 
 export interface IRemoteCategoriesData {
   getDepartmentCategories(departmentId: number): Promise<ICategory[]>;
+  getCategory(categoryId: number): Promise<ICategory>;
 }
 
 export interface IRemoteTaxesData {
@@ -174,6 +178,7 @@ export class Resources implements IRemoteData {
         name: item.product_name,
         cost: parseFloat(item.unit_cost),
         quantity: item.quantity,
+        attributes: item.attributes,
         subtotal: parseFloat(item.subtotal)
       }));
 
@@ -408,6 +413,47 @@ export class Resources implements IRemoteData {
   };
 
   products: IRemoteProductsData = {
+    getProductAttributes: async (productId: number) => {
+
+      let result = await this.guard<TuringProductAttribute[]>(
+        this.http.get<TuringProductAttribute[]>(this.toResourceUrl(api.endpoint, `/attributes/inProduct/${productId}`)),
+        schemas.attributes.product
+      );
+
+      let attributes: ProductAttribute[] = [];
+      let memo = {};
+
+      result.forEach((attribute: TuringProductAttribute) => {
+
+        if (!memo[attribute.attribute_name]) {
+          memo[attribute.attribute_name] = {
+            name: attribute.attribute_name,
+            values: []
+          }
+        }
+
+        memo[attribute.attribute_name].values.push({
+          id: attribute.attribute_value_id,
+          name: attribute.attribute_value
+        });
+
+      });
+
+      for (let key in memo) {
+        attributes.push(memo[key]);
+      }
+
+      return attributes;
+    },
+    getProduct: async (productId: number) => {
+
+      let response = await this.guard<IProductDetails[]>(
+        this.http.get<IProductDetails[]>(this.toResourceUrl(api.endpoint, `/products/${productId}/details`)),
+        schemas.products.single
+      );
+
+      return response[0];
+    },
     getProductsByDepartment: (departmentId: number, filter: PaginationFilter) => {
       return this.guard<IListResponse<IProduct>>(
         this.http.get<IListResponse<IProduct>>(this.toResourceUrl(api.endpoint, `/products/inDepartment/${departmentId}`), {
@@ -463,7 +509,13 @@ export class Resources implements IRemoteData {
         this.http.get<ICategory[]>(this.toResourceUrl(api.endpoint, `/categories/inDepartment/${departmentId}`)),
         schemas.categories.byDepartment.get
       );
-    }
+    },
+    getCategory: (categoryId: number) => {
+      return this.guard<ICategory>(
+        this.http.get<ICategory>(this.toResourceUrl(api.endpoint, `/categories/${categoryId}`)),
+        schemas.categories.get
+      );
+    },
   };
 
 }

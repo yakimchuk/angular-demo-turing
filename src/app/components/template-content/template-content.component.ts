@@ -14,28 +14,6 @@ export class TemplateContentComponent implements OnInit {
 
   constructor() {}
 
-  onRouteTransitionStart() {
-    document.body.style.overflowX = 'hidden';
-  }
-
-  onRouteTransitionDone() {
-    document.body.style.overflowX = '';
-  }
-
-  getRouteName(outlet: RouterOutlet) {
-
-    let value;
-
-    try {
-      // @ts-ignore: This property is exists
-      value = outlet.activatedRoute.data.value.id;
-    } catch {
-      value = '';
-    }
-
-    return value;
-  }
-
   ngOnInit() {
   }
 

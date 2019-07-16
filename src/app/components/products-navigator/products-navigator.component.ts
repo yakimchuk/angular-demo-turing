@@ -1,12 +1,15 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Route, Router, RouterEvent } from '@angular/router';
 import { IListResponse, IProduct } from '@app/services/schemas';
-import { PageEvent } from '@angular/material';
+import { MatDialog, PageEvent } from '@angular/material';
 import { extractNaturalNumber } from '@app/utilities/extractor';
 import { pagination } from '@app/config';
 import { from, fromEvent } from 'rxjs';
 import { debounceTime, throttleTime } from 'rxjs/operators';
 import { fade, slideTop } from '@app/utilities/transitions';
+import { ProductPurchasePopupComponent } from '@app/popups/product-purchase/product-purchase.component';
+import { IRemoteData, Resources } from '@app/services/resources';
+import { IMessages, UserMessages } from '@app/services/messages';
 
 export interface PaginationFilter {
   page: number,
@@ -26,15 +29,35 @@ export class ProductsNavigatorComponent implements OnInit {
   @Input('page') page: number = pagination.page;
   @Input('limit') limit: number = pagination.limit;
 
+  @ViewChild('product_detail_info_load_error', { static: true }) private errorToastTemplate: TemplateRef<any>;
+
   @Output() onPagination: EventEmitter<PaginationFilter> = new EventEmitter();
 
   private router: Router;
+  private resources: IRemoteData;
   private route: ActivatedRoute;
+  private dialog: MatDialog;
+  private messages: IMessages;
 
-  constructor(router: Router, route: ActivatedRoute) {
-
+  constructor(router: Router, route: ActivatedRoute, dialog: MatDialog, resources: Resources, messages: UserMessages) {
     this.router = router;
     this.route = route;
+    this.dialog = dialog;
+    this.resources = resources;
+    this.messages = messages;
+  }
+
+  public async add(productId: number) {
+
+    try {
+      this.dialog.open(ProductPurchasePopupComponent, {
+        data: {
+          product: await this.resources.products.getProduct(productId)
+        }
+      });
+    } catch {
+      this.messages.openFromTemplate(this.errorToastTemplate);
+    }
 
   }
 

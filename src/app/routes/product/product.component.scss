@@ -1,0 +1,33 @@
+:host ::ng-deep .header {
+  height: 62px;
+}
+
+:host ::ng-deep .mat-tab-body-content {
+  overflow: hidden;
+}
+
+.purchase-header {
+  width: 200px;
+  margin-top: -2px
+}
+
+.column {
+  padding: 25px;
+
+  &:last-of-type {
+    border-left: 1px solid rgba(0,0,0,0.05);
+  }
+}
+
+.image {
+  margin-bottom: 15px;
+}
+
+:host ::ng-deep app-component-preloader {
+  position: absolute;
+  width: calc(100% - 40px);
+}
+
+app-component-error {
+  margin-bottom: 15px;
+}

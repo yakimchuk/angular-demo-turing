@@ -7,8 +7,6 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class ComponentPreloaderComponent implements OnInit {
 
-  @Input('show') show: boolean = false;
-
   constructor() { }
 
   ngOnInit() {

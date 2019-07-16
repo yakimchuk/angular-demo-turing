@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ButtonPurchaseComponent } from './button-purchase.component';
+import { HomeRouteComponent } from './category.component';
 
-describe('ButtonPurchaseComponent', () => {
-  let component: ButtonPurchaseComponent;
-  let fixture: ComponentFixture<ButtonPurchaseComponent>;
+describe('HomeRouteComponent', () => {
+  let component: HomeRouteComponent;
+  let fixture: ComponentFixture<HomeRouteComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ButtonPurchaseComponent ]
+      declarations: [ HomeRouteComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ButtonPurchaseComponent);
+    fixture = TestBed.createComponent(HomeRouteComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

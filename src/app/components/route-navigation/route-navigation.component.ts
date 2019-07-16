@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, Router, UrlSegment } from '@angular/router';
 import { RouteData } from '@app/routing';
-import { slideRight } from '@app/utilities/transitions';
+import { slideRight, slideTop } from '@app/utilities/transitions';
+import * as _ from 'lodash';
 
 interface Breadcrumb {
-  id: string,
+  id?: string,
+  resolver?: string,
   url: string
 }
 
@@ -12,7 +14,7 @@ interface Breadcrumb {
   selector: 'app-route-navigation',
   templateUrl: './route-navigation.component.html',
   styleUrls: ['./route-navigation.component.scss'],
-  animations: [slideRight]
+  animations: [slideRight, slideTop]
 })
 export class RouteNavigationComponent implements OnInit {
 
@@ -47,29 +49,51 @@ export class RouteNavigationComponent implements OnInit {
       return;
     }
 
-    this.router.navigateByUrl(breadcrumbs.slice(-2).slice(1)[0].url);
+    this.router.navigateByUrl(breadcrumbs.slice(-2)[0].url);
   }
 
-  // Taken from https://medium.com/@bo.vandersteene/angular-5-breadcrumb-c225fd9df5cf
-  private getBreadcrumbs(route: ActivatedRoute, url: string = '', breadcrumbs: Array<Breadcrumb> = []): Array<Breadcrumb> {
+  private getBreadcrumbs(route: ActivatedRoute): Breadcrumb[] {
 
-    const id = route.routeConfig ? route.routeConfig.data['id'] : 'unknown';
-    const path = route.routeConfig ? route.routeConfig.path : '';
+    let breadcrumbs = [];
+    let url = '';
 
-    const nextUrl = `${url}${path}/`;
+    route.snapshot.data.breadcrumbs.forEach(function (breadcrumb: Breadcrumb) {
 
-    const breadcrumb = {
-      id: id,
-      url: nextUrl
-    };
+      let model = {
+        ...breadcrumb
+      };
 
-    const newBreadcrumbs = [ ...breadcrumbs, breadcrumb ];
+      let match = model.url.match(/:(\w+)$/);
 
-    if (route.firstChild) {
-      return this.getBreadcrumbs(route.firstChild, nextUrl, newBreadcrumbs);
-    }
+      if (match) {
 
-    return newBreadcrumbs;
+        let paramName = match[1];
+
+        if (!paramName) {
+          return;
+        }
+
+        let params = route.snapshot.params;
+
+        if (!params[paramName]) {
+          return;
+        }
+
+        let value = params[paramName];
+
+        model.url = model.url.replace(`:${paramName}`, value);
+      }
+
+      if (model.url.length > 0) {
+        url = [url, model.url].join('/');
+      }
+
+      model.url = url;
+
+      breadcrumbs.push(model);
+    });
+
+    return breadcrumbs;
   }
 
   ngOnInit() {

@@ -1,7 +1,19 @@
-<div [ngSwitch]="routeId">
-  <div *ngSwitchCase="'route.home'" i18n="@@breadcrumb.route.home">Catalog</div>
-  <div *ngSwitchCase="'route.cart'" i18n="@@breadcrumb.route.cart">Cart</div>
-  <div *ngSwitchCase="'route.account'" i18n="@@breadcrumb.route.account">Account</div>
-  <div *ngSwitchCase="'route.account'" i18n="@@breadcrumb.route.department">Department</div>
-  <div *ngSwitchDefault i18n="breadcrumb.route.default">Unknown page</div>
+<div class="row align-center">
+
+  <span [@slideRight]="!error && !routeId && !routeName ? 'open' : 'closed'">
+    <mat-progress-spinner [diameter]="14" color="primary" mode="indeterminate"></mat-progress-spinner>
+  </span>
+
+  <span [ngSwitch]="routeId" class="text-overflow" [@slideRight]="!error && routeId && !routeName ? 'open' : 'closed'">
+    <span *ngSwitchCase="'root'" i18n="@@breadcrumb.route.root">Store</span>
+    <span *ngSwitchCase="'home'" i18n="@@breadcrumb.route.home">Catalog</span>
+    <span *ngSwitchCase="'cart'" i18n="@@breadcrumb.route.cart">Cart</span>
+    <span *ngSwitchCase="'account'" i18n="@@breadcrumb.route.account">Account</span>
+    <span *ngSwitchDefault i18n="breadcrumb.route.default">Unknown page</span>
+  </span>
+
+  <span [@slideRight]="!error && routeName ? 'open' : 'closed'" class="text-overflow">{{ routeName }}</span>
+
+  <span [@slideRight]="error ? 'open' : 'closed'" class="text-overflow">Unknown</span>
+
 </div>

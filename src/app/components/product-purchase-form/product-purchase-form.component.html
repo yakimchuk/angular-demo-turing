@@ -1,0 +1,59 @@
+<div [@slideTop]="!product ? 'open' : 'closed'">
+  <app-component-preloader>
+    <app-fake-placeholder type="rectangle" [progress]="true"></app-fake-placeholder>
+    <app-fake-placeholder type="line"></app-fake-placeholder>
+    <app-fake-placeholder type="line"></app-fake-placeholder>
+    <app-fake-placeholder type="line"></app-fake-placeholder>
+    <app-fake-placeholder type="line-short"></app-fake-placeholder>
+  </app-component-preloader>
+</div>
+
+<div [@slideTop]="product ? 'open' : 'closed'">
+
+  <div class="mat-headline no-margin">Construct your T-shirt</div>
+  <p class="mat-small text-note">Select options for your T-shirt: image, color and other options</p>
+
+  <div class="mat-subheading-1 text-center">Image on T-shirt</div>
+  <div class="image">
+    <app-image-large [url]="product?.image_2"></app-image-large>
+  </div>
+
+  <div [@slideTop]="!attributes ? 'open' : 'closed'">
+    <app-component-preloader>
+      <app-fake-placeholder type="line"></app-fake-placeholder>
+      <app-fake-placeholder type="line"></app-fake-placeholder>
+      <app-fake-placeholder type="line"></app-fake-placeholder>
+    </app-component-preloader>
+  </div>
+
+  <form [@slideTop]="attributes ? 'open' : 'closed'">
+    <fieldset [disabled]="progress">
+
+      <mat-form-field *ngFor="let attribute of attributes">
+        <mat-select placeholder="Select {{ attribute.name }}"
+                    [(ngModel)]="model[attribute.name]"
+                    [ngModelOptions]="{ standalone: true }">
+          <mat-option *ngFor="let value of attribute.values;" [value]="value.name">
+            {{ value.name }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <div class="text-right">
+        <button mat-raised-button color="primary" [disabled]="!isValidForm() || progress" (click)="add(model)">
+          <mat-icon>add_shopping_cart</mat-icon> Add to cart, {{ product?.price | money }}
+        </button>
+      </div>
+
+    </fieldset>
+  </form>
+
+</div>
+
+<ng-template #toast_add_success>
+  The product was added to your cart
+</ng-template>
+
+<ng-template #toast_add_error>
+  The problem, we unable to add your product to the cart
+</ng-template>

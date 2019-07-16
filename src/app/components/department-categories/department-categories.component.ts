@@ -12,7 +12,7 @@ import * as _ from 'lodash';
 })
 export class DepartmentCategoriesComponent implements OnChanges {
 
-  @Input('departmentId') departmentId: number;
+  @Input('departmentId') public departmentId: number;
 
   public categories: ICategory[];
   public error: ErrorEvent;

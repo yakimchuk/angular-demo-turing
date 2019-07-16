@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { PaginationFilter } from '@app/components/products-navigator/products-navigator.component';
 import { Resources } from '@app/services/resources';
-import { IDepartment, IListResponse, IProduct } from '@app/services/schemas';
-import { fade, slideTop } from '@app/utilities/transitions';
+import { ICategory, IDepartment, IListResponse, IProduct } from '@app/services/schemas';
+import { fade, slideRight, slideTop } from '@app/utilities/transitions';
 import { ActivatedRoute } from '@angular/router';
 import { extractNaturalNumber } from '@app/utilities/extractor';
 
 @Component({
-  selector: 'app-department',
-  templateUrl: './department.component.html',
-  styleUrls: ['./department.component.scss'],
-  animations: [slideTop, fade]
+  selector: 'app-category',
+  templateUrl: './category.component.html',
+  styleUrls: ['./category.component.scss'],
+  animations: [slideTop, fade, slideRight]
 })
-export class DepartmentRouteComponent implements OnInit {
+export class CategoryRouteComponent implements OnInit {
 
-  public department: IDepartment;
+  public category: ICategory;
   public products: IListResponse<IProduct>;
   public error: boolean = false;
   public filter: PaginationFilter;
@@ -44,21 +44,21 @@ export class DepartmentRouteComponent implements OnInit {
 
     delete this.error;
 
-    let departmentId = extractNaturalNumber(this.route.snapshot.paramMap.get('departmentId'), null);
+    let categoryId = extractNaturalNumber(this.route.snapshot.paramMap.get('categoryId'), null);
 
-    if (departmentId === null) {
+    if (categoryId === null) {
       this.error = true;
       return;
     }
 
     try {
 
-      let [ department, products ] = await Promise.all([
-        this.resources.departments.getDepartment(departmentId),
-        this.resources.products.getProductsByDepartment(departmentId, filter)
+      let [ category, products ] = await Promise.all([
+        this.resources.categories.getCategory(categoryId),
+        this.resources.products.getProductsByCategory(categoryId, filter)
       ]);
 
-      this.department = department;
+      this.category = category;
       this.products = products;
 
     } catch {

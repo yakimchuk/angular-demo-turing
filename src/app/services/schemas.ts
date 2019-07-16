@@ -1,5 +1,11 @@
 // @todo (by-needs): Split external interfaces from inner interfaces and make adapters
 
+export interface TuringProductAttribute {
+  attribute_name: string;
+  attribute_value_id: number;
+  attribute_value: string;
+}
+
 export interface ITax {
   tax_id: number;
   tax_type: string;
@@ -38,6 +44,16 @@ export interface IProduct {
   price: number,
   discounted_price?: number,
   thumbnail: string
+}
+
+export interface IProductDetails {
+  product_id: number,
+  name: string,
+  description: string,
+  price: number,
+  discounted_price?: number,
+  image: string,
+  image_2: string
 }
 
 export type IAccessToken = string;
@@ -115,6 +131,56 @@ export interface IPaymentResponse {
 }
 
 export const schemas = {
+  attributes: {
+    product: {
+      "definitions": {},
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "attributes.product",
+      "type": "array",
+      "title": "The Root Schema",
+      "items": {
+        "$id": "#/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "attribute_name",
+          "attribute_value_id",
+          "attribute_value"
+        ],
+        "properties": {
+          "attribute_name": {
+            "$id": "#/items/properties/attribute_name",
+            "type": "string",
+            "title": "The Attribute_name Schema",
+            "default": "",
+            "examples": [
+              "Color"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "attribute_value_id": {
+            "$id": "#/items/properties/attribute_value_id",
+            "type": "integer",
+            "title": "The Attribute_value_id Schema",
+            "default": 0,
+            "examples": [
+              6
+            ]
+          },
+          "attribute_value": {
+            "$id": "#/items/properties/attribute_value",
+            "type": "string",
+            "title": "The Attribute_value Schema",
+            "default": "",
+            "examples": [
+              "White"
+            ],
+            "pattern": "^(.*)$"
+          }
+        }
+      }
+    }
+  },
   orders: {
     info: {
       "definitions": {},
@@ -975,6 +1041,98 @@ export const schemas = {
     }
   },
   products: {
+    single: {
+      "definitions": {},
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "products.single",
+      "type": "array",
+      "title": "The Root Schema",
+      "items": {
+        "$id": "#/items",
+        "type": "object",
+        "title": "The Items Schema",
+        "required": [
+          "product_id",
+          "name",
+          "description",
+          "price",
+          "discounted_price",
+          "image",
+          "image_2"
+        ],
+        "properties": {
+          "product_id": {
+            "$id": "#/items/properties/product_id",
+            "type": "integer",
+            "title": "The Product_id Schema",
+            "default": 0,
+            "examples": [
+              10
+            ]
+          },
+          "name": {
+            "$id": "#/items/properties/name",
+            "type": "string",
+            "title": "The Name Schema",
+            "default": "",
+            "examples": [
+              "Haute Couture"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "description": {
+            "$id": "#/items/properties/description",
+            "type": "string",
+            "title": "The Description Schema",
+            "default": "",
+            "examples": [
+              "This stamp publicized the dress making industry. Use it to celebrate the T-shirt industry!"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "price": {
+            "$id": "#/items/properties/price",
+            "type": "string",
+            "title": "The Price Schema",
+            "default": "",
+            "examples": [
+              "15.99"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "discounted_price": {
+            "$id": "#/items/properties/discounted_price",
+            "type": "string",
+            "title": "The Discounted_price Schema",
+            "default": "",
+            "examples": [
+              "14.95"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "image": {
+            "$id": "#/items/properties/image",
+            "type": "string",
+            "title": "The Image Schema",
+            "default": "",
+            "examples": [
+              "haute-couture.gif"
+            ],
+            "pattern": "^(.*)$"
+          },
+          "image_2": {
+            "$id": "#/items/properties/image_2",
+            "type": "string",
+            "title": "The Image_2 Schema",
+            "default": "",
+            "examples": [
+              "haute-couture-2.gif"
+            ],
+            "pattern": "^(.*)$"
+          }
+        }
+      }
+    },
     list: {
       "definitions": {},
       "$schema": "http://json-schema.org/draft-07/schema#",
@@ -1078,6 +1236,59 @@ export const schemas = {
     }
   },
   categories: {
+    get: {
+      "definitions": {},
+      "$schema": "http://json-schema.org/draft-07/schema#",
+      "$id": "categories.get",
+      "type": "object",
+      "title": "The Root Schema",
+      "required": [
+        "category_id",
+        "name",
+        "description",
+        "department_id"
+      ],
+      "properties": {
+        "category_id": {
+          "$id": "#/properties/category_id",
+          "type": "integer",
+          "title": "The Category_id Schema",
+          "default": 0,
+          "examples": [
+            1
+          ]
+        },
+        "name": {
+          "$id": "#/properties/name",
+          "type": "string",
+          "title": "The Name Schema",
+          "default": "",
+          "examples": [
+            "French"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "description": {
+          "$id": "#/properties/description",
+          "type": "string",
+          "title": "The Description Schema",
+          "default": "",
+          "examples": [
+            "The French have always had an eye for beauty. One look at the T-shirts below and you'll see that same appreciation has been applied abundantly to their postage stamps. Below are some of our most beautiful and colorful T-shirts, so browse away! And don't forget to go all the way to the bottom - you don't want to miss any of them!"
+          ],
+          "pattern": "^(.*)$"
+        },
+        "department_id": {
+          "$id": "#/properties/department_id",
+          "type": "integer",
+          "title": "The Department_id Schema",
+          "default": 0,
+          "examples": [
+            1
+          ]
+        }
+      }
+    },
     byDepartment: {
       get: {
         "definitions": {},

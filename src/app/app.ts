@@ -46,7 +46,6 @@ import { ExcerptPipe } from '@app/pipes/excerpt';
 import { MoneyPipe } from '@app/pipes/currency';
 import { Resources } from '@app/services/resources';
 import { UserStorage } from '@app/services/storage';
-import { ButtonPurchaseComponent } from '@app/components/button-purchase/button-purchase.component';
 import { RemoteCart } from '@app/services/cart';
 import { UserMessages } from '@app/services/messages';
 import { CartRouteComponent } from '@app/routes/cart/cart.component';
@@ -72,6 +71,12 @@ import { environment } from '@app/config';
 import { ProfileCommonEditorComponent } from '@app/components/profile-common-editor/profile-common-editor.component';
 import { ProfileShippingEditorComponent } from '@app/components/profile-shipping-editor/profile-shipping-editor.component';
 import { DepartmentRouteComponent } from '@app/routes/department/department.component';
+import { CategoryRouteComponent } from '@app/routes/category/category.component';
+import { ProductRouteComponent } from '@app/routes/product/product.component';
+import { ProductPurchaseFormComponent } from '@app/components/product-purchase-form/product-purchase-form.component';
+import { ButtonHomeComponent } from '@app/components/button-home/button-home.component';
+import { OutletComponent } from '@app/components/outlet/outlet.component';
+import { ProductPurchasePopupComponent } from '@app/popups/product-purchase/product-purchase.component';
 
 const vendor = {
   framework: [
@@ -112,7 +117,9 @@ const components = {
     HomeRouteComponent,
     CartRouteComponent,
     AccountRouteComponent,
-    DepartmentRouteComponent
+    DepartmentRouteComponent,
+    CategoryRouteComponent,
+    ProductRouteComponent
   ],
   ui: [
     TemplateHeaderComponent,
@@ -132,7 +139,6 @@ const components = {
     ProductsNavigatorComponent,
     LargeImageComponent,
     ThumbnailImageComponent,
-    ButtonPurchaseComponent,
     OrderSubtotalComponent,
     TaxSelectorComponent,
     CartEditorComponent,
@@ -142,12 +148,16 @@ const components = {
     AccountNavigationComponent,
     OrdersComponent,
     ProfileCommonEditorComponent,
-    ProfileShippingEditorComponent
+    ProfileShippingEditorComponent,
+    ProductPurchaseFormComponent,
+    ButtonHomeComponent,
+    OutletComponent
   ]
 };
 
 const popups = [
-  AuthPopupComponent
+  AuthPopupComponent,
+  ProductPurchasePopupComponent
 ];
 
 const pipes = [

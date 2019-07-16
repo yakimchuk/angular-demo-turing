@@ -19,7 +19,10 @@
       </thead>
       <tbody class="rowgroup">
         <tr *ngFor="let item of items" class="mat-row">
-          <td class="mat-cell">{{ item.name }}</td>
+          <td class="mat-cell">
+            <a routerLink="/products/{{ item.productId }}">{{ item.name }}</a><br/>
+            <small>{{ item.attributes }}</small>
+          </td>
           <td class="mat-cell">{{ item.cost | money }}</td>
           <td class="mat-cell">{{ item.quantity }}</td>
           <td class="mat-cell">{{ item.subtotal | money }}</td>

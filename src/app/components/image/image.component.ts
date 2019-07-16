@@ -1,8 +1,8 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { fade, zoom } from '@app/utilities/transitions';
 import { images } from '@app/config';
 
-abstract class ImageComponent implements OnInit {
+abstract class ImageComponent implements OnInit, OnChanges {
 
   protected url: string;
 
@@ -32,8 +32,16 @@ abstract class ImageComponent implements OnInit {
     image.src = url.toString();
   }
 
-  ngOnInit() {
+  ngOnChanges(changes: SimpleChanges) {
+
+    if (!changes.url || !changes.url.currentValue) {
+      return;
+    }
+
     this.reload();
+  }
+
+  ngOnInit() {
   }
 
 }
@@ -48,8 +56,8 @@ export class LargeImageComponent extends ImageComponent {
 
   @Input('url') url: string;
 
-  ngOnInit() {
-    super.ngOnInit();
+  ngOnChanges(changes: SimpleChanges) {
+    super.ngOnChanges(changes);
   }
 }
 
@@ -63,7 +71,7 @@ export class ThumbnailImageComponent extends ImageComponent {
 
   @Input('url') url: string;
 
-  ngOnInit() {
-    super.ngOnInit();
+  ngOnChanges(changes: SimpleChanges) {
+    super.ngOnChanges(changes);
   }
 }

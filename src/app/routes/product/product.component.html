@@ -1,0 +1,48 @@
+<app-route-navigation>
+  <div caption>
+    <div [@slideTop]="product ? 'open' : 'closed'">
+      {{ product?.name }}
+    </div>
+    <app-component-preloader [@fade]="!product ? 'open' : 'closed'">
+      <app-fake-placeholder type="line"></app-fake-placeholder>
+    </app-component-preloader>
+  </div>
+  <div description>
+
+  </div>
+</app-route-navigation>
+
+<div class="row">
+  <div class="col-7 column">
+
+    <app-component-error [@slideTop]="error ? 'open' : 'closed'">
+      <span message>
+        We cannot load this offer, please reload the page or open it later
+      </span>
+      <div actions>
+        <div class="row gaps">
+          <app-button-reload (click)="reload()">Reload the offer</app-button-reload>
+          <app-button-home></app-button-home>
+        </div>
+      </div>
+    </app-component-error>
+
+    <div class="image" [@slideTop]="!error ? 'open' : 'closed'">
+      <app-image-large [url]="product?.image"></app-image-large>
+      <p class="text-center text-note mat-body-1">
+        <span class="text-danger">*</span> The real T-shirt may differ from this image.<br/>
+        It is just a sample of the image on T-shirt.
+      </p>
+    </div>
+
+    <mat-divider></mat-divider>
+
+    // @todo: Reviews
+
+  </div>
+  <div class="col-5 column">
+
+    <app-product-purchase-form [product]="product"></app-product-purchase-form>
+
+  </div>
+</div>
