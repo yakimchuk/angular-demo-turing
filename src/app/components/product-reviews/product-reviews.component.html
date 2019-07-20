@@ -1,0 +1,69 @@
+<div class="mat-title">Reviews about the product</div>
+
+<app-component-preloader [@fade]="!error && !reviews ? 'open' : 'closed'">
+  <app-fake-placeholder type="rectangle" [progress]="true"></app-fake-placeholder>
+  <app-fake-placeholder type="rectangle"></app-fake-placeholder>
+  <app-fake-placeholder type="rectangle"></app-fake-placeholder>
+</app-component-preloader>
+
+<app-component-error [@fade]="!reviews && error ? 'open' : 'closed'">
+  <span message>We cannot load product reviews at this time, please try again or later</span>
+  <div actions>
+    <app-button-reload (click)="reload()">Reload reviews</app-button-reload>
+  </div>
+</app-component-error>
+
+<div class="reviews" [@slideTop]="reviews ? 'open' : 'closed'">
+
+  <form #form="ngForm">
+    <fieldset [disabled]="progress">
+      <div class="row">
+        <mat-form-field class="col">
+          <textarea name="review" matInput placeholder="Leave a review" [(ngModel)]="model.text" required></textarea>
+        </mat-form-field>
+      </div>
+      <div class="row align-center">
+        <div class="mat-body-1 text-note rate-caption">Rate this product — </div>
+        <mat-icon class="star"
+                  *ngFor="let rating of ratingToArray(5); let i = index;" (click)="model.rating = i + 1"
+                  [ngClass]="{ 'star_rated': model.rating > i }">star_rate</mat-icon>
+        <div class="col"></div>
+        <div class="row align-flex-end justify-center">
+          <button mat-raised-button color="primary" [disabled]="form.invalid || progress" (click)="createReview(model)">
+            Send
+          </button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+
+  <div class="review mat-elevation-z1" *ngFor="let review of reviews">
+    <div class="author row align-center">
+      <mat-icon class="text-note">account_circle</mat-icon>
+      <div class="mat-body-2 text-note name">{{ review.name }}</div>
+      <div class="col"></div>
+      <div class="mat-caption text-note">{{ review.created | date:'d MMM y, h:mm' }}</div>
+    </div>
+    <div class="rating" *ngIf="review.rating > 0">
+      <mat-icon class="star" *ngFor="let rating of ratingToArray(review.rating)">star_rate</mat-icon>
+    </div>
+    <pre class="review__text">{{ review.review }}</pre>
+  </div>
+
+</div>
+
+<ng-template #review_create_error>
+  We unable to create review at this time, please, try again or later
+</ng-template>
+
+<ng-template #review_create_success>
+  Your review has been successfully posted
+</ng-template>
+
+<ng-template #review_create_cancel>
+  Post was not sent due to canceled authorization
+</ng-template>
+
+<ng-template #review_auth_message>
+  Please sign in or register in order to post your review
+</ng-template>

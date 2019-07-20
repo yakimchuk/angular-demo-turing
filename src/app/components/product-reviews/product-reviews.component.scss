@@ -1,0 +1,86 @@
+:host {
+  display: block;
+}
+
+app-component-preloader {
+  position: absolute;
+  min-height: 202px;
+}
+
+app-component-error {
+  position: absolute;
+  min-height: 202px;
+}
+
+.reviews {
+  padding: 6px;
+
+  form {
+    margin-bottom: 26px;
+
+    .rate-caption {
+      margin-right: 4px;
+    }
+
+    .star {
+      margin-right: 2px;
+      color: rgba(0, 0, 0, 0.2);
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    .star_rated {
+      color: #5f95ff;
+    }
+  }
+
+  mat-slider {
+    width: 75px;
+  }
+
+  button {
+    margin-left: 16px;
+    margin-bottom: 19px;
+    height: 46px;
+  }
+}
+
+.review {
+  padding: 14px;
+  margin-bottom: 6px;
+  height: auto;
+
+  p {
+    margin-bottom: 0;
+  }
+
+  &:last-of-type {
+    margin: 0;
+  }
+
+  .author {
+    margin-bottom: 3px;
+  }
+
+  .rating {
+    .star {
+      font-size: 15px;
+      margin-right: 2px;
+      width: 14px;
+      color: rgba(0, 0, 0, 0.2);
+      height: auto;
+    }
+  }
+
+  .name {
+    margin-right: 6px;
+  }
+}
+
+.review__text {
+  margin: 12px 0 0 0;
+  white-space: pre-wrap;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}

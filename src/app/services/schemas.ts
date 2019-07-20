@@ -130,6 +130,13 @@ export interface IPaymentResponse {
   paid: boolean;
 }
 
+export interface TuringReview {
+  name: string;
+  review: string;
+  rating: number;
+  created_on: string;
+}
+
 export const schemas = {
   attributes: {
     product: {
@@ -1041,6 +1048,67 @@ export const schemas = {
     }
   },
   products: {
+    reviews: {
+      list: {
+        "definitions": {},
+        "$schema": "http://json-schema.org/draft-07/schema#",
+        "$id": "products.reviews.list",
+        "type": "array",
+        "title": "The Root Schema",
+        "items": {
+          "$id": "#/items",
+          "type": "object",
+          "title": "The Items Schema",
+          "required": [
+            "name",
+            "review",
+            "rating",
+            "created_on"
+          ],
+          "properties": {
+            "name": {
+              "$id": "#/items/properties/name",
+              "type": "string",
+              "title": "The Name Schema",
+              "default": "",
+              "examples": [
+                "Eder Taveira"
+              ],
+              "pattern": "^(.*)$"
+            },
+            "review": {
+              "$id": "#/items/properties/review",
+              "type": "string",
+              "title": "The Review Schema",
+              "default": "",
+              "examples": [
+                "That's a good product. The best for me."
+              ],
+              "pattern": ".*"
+            },
+            "rating": {
+              "$id": "#/items/properties/rating",
+              "type": "integer",
+              "title": "The Rating Schema",
+              "default": 0,
+              "examples": [
+                5
+              ]
+            },
+            "created_on": {
+              "$id": "#/items/properties/created_on",
+              "type": "string",
+              "title": "The Created_on Schema",
+              "default": "",
+              "examples": [
+                "2019-02-17 13:57:29"
+              ],
+              "pattern": "^(.*)$"
+            }
+          }
+        }
+      }
+    },
     single: {
       "definitions": {},
       "$schema": "http://json-schema.org/draft-07/schema#",

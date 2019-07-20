@@ -15,7 +15,7 @@ import {
   IShippingVariant as IShippingRemoteVariant,
   IShippingRegion,
   schemas,
-  IUser, IAuthCredentials, IAccessToken, IPaymentResponse, IProductDetails, TuringProductAttribute
+  IUser, IAuthCredentials, IAccessToken, IPaymentResponse, IProductDetails, TuringProductAttribute, TuringReview
 } from './schemas';
 import * as ajv from 'ajv';
 import { PaginationFilter } from '../components/products-navigator/products-navigator.component';
@@ -26,6 +26,7 @@ import { IUserAddress, IUserModel, IUserProfile } from '@app/services/user';
 import { IOrder, IOrderItem, OrderState } from '@app/services/orders';
 import { IOrder as IRemoteOrder, IOrderItem as IRemoteOrderItem } from '@app/services/schemas.ts';
 import { ProductAttribute } from '@app/services/products';
+import { Review } from '@app/services/reviews';
 
 const schemasConverter = new ajv();
 
@@ -41,6 +42,8 @@ export interface IRemoteProductsData {
   search(pagination: PaginationFilter): Promise<IListResponse<IProduct>>;
   getProduct(productId: number): Promise<IProductDetails>;
   getProducts(pagination: PaginationFilter): Promise<IListResponse<IProduct>>;
+  getProductReviews(productId: number): Promise<Review[]>;
+  createProductReview(productId: number, review: string, rating: number): Promise<any>;
   getProductsByCategory(categoryId: number, pagination: PaginationFilter): Promise<IListResponse<IProduct>>;
   getProductsByDepartment(departmentId: number, pagination: PaginationFilter): Promise<IListResponse<IProduct>>;
   getProductAttributes(productId: number): Promise<ProductAttribute[]>;
@@ -413,6 +416,32 @@ export class Resources implements IRemoteData {
   };
 
   products: IRemoteProductsData = {
+
+    createProductReview: (productId: number, review: string, rating: number) => {
+      return this.guard<[]>(
+        this.http.post<[]>(this.toResourceUrl(api.endpoint, `/products/${productId}/reviews`), toFormData({
+          review,
+          rating
+        })),
+        null
+      );
+    },
+
+    getProductReviews: async (productId: number) => {
+
+      let response = await this.guard<TuringReview[]>(
+        this.http.get<TuringReview[]>(this.toResourceUrl(api.endpoint, `/products/${productId}/reviews`)),
+        schemas.products.reviews.list
+      );
+
+      return response.map<Review>((review: TuringReview) => ({
+        name: review.name,
+        review: review.review,
+        rating: review.rating > 5 ? 5 : review.rating,
+        created: new Date(review.created_on)
+      }));
+    },
+
     getProductAttributes: async (productId: number) => {
 
       let result = await this.guard<TuringProductAttribute[]>(

@@ -9,6 +9,7 @@ import { HomeRouteComponent } from '@app/routes/home/home.component';
 
 import { options, routes } from '@app/routing';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import 'hammerjs';
 
 import {
   MatBadgeModule,
@@ -16,7 +17,7 @@ import {
   MatExpansionModule, MatFormFieldModule,
   MatIconModule, MatInputModule, MatListModule, MatPaginatorIntl, MatPaginatorModule,
   MatProgressSpinnerModule, MatRippleModule, MatSelectModule,
-  MatSidenavModule, MatSnackBarModule, MatStepperModule, MatTableModule, MatTabsModule,
+  MatSidenavModule, MatSliderModule, MatSnackBarModule, MatStepperModule, MatTableModule, MatTabsModule,
   MatToolbarModule
 } from '@angular/material';
 
@@ -77,6 +78,7 @@ import { ProductPurchaseFormComponent } from '@app/components/product-purchase-f
 import { ButtonHomeComponent } from '@app/components/button-home/button-home.component';
 import { OutletComponent } from '@app/components/outlet/outlet.component';
 import { ProductPurchasePopupComponent } from '@app/popups/product-purchase/product-purchase.component';
+import { ProductReviewsComponent } from '@app/components/product-reviews/product-reviews.component';
 
 const vendor = {
   framework: [
@@ -107,6 +109,7 @@ const vendor = {
     MatInputModule,
     MatSelectModule,
     MatDialogModule,
+    MatSliderModule,
     DeviceDetectorModule.forRoot()
   ]
 };
@@ -151,7 +154,8 @@ const components = {
     ProfileShippingEditorComponent,
     ProductPurchaseFormComponent,
     ButtonHomeComponent,
-    OutletComponent
+    OutletComponent,
+    ProductReviewsComponent
   ]
 };
 
