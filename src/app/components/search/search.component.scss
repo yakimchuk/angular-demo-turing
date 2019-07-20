@@ -1,0 +1,23 @@
+:host {
+  display: block;
+}
+
+:host ::ng-deep {
+
+  .mat-form-field-appearance-legacy .mat-form-field-infix {
+    padding: 2px 0;
+  }
+
+  .mat-form-field-label {
+    font-size: 16px;
+  }
+}
+
+mat-form-field {
+  width: 100%;
+}
+
+app-image-thumbnail {
+  width: 40px;
+  margin-right: 12px;
+}

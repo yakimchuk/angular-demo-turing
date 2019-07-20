@@ -39,7 +39,7 @@ export interface IRemoteCartData {
 }
 
 export interface IRemoteProductsData {
-  search(pagination: PaginationFilter): Promise<IListResponse<IProduct>>;
+  search(query:string, pagination: PaginationFilter): Promise<IListResponse<IProduct>>;
   getProduct(productId: number): Promise<IProductDetails>;
   getProducts(pagination: PaginationFilter): Promise<IListResponse<IProduct>>;
   getProductReviews(productId: number): Promise<Review[]>;
@@ -507,10 +507,10 @@ export class Resources implements IRemoteData {
         schemas.products.list
       );
     },
-    search: (filter: PaginationFilter) => {
+    search: (query: string, filter: PaginationFilter) => {
       return this.guard<IListResponse<IProduct>>(
         this.http.get<IListResponse<IProduct>>(this.toResourceUrl(api.endpoint, '/products/search'), {
-          params: _.mapValues(filter, (value) => value + '')
+          params: _.mapValues({ query_string: query, ...filter, all_words: 'off' }, (value) => value + '')
         }),
         schemas.products.list
       );

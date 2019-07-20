@@ -12,6 +12,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import 'hammerjs';
 
 import {
+  MatAutocompleteModule,
   MatBadgeModule,
   MatButtonModule, MatCardModule, MatDialogModule, MatDividerModule,
   MatExpansionModule, MatFormFieldModule,
@@ -60,7 +61,7 @@ import { User } from '@app/services/user';
 import { Users } from '@app/services/users';
 import { AccountButtonMenuComponent } from '@app/components/account-button-menu/account-button-menu.component';
 import { AuthPopupComponent } from '@app/popups/auth-popup/auth-popup.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { Auth, IAuth } from '@app/services/auth';
 import { Orders } from '@app/services/orders';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
@@ -84,6 +85,7 @@ const vendor = {
   framework: [
     CommonModule,
     FormsModule,
+    ReactiveFormsModule,
     BrowserAnimationsModule,
     HttpClientModule,
     RouterModule.forRoot(routes, options)
@@ -110,6 +112,7 @@ const vendor = {
     MatSelectModule,
     MatDialogModule,
     MatSliderModule,
+    MatAutocompleteModule,
     DeviceDetectorModule.forRoot()
   ]
 };

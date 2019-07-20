@@ -7,14 +7,14 @@ abstract class ImageComponent implements OnInit, OnChanges {
   protected url: string;
 
   public image: HTMLImageElement;
-  public ready: boolean = false;
+  public ready: boolean;
   public error: boolean;
 
   constructor() { }
 
   public reload() {
 
-    delete this.image;
+    delete this.ready;
     delete this.error;
 
     let image = new Image();

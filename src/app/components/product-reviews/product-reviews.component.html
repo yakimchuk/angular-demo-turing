@@ -37,7 +37,17 @@
     </fieldset>
   </form>
 
-  <div class="review mat-elevation-z1" *ngFor="let review of reviews">
+  <mat-paginator
+    [@slideTop]="!reviews || reviews?.length === 0 || reviews.length <= limit ? 'closed' : 'open'"
+    [pageIndex]="page - 1"
+    [pageSize]="limit"
+    [pageSizeOptions]="[5, 10, 25, 100, 200]"
+    [length]="reviews?.length"
+    (page)="filter = $event"></mat-paginator>
+
+  <div class="review mat-elevation-z1"
+       *ngFor="let review of reviews | slice : filter?.pageIndex * limit : filter?.pageIndex * limit + limit"
+       [@slideTop]="reviews.length > 0 ? 'open' : 'closed'">
     <div class="author row align-center">
       <mat-icon class="text-note">account_circle</mat-icon>
       <div class="mat-body-2 text-note name">{{ review.name }}</div>
@@ -49,6 +59,10 @@
     </div>
     <pre class="review__text">{{ review.review }}</pre>
   </div>
+
+  <p class="mat-body-1 text-note text-center" [@slideTop]="reviews?.length === 0 ? 'open' : 'closed'">
+    At this time there are no any comments...
+  </p>
 
 </div>
 

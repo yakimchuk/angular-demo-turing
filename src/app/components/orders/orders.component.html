@@ -2,7 +2,8 @@
   At this moment you did not order anything... <a routerLink="/">Begin shopping?</a>
 </div>
 
-<table mat-table [dataSource]="user.orders" multiTemplateDataRows class="mat-elevation-z2 orders">
+<table mat-table [dataSource]="user.orders" multiTemplateDataRows class="mat-elevation-z2 orders"
+       [@slideTop]="user.orders.length > 0 ? 'open' : 'closed'">
 
   <ng-container matColumnDef="id">
     <th mat-header-cell *matHeaderCellDef>Number</th>

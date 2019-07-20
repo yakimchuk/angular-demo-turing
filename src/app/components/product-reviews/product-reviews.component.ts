@@ -4,9 +4,10 @@ import { Review } from '@app/services/reviews';
 import { fade, slideTop } from '@app/utilities/transitions';
 import { IRemoteData, Resources } from '@app/services/resources';
 import { AuthPopupComponent } from '@app/popups/auth-popup/auth-popup.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog, PageEvent } from '@angular/material';
 import { Auth, IAuth } from '@app/services/auth';
 import { IMessages, UserMessages } from '@app/services/messages';
+import { pagination } from '@app/config';
 
 const defaultModel = {
   text: '',
@@ -25,6 +26,11 @@ export class ProductReviewsComponent implements OnInit, OnChanges {
 
   public error: boolean;
   public progress: boolean;
+
+  public page: number = pagination.page;
+  public limit: number = pagination.limit;
+
+  public filter: PageEvent;
 
   public reviews: Review[];
   public model: { text: string; rating: number } = defaultModel;

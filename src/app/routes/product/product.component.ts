@@ -50,9 +50,7 @@ export class ProductRouteComponent implements OnInit {
   }
 
   ngOnInit() {
-
-    this.reload();
-
+    this.route.params.subscribe(() => this.reload());
   }
 
 }

@@ -4,7 +4,7 @@
   <app-fake-placeholder type="line_short"></app-fake-placeholder>
 </app-component-preloader>
 
-<app-component-error [@fade]="!image && error ? 'open' : 'closed'">
+<app-component-error [@fade]="error ? 'open' : 'closed'">
   <span message>
     Could not load an image<br/>
     <b>You can try load this image again by pressing the button below</b>

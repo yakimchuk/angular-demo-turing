@@ -20,6 +20,10 @@ export const ui = {
   toasts: {
     duration: 5000,
     delay: 1000
+  },
+  autocomplete: {
+    limit: 25,
+    debounce: 500
   }
 };
 
