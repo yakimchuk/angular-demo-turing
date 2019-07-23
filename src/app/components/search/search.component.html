@@ -1,5 +1,7 @@
 <mat-form-field floatLabel="never">
-  <input matInput placeholder="Search for T-shirts" [matAutocomplete]="auto" [formControl]="controller">
+  <input matInput
+         i18n-placeholder="@@search.label"
+         placeholder="Search for T-shirts" [matAutocomplete]="auto" [formControl]="controller">
   <mat-autocomplete #auto="matAutocomplete">
     <mat-option *ngFor="let product of products | async" routerLink="/products/{{ product.id }}" [value]="product.name">
       <div class="row align-center">

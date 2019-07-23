@@ -1,5 +1,5 @@
 <!-- @todo: Apply animation here, for now they do not work if condition is met (!order = true and animation does not work) -->
-<p *ngIf="!order" class="mat-body-1 text-danger">
+<p *ngIf="!order" class="mat-body-1 text-danger" i18n="@@order.error">
   We cannot show you information about the order at this time.<br/>
   Please, reopen this page or try later
 </p>
@@ -10,12 +10,12 @@
 
     <table class="mat-table">
       <thead class="rowgroup">
-      <tr class="mat-row">
-        <th class="mat-header-cell">Product</th>
-        <th class="mat-header-cell">Cost</th>
-        <th class="mat-header-cell">Quantity</th>
-        <th class="mat-header-cell">Subtotal</th>
-      </tr>
+        <tr class="mat-row">
+          <th class="mat-header-cell" i18n="@@order.items.column.name">Product</th>
+          <th class="mat-header-cell" i18n="@@order.items.column.cost">Cost</th>
+          <th class="mat-header-cell" i18n="@@order.items.column.quantity">Quantity</th>
+          <th class="mat-header-cell" i18n="@@order.items.column.subtotal">Subtotal</th>
+        </tr>
       </thead>
       <tbody class="rowgroup">
         <tr *ngFor="let item of items" class="mat-row">
@@ -31,7 +31,7 @@
           <td class="mat-cell" colspan="3"></td>
           <td class="mat-cell mat-body-2 total">
             {{ order?.cost | money }} in total<br/>
-            <small class="mat-body-1 text-note">Products + Tax + Shipping</small>
+            <small class="mat-body-1 text-note" i18n="@@order.subtotal.note">Products + Tax + Shipping</small>
           </td>
         </tr>
       </tbody>
@@ -39,11 +39,11 @@
 
   </div>
 
-  <p [@slideTop]="items?.length === 0 ? 'open' : 'closed'" class="mat-body-1 text-note">
+  <p [@slideTop]="items?.length === 0 ? 'open' : 'closed'" class="mat-body-1 text-note" i18n="@@order.error.items">
     For some reasons we cannot load list with your ordered items, but do not worry, we know your order contents
   </p>
 
-  <p [@slideTop]="order?.status === states.Paid ? 'open' : 'closed'" class="mat-body-1 text-note">
+  <p [@slideTop]="order?.status === states.Paid ? 'open' : 'closed'" class="mat-body-1 text-note" i18n="@@order.message.state.paid">
 
     Your order has been successfully paid!<br/>
     Await for delivery, please. Shipping date will be available above.
@@ -52,14 +52,14 @@
 
   <div [@slideTop]="order?.status === states.Unpaid ? 'open' : 'closed'">
 
-    <div class="mat-title">Pay your order #{{ order?.id }}</div>
+    <div class="mat-title" i18n="@@order.payment.caption">Pay your order #{{ order?.id }}</div>
 
     <form (ngSubmit)="pay()">
       <fieldset [disabled]="progress">
 
         <div class="form-row">
 
-          <label class="mat-title">
+          <label class="mat-title" i18n="@@order.payment.method.card.caption">
             Credit or debit card
           </label>
 
@@ -69,28 +69,28 @@
 
         </div>
 
-        <button mat-raised-button color="primary">Submit Payment</button>
+        <button mat-raised-button color="primary" i18n="@@order.payment.method.card.submit">Submit Payment</button>
 
       </fieldset>
     </form>
 
   </div>
 
-  <p [@slideTop]="!states[order?.status] ? 'open' : 'closed'" class="mat-body-1 text-danger">
+  <p [@slideTop]="!states[order?.status] ? 'open' : 'closed'" class="mat-body-1 text-danger" i18n="@@order.message.state.unknown">
     Your order is in unknown status.<br/>
     Please send us a message to the email support@turing-demo.world.
   </p>
 
 </div>
 
-<ng-template #payment_success>
+<ng-template #payment_success i18n="@@order.toast.payment.success">
   Your order has been successfully paid
 </ng-template>
 
-<ng-template #payment_error>
+<ng-template #payment_error i18n="@@order.toast.payment.error">
   We faced issues at try to process your order
 </ng-template>
 
-<ng-template #user_reload_error>
+<ng-template #user_reload_error i18n="@@order.toast.data.reload.error">
   You have paid your order, but we cannot reload it to show you its new status, please, reload the page manually
 </ng-template>

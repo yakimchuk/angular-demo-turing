@@ -37,7 +37,7 @@ export class OrderComponent implements OnInit, OnChanges, AfterViewInit {
 
   @ViewChild('payment_success', { static: true }) private paymentSuccessToastTemplate: TemplateRef<any>;
   @ViewChild('payment_error', { static: true }) private paymentErrorToastTemplate: TemplateRef<any>;
-  @ViewChild('user_error', { static: true }) private userReloadErrorToastTemplate: TemplateRef<any>;
+  @ViewChild('user_reload_error', { static: true }) private userReloadErrorToastTemplate: TemplateRef<any>;
 
   @Input() public order: Order;
 

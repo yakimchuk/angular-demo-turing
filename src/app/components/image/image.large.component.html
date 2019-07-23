@@ -5,12 +5,12 @@
 </app-component-preloader>
 
 <app-component-error [@fade]="error ? 'open' : 'closed'">
-  <span message>
+  <span message i18n="@@image.error">
     Could not load an image<br/>
     <b>You can try load this image again by pressing the button below</b>
   </span>
   <div actions>
-    <app-button-reload (click)="reload()">Reload image</app-button-reload>
+    <app-button-reload (click)="reload()" i18n="@@image.reload">Reload image</app-button-reload>
   </div>
 </app-component-error>
 

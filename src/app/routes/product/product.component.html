@@ -16,7 +16,7 @@
   <div class="col-7 column">
 
     <app-component-error [@slideTop]="error ? 'open' : 'closed'">
-      <span message>
+      <span message i18n="@@route.product.error">
         We cannot load this offer, please reload the page or open it later
       </span>
       <div actions>
@@ -29,7 +29,7 @@
 
     <div class="image" [@slideTop]="!error ? 'open' : 'closed'">
       <app-image-large [url]="product?.images[0]"></app-image-large>
-      <p class="text-center text-note mat-body-1">
+      <p class="text-center text-note mat-body-1" i18n="@@route.product.image.note">
         <span class="text-danger">*</span> The real T-shirt may differ from this image.<br/>
         It is just a sample of the image on T-shirt.
       </p>

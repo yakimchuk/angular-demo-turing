@@ -9,7 +9,7 @@
 
   <div class="col-6">
 
-    <div class="mat-title">Sign In</div>
+    <div class="mat-title" i18n="@@popup.auth.login.caption">Sign In</div>
 
     <form #loginForm="ngForm" (ngSubmit)="login(models.login)">
 
@@ -21,7 +21,7 @@
                  [(ngModel)]="models.login.email"
                  matInput
                  email
-                 i18n-placeholder="@@test"
+                 i18n-placeholder="@@form.field.email"
                  placeholder="E-Mail"
                  required />
         </mat-form-field>
@@ -31,7 +31,7 @@
                  type="password"
                  matInput
                  [(ngModel)]="models.login.password"
-                 i18n-placeholder="@@test"
+                 i18n-placeholder="@@form.field.password"
                  placeholder="Password"
                  required />
         </mat-form-field>
@@ -41,7 +41,7 @@
             <span class="preloader" [@slideRight]="progress ? 'open' : 'closed'">
               <mat-progress-spinner color="primary" diameter="14" mode="indeterminate"></mat-progress-spinner>
             </span>
-            <mat-icon [@slideRight]="!progress ? 'open' : 'closed'">arrow_forward</mat-icon> Sign In
+            <mat-icon [@slideRight]="!progress ? 'open' : 'closed'">arrow_forward</mat-icon> <span i18n="@@popup.auth.login.submit">Sign In</span>
           </button>
         </div>
 
@@ -53,7 +53,7 @@
 
   <div class="col-6">
 
-    <div class="mat-title">Sign Up</div>
+    <div class="mat-title" i18n="@@popup.auth.registration.caption">Sign Up</div>
 
     <form #regForm="ngForm" (ngSubmit)="register(models.registration)">
 
@@ -64,7 +64,7 @@
                  type="text"
                  [(ngModel)]="models.registration.name"
                  matInput
-                 i18n-placeholder="@@test"
+                 i18n-placeholder="@@form.field.username"
                  placeholder="Username"
                  required />
         </mat-form-field>
@@ -77,6 +77,7 @@
             matInput
             email
             placeholder="E-Mail"
+            i18n-placeholder="@@form.field.email"
             required />
         </mat-form-field>
 
@@ -85,7 +86,7 @@
                  type="password"
                  matInput
                  [(ngModel)]="models.registration.password"
-                 i18n-placeholder="@@test"
+                 i18n-placeholder="@@form.field.password"
                  placeholder="Password"
                  required />
         </mat-form-field>
@@ -95,7 +96,7 @@
             <span class="preloader" [@slideRight]="progress ? 'open' : 'closed'">
               <mat-progress-spinner color="primary" diameter="14" mode="indeterminate"></mat-progress-spinner>
             </span>
-            <mat-icon [@slideRight]="!progress ? 'open' : 'closed'">arrow_forward</mat-icon> Sign Up
+            <mat-icon [@slideRight]="!progress ? 'open' : 'closed'">arrow_forward</mat-icon> <span i18n="@@popup.auth.registration.submit">Sign Up</span>
           </button>
         </div>
 
@@ -107,30 +108,30 @@
 
 </div>
 
-<ng-template #auth_success>
+<ng-template #auth_success i18n="@@popup.auth.toast.login.success">
   You have been successfully singed in
 </ng-template>
 
-<ng-template #auth_manual_error>
+<ng-template #auth_manual_error i18n="@@popup.auth.toast.login.error.unknown">
   We cannot authorize you at this time, please try again or later
 </ng-template>
 
-<ng-template #auth_manual_credentials_error>
+<ng-template #auth_manual_credentials_error i18n="@@popup.auth.toast.login.error.invalid">
   Such combination of email and password is not found, please check entered data
 </ng-template>
 
-<ng-template #register_success>
+<ng-template #register_success i18n="@@popup.auth.toast.registration.success">
   You have been successfully registered
 </ng-template>
 
-<ng-template #register_unknown_error>
+<ng-template #register_unknown_error i18n="@@popup.auth.toast.registration.error.unknown">
   We cannot register you at this time, please try again or later
 </ng-template>
 
-<ng-template #register_in_use_error>
+<ng-template #register_in_use_error i18n="@@popup.auth.toast.registration.error.used">
   This email is already in use, please use other one or sign in using the left form
 </ng-template>
 
-<ng-template #register_email_error>
+<ng-template #register_email_error i18n="@@popup.auth.toast.registration.error.invalid">
   You have entered incorrect email (incorrect characters)
 </ng-template>

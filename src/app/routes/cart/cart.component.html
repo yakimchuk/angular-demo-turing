@@ -1,24 +1,24 @@
 <app-route-navigation>
-  <div caption>Cart</div>
-  <div description>Your online shopping basket</div>
+  <div caption i18n="@@route.cart.caption">Cart</div>
+  <div description i18n="@@route.cart.description">Your online shopping basket</div>
   <div actions>
     <button mat-raised-button color="primary">
-      <mat-icon>delete_sweep</mat-icon> Clear cart
+      <mat-icon>delete_sweep</mat-icon> <span i18n="@@route.cart.clear.submit">Clear cart</span>
     </button>
   </div>
 </app-route-navigation>
 
 <div [@slideTop]="!cart.state.ready ? 'open' : 'closed'" class="cart__loader row align-center justify-center mat-body-1 text-note">
-  <mat-progress-spinner diameter="13" mode="indeterminate" color="primary"></mat-progress-spinner> <span>We are loading your cart</span>
+  <mat-progress-spinner diameter="13" mode="indeterminate" color="primary"></mat-progress-spinner> <span i18n="@@route.cart.loading">We are loading your cart</span>
 </div>
 
 <div [@slideTop]="cart.state.ready && cart.items.length === 0 && stepIndex <= 1 ? 'open' : 'closed'" class="cart__empty align-center justify-center">
   <mat-icon class="cart__icon">shopping_cart</mat-icon>
-  <div class="md-body-1">
+  <div class="md-body-1" i18n="@@route.cart.empty.description">
     Cart <b>is empty!</b>
   </div>
   <div>
-    <button mat-raised-button color="primary" routerLink="/">
+    <button mat-raised-button color="primary" routerLink="/" i18n="@@route.cart.empty.action.submit">
       Begin shopping!
     </button>
   </div>
@@ -33,11 +33,11 @@
       [editable]="step === stepNames.Cart || step === stepNames.Checkout"
       [completed]="cart.items.length > 0 || (step === stepNames.Payment || step === stepNames.Done)"
       [hasError]="step === stepNames.Checkout && cart.items.length === 0">
-      <ng-template matStepLabel>Cart</ng-template>
+      <ng-template matStepLabel i18n="@@route.cart.step.cart.caption">Cart</ng-template>
       <div class="cart__items row">
         <div class="col-8">
 
-          <div i18n *ngIf="cart.items" class="mat-title">
+          <div *ngIf="cart.items" class="mat-title" i18n="@@route.cart.step.cart.items.count">
             There are {cart.items.length, plural, =1 {one item} other {{{cart.items.length}} items}} in your cart
           </div>
 
@@ -46,13 +46,13 @@
         </div>
         <div class="col-4">
 
-          <div class="mat-title">Subtotal</div>
+          <div class="mat-title" i18n="@@route.cart.subtotal.caption">Subtotal</div>
 
           <app-order-subtotal [tax]="tax"></app-order-subtotal>
 
           <div class="step-actions row align-center justify-flex-end">
             <button mat-raised-button color="primary" matStepperNext [disabled]="cart.items.length === 0">
-              <mat-icon>arrow_forward</mat-icon> Checkout
+              <mat-icon>arrow_forward</mat-icon> <span i18n="@@route.cart.step.cart.submit">Checkout</span>
             </button>
           </div>
 
@@ -64,26 +64,26 @@
     <mat-step
       [editable]="step === stepNames.Checkout || (step === stepNames.Cart && cart.items.length > 0)"
       [completed]="(step === stepNames.Payment || step === stepNames.Done) || (tax && shipping && order)">
-      <ng-template matStepLabel>Checkout</ng-template>
+      <ng-template matStepLabel i18n="@@route.cart.step.checkout.caption">Checkout</ng-template>
       <div class="cart__checkout row">
         <div class="col-8">
 
-          <div class="mat-title">Tax</div>
+          <div class="mat-title" i18n="@@route.cart.step.checkout.form.tax.caption">Tax</div>
 
-          <p class="md-body-2">Please select suitable taxation for your order</p>
+          <p class="md-body-2" i18n="@@route.cart.step.checkout.form.tax.description">Please select suitable taxation for your order</p>
           <app-tax-selector [(tax)]="tax"></app-tax-selector>
 
-          <p class="md-body-2">How you'd like to receive your order?</p>
+          <p class="md-body-2" i18n="@@route.cart.step.form.shipping.description">How you'd like to receive your order?</p>
           <app-shipping-selector [(value)]="shipping"></app-shipping-selector>
 
         </div>
         <div class="col-4">
 
-          <div class="mat-title">Subtotal</div>
+          <div class="mat-title" i18n="@@route.cart.subtotal.caption">Subtotal</div>
 
           <app-order-subtotal [tax]="tax" [shipping]="shipping"></app-order-subtotal>
 
-          <p class="mat-body-1 text-note text-right" [@slideTop]="user.model ? 'open' : 'closed'">
+          <p class="mat-body-1 text-note text-right" [@slideTop]="user.model ? 'open' : 'closed'" i18n="@@route.cart.step.checkout.user.description">
             You are logged in as:<br/>
             <b>{{ user.model?.email }}</b>
           </p>
@@ -96,7 +96,8 @@
               <span class="preloader" [@slideRight]="progress ? 'open' : 'closed'">
                 <mat-progress-spinner color="primary" diameter="14" mode="indeterminate"></mat-progress-spinner>
               </span>
-              <mat-icon [@slideRight]="!progress ? 'open' : 'closed'">arrow_forward</mat-icon> Confirm order
+              <mat-icon [@slideRight]="!progress ? 'open' : 'closed'">arrow_forward</mat-icon>
+              <span i18n="@@route.cart.step.checkout.submit">Confirm order</span>
             </button>
           </div>
 
@@ -107,24 +108,25 @@
     <mat-step
       [editable]="step === stepNames.Payment"
       [completed]="step === stepNames.Done" #stepPayment>
-      <ng-template matStepLabel>Payment</ng-template>
+      <ng-template matStepLabel i18n="@@route.cart.step.payment.caption">Payment</ng-template>
       <div>
 
         <div [@slideTop]="step === stepNames.Payment && !order ? 'open' : 'closed'">
 
-          <p class="mat-body-1 text-danger">
+          <p class="mat-body-1 text-danger" i18n="@@route.cart.step.payment.error.description">
             We have experienced issues at try to allow you to pay your order.<br/>
             However, we will try to display you all of your orders.
           </p>
 
-          <p class="mat-body-1 text-danger" [@slideTop]="getUnpaidOrders().length === 0 ? 'open' : 'closed'">
+          <p class="mat-body-1 text-danger" [@slideTop]="getUnpaidOrders().length === 0 ? 'open' : 'closed'"
+             i18n="@@route.cart.step.payment.error.noOrder.empty">
             We cannot find any of your unpaid orders. You can open your <a routerLink="/account">account</a> and try to find
             and pay your order manually. Anyway, please write to us to support@turing-demo.world.
           </p>
 
           <div [@slideTop]="getUnpaidOrders().length === 1 ? 'open' : 'closed'">
 
-            <p class="mat-body-1 text-note">
+            <p class="mat-body-1 text-note" i18n="@@route.cart.step.payment.error.noOrder.oneFound">
               We found the only one unpaid order, if it is your just confirmed order, you can pay it now. Otherwise
               please open your <a routerLink="/account">account</a> and pay your order, or write to us to
               support@turing-demo.world to get qualified support.
@@ -140,12 +142,13 @@
 
           <div [@slideTop]="getUnpaidOrders().length > 1 ? 'open' : 'closed'">
 
-            <p class="mat-body-1 text-note">
+            <p class="mat-body-1 text-note" i18n="@@route.cart.step.payment.error.noOrder.manyFound">
               We have found many unpaid orders and cannot determine which of them is your just confirmed order. Please,
               open your <a routerLink="/account">account</a> page, then find your order and pay it.
             </p>
 
-            <button mat-raised-button color="primary" routerLink="/account">
+            <button mat-raised-button color="primary" routerLink="/account"
+                    i18n="@@route.cart.step.payment.error.noOrder.manyFound.submit">
               Open your account
             </button>
 
@@ -155,7 +158,7 @@
 
         <div [@slideTop]="order ? 'open' : 'closed'">
 
-          <p class="mat-body-1 text-note">
+          <p class="mat-body-1 text-note" i18n="@@route.cart.step.payment.description">
             We have successfully received your order #{{ order?.id }}.<br/>
             At any time you can manage your orders and account in the <a routerLink="/account">account</a> area.
           </p>
@@ -172,16 +175,17 @@
 
     <mat-step [editable]="step === stepNames.Done" [completed]="step === stepNames.Done" #doneStep>
 
-      <ng-template matStepLabel>Done</ng-template>
+      <ng-template matStepLabel i18n="@@route.cart.step.done.caption">Done</ng-template>
 
       <div [@slideTop]="!order ? 'open' : 'closed'">
 
-        <p class="mat-body-1 text-danger">
+        <p class="mat-body-1 text-danger" i18n="@@route.cart.step.done.error.description">
           We cannot find just paid order, but it seems everything fine and you paid your order. We will try to show
           you all of your orders so you can check payment result yourself.
         </p>
 
-        <p class="mat-body-1 text-danger" [@slideTop]="user.orders.length === 0 ? 'open' : 'closed'">
+        <p class="mat-body-1 text-danger" [@slideTop]="user.orders.length === 0 ? 'open' : 'closed'"
+           i18n="@@route.cart.step.done.error.notFound">
           We cannot find any of your orders. It seems like you opened this pages accidentally. If you not, then
           please check your orders manually in your <a routerLink="/account">account</a> and write to us to
           support@turing-demo.world, we will help you.
@@ -189,11 +193,11 @@
 
         <app-orders [@slideTop]="user.orders.length > 0 ? 'open' : 'closed'"></app-orders>
 
-        <p class="mat-body-1 text-note">
+        <p class="mat-body-1 text-note" i18n="@@route.cart.step.done.thanks">
           Thank you for using our online store!
         </p>
 
-        <button mat-raised-button color="primary" routerLink="/">
+        <button mat-raised-button color="primary" routerLink="/" i18n="@@route.cart.step.done.error.submit">
           Back to the catalog
         </button>
 
@@ -201,16 +205,16 @@
 
       <div [@slideTop]="order ? 'open' : 'closed'">
 
-        <p class="mat-body-1 text-success">
+        <p class="mat-body-1 text-success" i18n="@@route.cart.step.done.description">
           We have successfully received your order and payment. You may track your orders (and know
           when it was shipped to you) in your <a routerLink="/account">account</a> (section "OrdersService").
         </p>
 
-        <p class="mat-body-1 text-note">
+        <p class="mat-body-1 text-note" i18n="@@route.cart.step.done.thanks">
           Thank you for using our online store!
         </p>
 
-        <button mat-raised-button color="primary" routerLink="/">
+        <button mat-raised-button color="primary" routerLink="/" i18n="@@route.cart.step.done.submit">
           Back to the catalog
         </button>
 
@@ -221,31 +225,31 @@
 
 </div>
 
-<ng-template #auth_message>
+<ng-template #auth_message i18n="@@route.cart.note.auth">
   Sign in or register in order to continue creation of your order
 </ng-template>
 
-<ng-template #auth_required>
+<ng-template #auth_required i18n="@@route.cart.toast.order.cancel">
   Order was not confirmed due to canceled authorization
 </ng-template>
 
-<ng-template #order_create_error>
+<ng-template #order_create_error i18n="@@route.cart.toast.order.error">
   We cannot register your order at this time, please, try again or later
 </ng-template>
 
-<ng-template #order_reload_error>
+<ng-template #order_reload_error i18n="@@route.cart.toast.reload.error">
   We have registered your order, but we cannot download its data, please, reload the page and open your account
 </ng-template>
 
-<ng-template #order_find_error>
+<ng-template #order_find_error i18n="@@route.cart.toast.order.error.notFound">
   We have registered your order, but we faced some technical errors, please, reload the page and open your account
 </ng-template>
 
-<ng-template #order_pay_success>
+<ng-template #order_pay_success i18n="@@route.cart.toast.order.success">
   You have successfully paid your order
 </ng-template>
 
-<ng-template #order_pay_error>
+<ng-template #order_pay_error i18n="@@route.cart.toast.payment.error">
   We faced some issues at your try to pay your order, please, try again or later
 </ng-template>
 

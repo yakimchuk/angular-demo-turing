@@ -88,8 +88,6 @@ export class CartRouteComponent implements OnInit {
 
   public async createOrder(options: { cartId: string, tax: Tax, shipping: ShippingSelection }) {
 
-    debugger;
-
     try {
       if (!this.auth.isAuthenticated()) {
 

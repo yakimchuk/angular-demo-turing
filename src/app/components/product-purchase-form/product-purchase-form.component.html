@@ -10,10 +10,10 @@
 
 <div [@slideTop]="product ? 'open' : 'closed'">
 
-  <div class="mat-headline no-margin">Construct your T-shirt</div>
-  <p class="mat-small text-note">Select options for your T-shirt: image, color and other options</p>
+  <div class="mat-headline no-margin" i18n="@@product.purchase.form.caption">Construct your T-shirt</div>
+  <p class="mat-small text-note" i18n="@@product.purchase.form.description">Select options for your T-shirt: image, color and other options</p>
 
-  <div class="mat-subheading-1 text-center">Image on T-shirt</div>
+  <div class="mat-subheading-1 text-center" i18n="@@product.purchase.form.step.image.caption">Image on T-shirt</div>
   <div class="image">
     <app-image-large [url]="product?.images[1]"></app-image-large>
   </div>
@@ -31,6 +31,7 @@
 
       <mat-form-field *ngFor="let attribute of attributes">
         <mat-select placeholder="Select {{ attribute.name }}"
+                    i18n-placeholder="@@product.purchase.form.step.attribute.caption"
                     [(ngModel)]="model[attribute.name]"
                     [ngModelOptions]="{ standalone: true }">
           <mat-option *ngFor="let value of attribute.values;" [value]="value.name">
@@ -41,7 +42,7 @@
 
       <div class="text-right">
         <button mat-raised-button color="primary" [disabled]="!isValidForm() || progress" (click)="add(model)">
-          <mat-icon>add_shopping_cart</mat-icon> Add to cart, {{ product?.price | money }}
+          <mat-icon>add_shopping_cart</mat-icon> <span i18n="@@product.purchase.form.submit">Add to cart</span>, {{ product?.price | money }}
         </button>
       </div>
 
@@ -50,10 +51,10 @@
 
 </div>
 
-<ng-template #toast_add_success>
+<ng-template #toast_add_success i18n="@@product.purchase.toast.success">
   The product was added to your cart
 </ng-template>
 
-<ng-template #toast_add_error>
-  The problem, we unable to add your product to the cart
+<ng-template #toast_add_error i18n="@@product.purchase.toast.error">
+  We unable to add your product to the cart at this time
 </ng-template>

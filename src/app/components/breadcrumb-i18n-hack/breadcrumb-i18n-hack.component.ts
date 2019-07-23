@@ -37,7 +37,7 @@ export class BreadcrumbI18nHackComponent implements OnInit, OnChanges {
     let id = this.route.snapshot.params.productId;
 
     try {
-      return (await this.resources.products.getProduct(id)).name;
+      return (await this.resources.products.getProduct({ productId: id })).name;
     } catch {
       return null;
     }
@@ -48,7 +48,7 @@ export class BreadcrumbI18nHackComponent implements OnInit, OnChanges {
     let id = this.route.snapshot.params.departmentId;
 
     try {
-      return (await this.resources.departments.getDepartment(id)).name;
+      return (await this.resources.departments.getDepartment({ departmentId: id })).name;
     } catch {
       return null;
     }
@@ -59,7 +59,7 @@ export class BreadcrumbI18nHackComponent implements OnInit, OnChanges {
     let id = this.route.snapshot.params.categoryId;
 
     try {
-      return (await this.resources.categories.getCategory(id)).name;
+      return (await this.resources.categories.getCategory({ categoryId: id })).name;
     } catch {
       return null;
     }

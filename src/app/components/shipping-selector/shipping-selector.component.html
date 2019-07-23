@@ -4,39 +4,39 @@
 </app-component-preloader>
 
 <app-component-error [@slideTop]="shipping.state.ready && (shipping.state.error || shipping.areas.length === 0) ? 'open' : 'closed'">
-  <span message>Something goes wrong, we cannot find shipping areas</span>
+  <span message i18n="@@shipping.selector.error.areas">Something goes wrong, we cannot find shipping areas</span>
   <span actions>
-    <app-button-reload (click)="reload()">Reload shipping areas</app-button-reload>
+    <app-button-reload (click)="reload()" i18n="@@shipping.selector.reload.areas">Reload shipping areas</app-button-reload>
   </span>
 </app-component-error>
 
 <mat-form-field [@slideTop]="shipping.state.ready && shipping.areas.length > 0 ? 'open' : 'closed'">
-  <mat-label>Select your area</mat-label>
+  <mat-label i18n="@@shipping.selector.form.selector.area.caption">Select your area</mat-label>
   <mat-select [(value)]="area" (valueChange)="reloadVariants({ areaId: $event.id })" required>
     <mat-option *ngFor="let area of shipping.areas" [value]="area">
       {{ area.name }}
     </mat-option>
   </mat-select>
-  <mat-hint>Where do you want to receive your order?</mat-hint>
+  <mat-hint i18n="@@shipping.selector.hint.areas">Where do you want to receive your order?</mat-hint>
 </mat-form-field>
 
 <app-component-error [@slideTop]="error || (area && variants?.length === 0) ? 'open' : 'closed'">
-  <span message>Something goes wrong, we cannot find shipping variants to the selected area</span>
+  <span message i18n="@@shipping.selector.error.variants">Something goes wrong, we cannot find shipping variants to the selected area</span>
   <span actions>
     <app-button-reload (click)="reloadVariants({ areaId: area.id })">Reload shipping variants</app-button-reload>
   </span>
 </app-component-error>
 
 <mat-form-field [@slideTop]="area && variants?.length > 0 ? 'open' : 'closed'">
-  <mat-label>Select shipping variant</mat-label>
+  <mat-label i18n="@@shipping.selector.form.selector.variant.caption">Select shipping variant</mat-label>
   <mat-select [(value)]="variant" (valueChange)="onVariantSelection({ area: area, variant: $event })" required>
     <mat-option *ngFor="let variant of variants" [value]="variant">
       {{ variant.name }}
     </mat-option>
   </mat-select>
-  <mat-hint>How do you want to receive your order?</mat-hint>
+  <mat-hint i18n="@@shipping.selector.hint.variants">How do you want to receive your order?</mat-hint>
 </mat-form-field>
 
-<p class="mat-body-1 text-note">
+<p class="mat-body-1 text-note" i18n="@@shipping.selector.note">
   If you do not see your area or suitable shipping option, please contact us at shipping@turing-demo.world
 </p>

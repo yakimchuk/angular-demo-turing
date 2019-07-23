@@ -3,9 +3,9 @@
 </app-component-preloader>
 
 <app-component-error [@slideTop]="(cart.state.ready && taxes.state.ready) && (cart.state.error || taxes.state.error) ? 'open' : 'closed'">
-  <span message>We could not load data to calculate total price</span>
+  <span message i18n="@@order.subtotal.error">We could not load data to calculate total price</span>
   <div actions>
-    <app-button-reload (click)="reload()">Reload</app-button-reload>
+    <app-button-reload (click)="reload()" i18n="@@order.subtotal.reload">Reload</app-button-reload>
   </div>
 </app-component-error>
 
@@ -13,7 +13,7 @@
 
   <ul class="items">
     <li class="row align-center">
-      <div class="mat-body-1">Cart subtotal</div>
+      <div class="mat-body-1" i18n="@@order.subtotal.item.subtotal.caption">Cart subtotal</div>
       <div class="col"></div>
       <div class="mat-body-2">{{ cart.total | money }}</div>
     </li>
@@ -24,7 +24,7 @@
     </li>
     <li class="shipping row align-flex-start justify-space-between" [@slideTop]="shipping ? 'open' : 'closed'">
       <div class="mat-body-1">
-        Shipping<br/>
+        <span i18n="@@order.subtotal.item.shipping.caption">Shipping</span><br/>
         <small class="text-note">
           {{ shipping?.area.name }}<br/>
           {{ shipping?.variant.name }}

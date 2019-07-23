@@ -1,10 +1,10 @@
 <app-route-navigation>
-  <div caption>Grand new E-Commerce, Buy & Try!</div>
-  <div description>We sell the most inspiration ideas</div>
+  <div caption i18n="@@route.home.caption">Grand new E-Commerce, Buy & Try!</div>
+  <div description i18n="@@route.home.description">We sell the most inspiration ideas</div>
   <div actions>
     <!-- @todo Finish this feature -->
     <button mat-raised-button color="primary">
-      <mat-icon>360</mat-icon> Make a tour!
+      <mat-icon>360</mat-icon> <span i18n="@@route.home.tour.submit">Make a tour!</span>
     </button>
   </div>
 </app-route-navigation>
@@ -12,11 +12,11 @@
 <app-products-navigator (onPagination)="onPagination($event)" [products]="products" [@slideTop]="!error ? 'open' : 'closed'"></app-products-navigator>
 
 <app-component-error [@fade]="!products && error ? 'open' : 'closed'">
-  <span message>
+  <span message i18n="@@route.home.error">
     We encountered problems while loading catalog<br/>
     Press the button below to try to load this catalog again
   </span>
   <div actions>
-    <app-button-reload (click)="reload(filter)">Reload catalog</app-button-reload>
+    <app-button-reload (click)="reload(filter)" i18n="@@route.home.reload">Reload catalog</app-button-reload>
   </div>
 </app-component-error>

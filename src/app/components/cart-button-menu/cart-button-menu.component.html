@@ -1,11 +1,12 @@
 <div class="row align-center justify-center">
 
   <button mat-button color="primary" [@slideRight]="!cart.state.ready && !cart.state.error ? 'open' : 'closed'">
-    <mat-progress-spinner diameter="13" mode="indeterminate" color="primary"></mat-progress-spinner> <span>Loading cart</span>
+    <mat-progress-spinner diameter="13" mode="indeterminate" color="primary"></mat-progress-spinner>
+    <span i18n="@@cart.loading">Loading cart</span>
   </button>
 
   <app-component-error mode="row" [@slideRight]="cart.state.ready && cart.state.error ? 'open' : 'closed'">
-    <span message>Cart is not available</span>
+    <span message i18n="@@cart.button.error">Cart is not available</span>
     <span actions>
     <button mat-icon-button color="primary" (click)="reload()">
       <mat-icon>refresh</mat-icon>
@@ -14,7 +15,7 @@
   </app-component-error>
 
   <button mat-button color="primary" [@slideRight]="cart.state.ready && cart.items ? 'open' : 'closed'" routerLink="/cart">
-    <mat-icon>shopping_cart</mat-icon> {{ cart.items?.length }} items in your cart
+    <mat-icon>shopping_cart</mat-icon> <span i18n="@@cart.button.items.count">{{ cart.items?.length }} {cart.items?.length, plural, one {item} other {items}} in your cart</span>
   </button>
 
 </div>

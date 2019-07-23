@@ -23,16 +23,23 @@
     <div class="description mat-body-1">{{ product.description | excerpt:40 }}</div>
     <mat-divider></mat-divider>
     <div class="actions">
-      <button mat-stroked-button color="primary" class="col" routerLink="products/{{ product.id }}">
+      <button mat-stroked-button
+              color="primary"
+              class="col"
+              routerLink="products/{{ product.id }}"
+              i18n="@@navigator.products.item.more">
         Know more
       </button>
-      <button mat-stroked-button color="primary" class="col" (click)="add(product.id)">
-        Buy, {{ product.price | money }}
+      <button mat-stroked-button
+              color="primary"
+              class="col"
+              (click)="add(product.id)">
+        <mat-icon>add_shopping_cart</mat-icon> {{ product.price | money }}
       </button>
     </div>
   </div>
 </div>
 
-<ng-template #product_detail_info_load_error>
+<ng-template #product_detail_info_load_error i18n="@@navigator.products.item.load.error">
   We cannot load detailed info about this product, please, try again or later
 </ng-template>

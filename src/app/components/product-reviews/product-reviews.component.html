@@ -1,4 +1,4 @@
-<div class="mat-title">Reviews about the product</div>
+<div class="mat-title" i18n="@@product.reviews.caption">Reviews about the product</div>
 
 <app-component-preloader [@fade]="!error && !reviews ? 'open' : 'closed'">
   <app-fake-placeholder type="rectangle" [progress]="true"></app-fake-placeholder>
@@ -7,9 +7,9 @@
 </app-component-preloader>
 
 <app-component-error [@fade]="!reviews && error ? 'open' : 'closed'">
-  <span message>We cannot load product reviews at this time, please try again or later</span>
+  <span message i18n="@@product.reviews.error">We cannot load product reviews at this time, please try again or later</span>
   <div actions>
-    <app-button-reload (click)="reload()">Reload reviews</app-button-reload>
+    <app-button-reload (click)="reload()" i18n="@@product.reviews.reload">Reload reviews</app-button-reload>
   </div>
 </app-component-error>
 
@@ -19,17 +19,25 @@
     <fieldset [disabled]="progress">
       <div class="row">
         <mat-form-field class="col">
-          <textarea name="review" matInput placeholder="Leave a review" [(ngModel)]="model.text" required></textarea>
+          <textarea name="review"
+                    matInput
+                    i18n-placeholder="@@product.reviews.form.review.placeholder"
+                    placeholder="Leave a review" [(ngModel)]="model.text"
+                    required></textarea>
         </mat-form-field>
       </div>
       <div class="row align-center">
-        <div class="mat-body-1 text-note rate-caption">Rate this product — </div>
+        <div class="mat-body-1 text-note rate-caption" i18n="@@product.reviews.form.rate.caption">Rate this product — </div>
         <mat-icon class="star"
                   *ngFor="let rating of ratingToArray(5); let i = index;" (click)="model.rating = i + 1"
                   [ngClass]="{ 'star_rated': model.rating > i }">star_rate</mat-icon>
         <div class="col"></div>
         <div class="row align-flex-end justify-center">
-          <button mat-raised-button color="primary" [disabled]="form.invalid || progress" (click)="createReview(model)">
+          <button
+            mat-raised-button color="primary"
+                  [disabled]="form.invalid || progress"
+                  (click)="createReview(model)"
+                  i18n="@@product.reviews.form.submit">
             Send
           </button>
         </div>
@@ -60,24 +68,26 @@
     <pre class="review__text">{{ review.review }}</pre>
   </div>
 
-  <p class="mat-body-1 text-note text-center" [@slideTop]="reviews?.length === 0 ? 'open' : 'closed'">
+  <p class="mat-body-1 text-note text-center"
+     [@slideTop]="reviews?.length === 0 ? 'open' : 'closed'"
+     i18n="@@product.reviews.empty">
     At this time there are no any comments...
   </p>
 
 </div>
 
-<ng-template #review_create_error>
+<ng-template #review_create_error i18n="@@product.reviews.toast.post.error">
   We unable to create review at this time, please, try again or later
 </ng-template>
 
-<ng-template #review_create_success>
+<ng-template #review_create_success i18n="@@product.reviews.toast.post.success">
   Your review has been successfully posted
 </ng-template>
 
-<ng-template #review_create_cancel>
+<ng-template #review_create_cancel i18n="@@product.reviews.toast.post.cancel">
   Post was not sent due to canceled authorization
 </ng-template>
 
-<ng-template #review_auth_message>
+<ng-template #review_auth_message i18n="@@product.reviews.note.authentication">
   Please sign in or register in order to post your review
 </ng-template>

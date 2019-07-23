@@ -30,7 +30,9 @@ export class OutletComponent implements OnInit {
       return '';
     }
 
-    return outlet.activatedRoute.routeConfig.path;
+    let route = outlet.activatedRoute;
+
+    return route.snapshot.data.id || route.routeConfig.path;
   }
 
   ngOnInit() {

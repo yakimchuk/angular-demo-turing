@@ -1,26 +1,27 @@
 <app-route-navigation>
-  <div caption>Account</div>
-  <div description>Your personal data (orders and information management)</div>
+  <div caption i18n="@@route.account.caption">Account</div>
+  <div description i18n="@@route.account.description">Your personal data (orders and information management)</div>
   <div actions>
     <button mat-raised-button color="primary" (click)="logout()" [@slideRight]="user.model ? 'open' : 'closed'">
-      <mat-icon>exit_to_app</mat-icon> Logout
+      <mat-icon>exit_to_app</mat-icon> <span i18n="@@button.logout">Logout</span>
     </button>
   </div>
 </app-route-navigation>
 
 <div class="sign-note" [@slideTop]="!user.model ? 'open' : 'closed'">
 
-  <p class="text-danger text-center mat-body-2" [@slideTop]="error === 'session' ? 'open' : 'closed'">
+  <p class="text-danger text-center mat-body-2" [@slideTop]="error === 'session' ? 'open' : 'closed'"
+     i18n="@@route.account.error.session">
     Your session has expired, sign in again, please
   </p>
 
-  <p class="text-note mat-body-1 text-center">
+  <p class="text-note mat-body-1 text-center" i18n="@@route.account.error.auth">
     You must sign in in order manage your account
   </p>
 
   <div class="text-center">
     <button mat-raised-button color="primary" (click)="auth()">
-      <mat-icon>account_circle</mat-icon> Sign In
+      <mat-icon>account_circle</mat-icon> <span i18n="@@route.account.auth.submit">Sign In</span>
     </button>
   </div>
 
@@ -31,13 +32,13 @@
                (selectedIndexChange)="onTabChange($event)">
 
   <mat-tab>
-    <ng-template mat-tab-label>
+    <ng-template mat-tab-label i18n="@@route.account.section.profile.caption">
       Profile
     </ng-template>
 
     <ng-template matTabContent>
       <div class="tab-container">
-        <div class="mat-title">Profile</div>
+        <div class="mat-title" i18n="@@route.account.section.profile.caption">Profile</div>
         <app-profile-common-editor></app-profile-common-editor>
       </div>
     </ng-template>
@@ -45,13 +46,13 @@
   </mat-tab>
 
   <mat-tab>
-    <ng-template mat-tab-label>
+    <ng-template mat-tab-label i18n="@@route.account.section.shipping.caption">
       Shipping
     </ng-template>
 
     <ng-template matTabContent>
       <div class="tab-container">
-        <div class="mat-title">Shipping</div>
+        <div class="mat-title" i18n="@@route.account.section.shipping.caption">Shipping</div>
         <app-profile-shipping-editor></app-profile-shipping-editor>
       </div>
     </ng-template>
@@ -60,13 +61,13 @@
   </mat-tab>
 
   <mat-tab>
-    <ng-template mat-tab-label>
-      OrdersService
+    <ng-template mat-tab-label i18n="@@route.account.section.orders.caption">
+      Orders
     </ng-template>
 
     <ng-template matTabContent>
       <div class="tab-container">
-        <div class="mat-title">OrdersService</div>
+        <div class="mat-title" i18n="@@route.account.section.orders.caption">Orders</div>
         <app-orders></app-orders>
       </div>
     </ng-template>
@@ -75,10 +76,10 @@
 
 </mat-tab-group>
 
-<ng-template #user_logout_success>
+<ng-template #user_logout_success i18n="@@route.account.toast.logout.success">
   You have successfully logged out from the account
 </ng-template>
 
-<ng-template #user_logout_error>
+<ng-template #user_logout_error i18n="@@route.account.toast.logout.error">
   Cannot log you out at this time, please try again or later
 </ng-template>

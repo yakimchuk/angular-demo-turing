@@ -4,46 +4,78 @@
     <fieldset [disabled]="progress">
 
       <mat-form-field>
-        <input matInput type="text" name="name" [(ngModel)]="model.name" placeholder="Name" required />
+        <input matInput
+               type="text"
+               name="name"
+               [(ngModel)]="model.name"
+               placeholder="Name"
+               i18n-placeholder="@@form.field.name"
+               required />
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput type="email" name="email" [(ngModel)]="model.email" placeholder="E-Mail" required />
+        <input matInput
+               type="email"
+               name="email"
+               [(ngModel)]="model.email"
+               placeholder="E-Mail"
+               i18n-placeholder="@@form.field.email"
+               required />
       </mat-form-field>
 
       <mat-form-field>
         <input matInput type="password" name="password" [(ngModel)]="credentials.password"
                placeholder="Password (enter current or new password)"
+               i18n-placeholder="@@form.field.password"
                required />
       </mat-form-field>
 
       <mat-form-field>
         <input #day="ngModel" matInput type="text" name="dayMobile" [(ngModel)]="model.phone.day"
                placeholder="Day phone"
+               i18n-placeholder="@@form.field.phone.day"
                pattern="^[0-9+ ()-]+$" />
-        <mat-hint *ngIf="!day.invalid">You can enter number in any format with leading plus</mat-hint>
-        <mat-hint class="text-danger" *ngIf="day.invalid && day.errors.pattern">You can enter only plus, brackets, numbers and hyphen</mat-hint>
+
+        <mat-hint *ngIf="!day.invalid"
+                  i18n="@@form.field.hint.phone">You can enter number in any format with leading plus</mat-hint>
+
+        <mat-hint class="text-danger"
+                  *ngIf="day.invalid && day.errors.pattern"
+                  i18n="@@form.field.error.pattern.phone">You can enter only plus, brackets, numbers and hyphen</mat-hint>
       </mat-form-field>
 
       <mat-form-field>
+
         <input #eve="ngModel" matInput type="text" name="eveningMobile" [(ngModel)]="model.phone.evening"
                placeholder="Evening phone"
+               i18n-placeholder="@@form.field.phone.evening"
                pattern="^[0-9+ ()-]+$" />
-        <mat-hint *ngIf="!eve.invalid">You can enter number in any format with leading plus</mat-hint>
-        <mat-hint class="text-danger" *ngIf="eve.invalid && eve.errors.pattern">You can enter only plus, brackets, numbers and hyphen</mat-hint>
+
+        <mat-hint *ngIf="!eve.invalid"
+                  i18n="@@form.field.hint.phone">You can enter number in any format with leading plus</mat-hint>
+
+        <mat-hint class="text-danger"
+                  *ngIf="eve.invalid && eve.errors.pattern"
+                  i18n="@@form.field.error.pattern.phone">You can enter only plus, brackets, numbers and hyphen</mat-hint>
       </mat-form-field>
 
       <mat-form-field>
         <input #mob="ngModel" matInput type="text" name="mobile" [(ngModel)]="model.phone.mobile"
                placeholder="Primary mobile phone"
+               i18n-placeholder="@@form.field.phone.primary"
                pattern="^[0-9+ ()-]+$" />
-        <mat-hint *ngIf="!mob.invalid">You can enter number in any format with leading plus</mat-hint>
-        <mat-hint class="text-danger" *ngIf="mob.invalid && mob.errors.pattern">You can enter only plus, brackets, numbers and hyphen</mat-hint>
+
+        <mat-hint *ngIf="!mob.invalid"
+                  i18n="@@form.field.hint.phone">You can enter number in any format with leading plus</mat-hint>
+
+        <mat-hint class="text-danger"
+                  *ngIf="mob.invalid && mob.errors.pattern"
+                  i18n="@@form.field.error.pattern.phone">You can enter only plus, brackets, numbers and hyphen</mat-hint>
       </mat-form-field>
 
       <div class="text-right">
         <button mat-raised-button color="primary" [disabled]="!form.valid || progress">
-          <mat-icon>save</mat-icon> Save
+          <mat-icon>save</mat-icon> <span i18n="@@profile.editor.personal.form.submit">Save</span>
         </button>
       </div>
 
@@ -53,15 +85,15 @@
 </div>
 
 <div [@slideTop]="!model ? 'open' : 'closed'">
-  <p class="mat-body-1 text-danger">
+  <p class="mat-body-1 text-danger" i18n="@@profile.editor.personal.error">
     For now we cannot find your profile. Did you forget to sign in?
   </p>
 </div>
 
-<ng-template #update_error>
+<ng-template #update_error i18n="@@profile.editor.personal.toast.update.error">
   We could not update your profile at this time, please try again or later
 </ng-template>
 
-<ng-template #update_success>
+<ng-template #update_success i18n="@@profile.editor.personal.toast.update.success">
   Your profile has been successfully updated
 </ng-template>

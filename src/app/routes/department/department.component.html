@@ -1,6 +1,6 @@
 <app-route-navigation>
   <div caption>
-    <div [@slideTop]="department ? 'open' : 'closed'">
+    <div [@slideTop]="department ? 'open' : 'closed'" i18n="@@route.department.caption">
       {{ department?.name }} T-shirts
     </div>
     <app-component-preloader [@fade]="!department ? 'open' : 'closed'">
@@ -21,11 +21,11 @@
 <app-products-navigator (onPagination)="onPagination($event)" [products]="products" [@slideTop]="!error ? 'open' : 'closed'"></app-products-navigator>
 
 <app-component-error [@fade]="error ? 'open' : 'closed'">
-  <span message>
+  <span message i18n="@@route.department.error">
     We encountered problems while loading catalog<br/>
     Press the button below to try to load this catalog again
   </span>
   <div actions>
-    <app-button-reload (click)="reload(filter)">Reload catalog</app-button-reload>
+    <app-button-reload (click)="reload(filter)" i18n="@@route.department.reload">Reload catalog</app-button-reload>
   </div>
 </app-component-error>

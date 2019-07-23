@@ -12,27 +12,40 @@
     <fieldset [disabled]="progress">
 
       <mat-form-field>
-        <input matInput type="text" name="address1" [(ngModel)]="model.address1" placeholder="Address Line 1" required />
+        <input matInput type="text" name="address1" [(ngModel)]="model.address1"
+               placeholder="Address Line 1"
+               i18n-placeholder="@@form.field.address1"
+               required />
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput type="text" name="address2" [(ngModel)]="model.address2" placeholder="Address Line 2" />
+        <input matInput type="text" name="address2" [(ngModel)]="model.address2"
+               placeholder="Address Line 2"
+               i18n-placeholder="@@form.field.address2" />
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput type="text" name="city" [(ngModel)]="model.city" placeholder="City" required />
+        <input matInput type="text" name="city" [(ngModel)]="model.city"
+               placeholder="City"
+               i18n-placeholder="@@form.field.city" required />
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput type="text" name="region" [(ngModel)]="model.region" placeholder="Region" required />
+        <input matInput type="text" name="region" [(ngModel)]="model.region"
+               placeholder="Region"
+               i18n-placeholder="@@form.field.region" required />
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput type="text" name="postalCode" [(ngModel)]="model.postalCode" placeholder="Postal code" required />
+        <input matInput type="text" name="postalCode" [(ngModel)]="model.postalCode"
+               placeholder="Postal code"
+               i18n-placeholder="@@form.field.postalCode" required />
       </mat-form-field>
 
       <mat-form-field>
-        <input matInput type="text" name="country" [(ngModel)]="model.country" placeholder="Country" required />
+        <input matInput type="text" name="country" [(ngModel)]="model.country"
+               placeholder="Country"
+               i18n-placeholder="@@form.field.country"required />
       </mat-form-field>
 
       <mat-form-field>
@@ -42,12 +55,12 @@
             {{ area.name }}
           </mat-option>
         </mat-select>
-        <mat-hint>Where do you want to receive your order?</mat-hint>
+        <mat-hint i18n="@@profile.editor.shipping.note.address">Where do you want to receive your order?</mat-hint>
       </mat-form-field>
 
       <div class="text-right">
         <button mat-raised-button color="primary" [disabled]="!form.valid || progress" (click)="update()">
-          <mat-icon>save</mat-icon> Save
+          <mat-icon>save</mat-icon> <span i18n="@@profile.editor.shipping.form.submit">Save</span>
         </button>
       </div>
 
@@ -57,15 +70,15 @@
 </div>
 
 <div [@slideTop]="!model ? 'open' : 'closed'">
-  <p class="mat-body-1 text-danger">
+  <p class="mat-body-1 text-danger" i18n="@@profile.editor.shipping.error">
     For now we cannot find your profile. Did you forget to sign in?
   </p>
 </div>
 
-<ng-template #update_error>
+<ng-template #update_error i18n="@@profile.editor.shipping.toast.update.error">
   We could not update your shipping details at this time, please try again or later
 </ng-template>
 
-<ng-template #update_success>
+<ng-template #update_success i18n="@@profile.editor.shipping.toast.update.success">
   Your shipping details has been successfully updated
 </ng-template>

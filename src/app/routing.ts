@@ -122,6 +122,7 @@ export const routes: Routes = [
     path: 'account',
     component: AccountRouteComponent,
     data: {
+      id: 'account',
       breadcrumbs: [
         paths.root,
         paths.account
@@ -132,6 +133,7 @@ export const routes: Routes = [
     path: 'account/:section',
     component: AccountRouteComponent,
     data: {
+      id: 'account',
       breadcrumbs: [
         paths.root,
         paths.account

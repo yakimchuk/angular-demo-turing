@@ -1,4 +1,4 @@
-<div class="mat-headline no-margin">Departments</div>
+<div class="mat-headline no-margin" i18n="@@navigator.departments.caption">Departments</div>
 
 <mat-divider></mat-divider>
 
@@ -9,12 +9,12 @@
 </app-component-preloader>
 
 <app-component-error [@fade]="!departments && error ? 'open' : 'closed'">
-  <div message>
+  <div message i18n="@@navigator.departments.error">
     We cannot load departments list<br/>
     Please, press the button to try again<br/>
   </div>
   <div actions>
-    <app-button-reload (click)="reload()">Reload departments</app-button-reload>
+    <app-button-reload (click)="reload()" i18n="@@navigator.departments.reload">Reload departments</app-button-reload>
     <app-button-close-website></app-button-close-website>
   </div>
 </app-component-error>

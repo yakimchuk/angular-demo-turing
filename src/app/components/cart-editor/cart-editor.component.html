@@ -2,34 +2,34 @@
   <table mat-table [dataSource]="cart.items">
 
     <ng-container matColumnDef="number">
-      <th mat-header-cell *matHeaderCellDef class="text-center">#</th>
+      <th mat-header-cell *matHeaderCellDef class="text-center" i18n="@@cart.items.column.row">#</th>
       <td mat-cell *matCellDef="let i = index"> {{ i + 1 }} </td>
     </ng-container>
 
     <ng-container matColumnDef="image">
-      <th mat-header-cell *matHeaderCellDef class="text-center">Pic.</th>
+      <th mat-header-cell *matHeaderCellDef class="text-center" i18n="@@cart.items.column.image">Pic.</th>
       <td mat-cell *matCellDef="let item" class="item__image">
         <app-image-thumbnail [url]="item.image"></app-image-thumbnail>
       </td>
     </ng-container>
 
     <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef class="text-center">Name</th>
+      <th mat-header-cell *matHeaderCellDef class="text-center" i18n="@@cart.items.column.name">Name</th>
       <td mat-cell *matCellDef="let item">
         <div class="mat-body-1">
-          <a routerLink="/products/{{ item.product_id }}">{{ item.name }}</a>
+          <a routerLink="/products/{{ item.id }}">{{ item.name }}</a>
         </div>
         <div class="mat-small">{{ item.attributes }}</div>
       </td>
     </ng-container>
 
     <ng-container matColumnDef="price">
-      <th mat-header-cell *matHeaderCellDef class="text-center">Price</th>
+      <th mat-header-cell *matHeaderCellDef class="text-center" i18n="@@cart.items.column.price">Price</th>
       <td mat-cell *matCellDef="let item"> {{ item.price | money }} </td>
     </ng-container>
 
     <ng-container matColumnDef="quantity">
-      <th mat-header-cell *matHeaderCellDef class="text-center">Quan.</th>
+      <th mat-header-cell *matHeaderCellDef class="text-center" i18n="@@cart.items.column.quantity">Quan.</th>
       <td mat-cell *matCellDef="let item" class="column-quantity">
 
         <mat-form-field>
@@ -50,7 +50,7 @@
     </ng-container>
 
     <ng-container matColumnDef="subtotal">
-      <th mat-header-cell *matHeaderCellDef class="text-center">Subt.</th>
+      <th mat-header-cell *matHeaderCellDef class="text-center" i18n="@@cart.items.column.subtotal">Subt.</th>
       <td mat-cell *matCellDef="let item"> {{ item.subtotal | money }} </td>
     </ng-container>
 
@@ -59,18 +59,18 @@
   </table>
 </fieldset>
 
-<ng-template #toast_item_quantity_update_success>
-  The product quantity was updated
+<ng-template #toast_item_quantity_update_success i18n="@@product.update.quantity.success">
+  The product quantity has been updated
 </ng-template>
 
-<ng-template #toast_item_quantity_update_error>
-  The problem, we unable to update product quantity
+<ng-template #toast_item_quantity_update_error i18n="@@product.update.quantity.error">
+  We unable to update the product quantity at this time
 </ng-template>
 
-<ng-template #toast_item_removal_success>
-  The product was removed from your cart
+<ng-template #toast_item_removal_success i18n="@@product.remove.success">
+  The product has been removed from your cart
 </ng-template>
 
-<ng-template #toast_item_removal_error>
-  The problem, we unable to remove product from your cart
+<ng-template #toast_item_removal_error i18n="@@product.remove.error">
+  We unable to remove product from your cart at this time
 </ng-template>

@@ -22,7 +22,7 @@
 
   <div class="list row align-center">
     <ng-container *ngFor="let breadcrumb of breadcrumbs; let i = index">
-      <span class="divider" *ngIf="i > 0">></span>
+      <span class="divider" *ngIf="i > 0" i18n="@@breadcrumb.divider">></span>
       <a class="link row align-center" [routerLink]="breadcrumb.url">
         <app-breadcrumb-i18n-hack [routeId]="breadcrumb.id" [resolverId]="breadcrumb.resolver"></app-breadcrumb-i18n-hack>
       </a>
@@ -31,7 +31,7 @@
   </div>
 
   <button mat-button color="primary" (click)="goToParent()" [@slideRight]="breadcrumbs.length > 1 ? 'open' : 'closed'">
-    <mat-icon>arrow_upward</mat-icon> Jump into parent page
+    <mat-icon>arrow_upward</mat-icon> <span i18n="@@breadcrumb.toParent">Jump into parent page</span>
   </button>
 </div>
 
