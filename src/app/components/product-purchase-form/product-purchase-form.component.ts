@@ -1,16 +1,13 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
-import { IProductDetails } from '@app/services/schemas';
-import { ProductAttribute } from '@app/services/products';
+import { Product, ProductAttribute } from '@app/services/products';
 import { slideTop } from '@app/utilities/transitions';
-import { extractNaturalNumber } from '@app/utilities/extractor';
-import { IRemoteData, Resources } from '@app/services/resources';
-import { Form } from '@angular/forms';
-import { IMessages, UserMessages } from '@app/services/messages';
-import { ICart, RemoteCart } from '@app/services/cart';
+import { EndpointGatewayService, Endpoint } from '@app/services/endpoint';
+import { MessagesService, UserMessages } from '@app/services/messages';
+import { CartService, Cart } from '@app/services/cart';
 
 interface AttributesModel {
-  [key:string]: string
-};
+  [key: string]: string;
+}
 
 @Component({
   selector: 'app-product-purchase-form',
@@ -20,24 +17,27 @@ interface AttributesModel {
 })
 export class ProductPurchaseFormComponent implements OnInit, OnChanges {
 
-  @Input('product') public product: IProductDetails;
+  @Input() public product: Product;
 
   public attributes: ProductAttribute[];
   public error: boolean;
   public progress: boolean;
-
   public model: AttributesModel = {};
 
-  @Output('onPurchase') public onPurchase: EventEmitter<void> = new EventEmitter();
+  @Output() public onPurchase: EventEmitter<void> = new EventEmitter();
 
   @ViewChild('toast_add_success', { static: true }) addSuccessToastTemplate: TemplateRef<any>;
   @ViewChild('toast_add_error', { static: true }) addErrorToastTemplate: TemplateRef<any>;
 
-  private resources: IRemoteData;
-  private messages: IMessages;
-  private cart: ICart;
+  private resources: EndpointGatewayService;
+  private messages: MessagesService;
+  private cart: CartService;
 
-  constructor(resources: Resources, messages: UserMessages, cart: RemoteCart) {
+  constructor(
+    resources: Endpoint,
+    messages: UserMessages,
+    cart: Cart
+  ) {
     this.resources = resources;
     this.messages = messages;
     this.cart = cart;
@@ -48,7 +48,7 @@ export class ProductPurchaseFormComponent implements OnInit, OnChanges {
     delete this.error;
 
     try {
-      this.attributes = await this.resources.products.getProductAttributes(this.product.product_id);
+      this.attributes = await this.resources.products.getProductAttributes({ productId: this.product.id });
     } catch {
       this.error = true;
     }
@@ -63,24 +63,21 @@ export class ProductPurchaseFormComponent implements OnInit, OnChanges {
 
     this.progress = true;
 
-    let result;
-
     let attributes = Object.keys(model).map(attributeName => `${attributeName}: ${model[attributeName]}`);
 
     try {
-      await this.cart.addItem(this.product.product_id, attributes.join(', '));
-      result = true;
+      await this.cart.addItem({ productId: this.product.id, attributes: attributes.join(', ') });
     } catch (error) {
-      result = false;
+
+      this.messages.openFromTemplate(this.addErrorToastTemplate);
+      return;
+
     } finally {
       this.progress = false;
     }
 
-    if (result) {
-      this.onPurchase.emit();
-    }
-
-    this.messages.openFromTemplate(result ? this.addSuccessToastTemplate : this.addErrorToastTemplate);
+    this.onPurchase.emit();
+    this.messages.openFromTemplate(this.addSuccessToastTemplate);
 
   }
 

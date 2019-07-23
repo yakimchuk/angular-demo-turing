@@ -2,12 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router, UrlSegment } from '@angular/router';
 import { RouteData } from '@app/routing';
 import { slideRight, slideTop } from '@app/utilities/transitions';
-import * as _ from 'lodash';
 
 interface Breadcrumb {
-  id?: string,
-  resolver?: string,
-  url: string
+  id?: string;
+  resolver?: string;
+  url: string;
 }
 
 @Component({
@@ -18,27 +17,27 @@ interface Breadcrumb {
 })
 export class RouteNavigationComponent implements OnInit {
 
+  public breadcrumbs: Breadcrumb[] = [];
+
   private route: ActivatedRoute;
   private router: Router;
 
-  public data: RouteData;
-  public breadcrumbs: Breadcrumb[] = [];
-
-  constructor(route: ActivatedRoute, router: Router) {
+  constructor(
+    route: ActivatedRoute,
+    router: Router
+  ) {
 
     this.route = route;
     this.router = router;
 
     this.router.events.subscribe(event => {
+
       if (!(event instanceof NavigationEnd)) {
         return;
       }
 
-      this.data = route.root.firstChild.snapshot.data as RouteData;
       this.breadcrumbs = this.getBreadcrumbs(route);
-
     });
-
   }
 
   public goToParent() {
@@ -49,6 +48,7 @@ export class RouteNavigationComponent implements OnInit {
       return;
     }
 
+    // @todo: There must be a message if there is a problem with router
     this.router.navigateByUrl(breadcrumbs.slice(-2)[0].url);
   }
 
@@ -57,7 +57,7 @@ export class RouteNavigationComponent implements OnInit {
     let breadcrumbs = [];
     let url = '';
 
-    route.snapshot.data.breadcrumbs.forEach(function (breadcrumb: Breadcrumb) {
+    route.snapshot.data.breadcrumbs.forEach((breadcrumb: Breadcrumb) => {
 
       let model = {
         ...breadcrumb

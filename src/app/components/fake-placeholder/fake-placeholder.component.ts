@@ -7,8 +7,8 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class FakePlaceholderComponent implements OnInit {
 
-  @Input('type') type: string = 'line';
-  @Input('progress') progress: boolean = false;
+  @Input() type: string = 'line';
+  @Input() progress: boolean = false;
 
   constructor() { }
 

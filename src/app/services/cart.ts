@@ -1,87 +1,135 @@
-import { Injectable, OnInit } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { UserStorage } from './storage';
-import { IStorage } from './storage';
-import { ICartId, ICartItem } from '@app/services/schemas';
-import { Resources } from '@app/services/resources';
-import { IEvent, IServiceState } from '@app/types/common';
+import { StorageService } from './storage';
+import { TuringCartId } from '@app/services/schemas.turing';
+import { Endpoint } from '@app/services/endpoint';
+import { IEvent, ServiceState } from '@app/types/common';
 import { Subject } from 'rxjs';
 import * as _ from 'lodash';
+import { MessagesService, UserMessages } from '@app/services/messages';
+import { InternalErrorComponent } from '@app/toasts/internal-error/internal-error.component';
 
-export interface ICart extends Subject<IEvent> {
+export interface CartItem {
+  itemId: number;
+  name: string;
+  attributes: string;
+  productId: number;
+  price: string;
+  quantity: number;
+  image: string;
+  subtotal: string;
+}
 
-  state: IServiceState;
-  reload(): Promise<any>;
+export interface CartService extends Subject<IEvent> {
 
-  items: ICartItem[];
+  state: ServiceState;
+  items: CartItem[];
   total: number;
 
-  addItem(productId: number, attributes?: string): Promise<any>;
-  updateItem(item: ICartItem): Promise<any>;
-  removeItem(item: ICartItem): Promise<any>;
-  hasItem(productId: number): boolean;
+  reload(): Promise<any>;
+  addItem(options: { productId: number, attributes: string }): Promise<any>;
+  updateItem(item: CartItem): Promise<any>;
+  removeItem(item: CartItem): Promise<any>;
+  hasItem(options: { productId: number }): boolean;
 
 }
 
-const cartStorageKey = 'cart';
-const cartIdPostfix = 'key';
+const CART_STORAGE_PREFIX = 'cart';
+const CART_IDENTIFIER_KEY_NAME = 'key';
 
-const defaultState = {
+const DEFAULT_CART_STATE: ServiceState = {
   ready: false,
   error: false
 };
 
+// Remote controlled cart
+// Everything stored in this cart are duplicated on the server
+// All content is remote
 @Injectable()
-export class RemoteCart extends Subject<IEvent> implements ICart {
+export class Cart extends Subject<IEvent> implements CartService {
 
+  // It can be remote or local, depends on business requirements
   private id: string;
 
-  public state: IServiceState = defaultState;
+  public state: ServiceState = DEFAULT_CART_STATE;
 
-  public items: ICartItem[] = [];
+  // CartService contents
+  public items: CartItem[] = [];
+
+  // Total amount of the items in the cart
   public total: number;
 
-  private resources: Resources;
-  private storage: IStorage<string, string>;
+  private resources: Endpoint;
+  private messages: MessagesService;
+  private storage: StorageService<string, string>;
 
-  constructor(resources: Resources, storage: UserStorage) {
+  constructor(
+    resources: Endpoint,
+    storage: UserStorage,
+    messages: UserMessages) {
 
     super();
 
     this.resources = resources;
     this.storage = storage;
+    this.messages = messages;
 
+    // Asynchronous process, app must can handle any state of any data
     this.reload();
   }
 
-  public async addItem(productId: number, attributes: string = '') {
-    await this.resources.cart.addItem(this.id, productId, attributes);
-    await this.reload();
+  public async addItem(item: CartItem) {
+
+    // Exceptions must be caught outside
+    await this.resources.cart.addItem({ cartId: this.id, ...item });
+
+    try {
+      await this.reload();
+    } catch {
+      this.messages.openFromComponent(InternalErrorComponent);
+    }
   }
 
-  public async updateItem(item: ICartItem) {
-    await this.resources.cart.updateItem(this.id, item.item_id, item.quantity);
-    await this.reload();
+  public async updateItem(item: CartItem) {
+    // Exceptions must be caught outside
+    await this.resources.cart.updateItem({ cartId: this.id, ...item });
+
+    try {
+      await this.reload();
+    } catch {
+      this.messages.openFromComponent(InternalErrorComponent);
+    }
   }
 
-  public async removeItem(item: ICartItem) {
-    await this.resources.cart.removeItem(this.id, item.item_id);
-    await this.reload();
+  public async removeItem(item: CartItem) {
+    // Exceptions must be caught outside
+    await this.resources.cart.removeItem({ cartId: this.id, ...item });
+
+    try {
+      await this.reload();
+    } catch {
+      this.messages.openFromComponent(InternalErrorComponent);
+    }
   }
 
   public hasItem(productId) {
-    return this.items.some((item: ICartItem) => item.product_id == productId);
+    // Exceptions must be caught outside
+    return this.items.some((item: CartItem) => item.productId === productId);
   }
 
   private async reloadItems() {
+    // Exceptions must be caught outside
     this.items = await this.getItems();
   }
 
   private reloadTotal() {
-    this.total = this.items.reduce((total: number, item: ICartItem) => total + parseFloat(item.subtotal), 0);
+    // Exceptions must be caught outside
+    this.total = this.items.reduce((total: number, item: CartItem) => total + parseFloat(item.subtotal), 0);
   }
 
-  public async getItems(): Promise<ICartItem[]> {
-    return await this.resources.cart.getItems(this.id);
+  public async getItems(): Promise<CartItem[]> {
+    // Exceptions must be caught outside
+    return await this.resources.cart.getItems({ cartId: this.id });
   }
 
   private isRegistered() {
@@ -90,18 +138,23 @@ export class RemoteCart extends Subject<IEvent> implements ICart {
 
   public async reload() {
 
-    this.state = defaultState;
+    this.state = DEFAULT_CART_STATE;
 
     try {
 
       if (!this.isRegistered()) {
+        // Exceptions cannot be handled, cart cannot work w/o registration
         await this.register();
       }
 
+      // Exceptions cannot be handled, cart without items is not usable
       await this.reloadItems();
+
+      // Exceptions cannot be handled, cart without total amount is not representable (wrong total price calculations and so on)
       await this.reloadTotal();
 
     } catch {
+      // In case of error, globally show errors with the cart
       this.state.error = true;
     } finally {
       this.state.ready = true;
@@ -111,21 +164,28 @@ export class RemoteCart extends Subject<IEvent> implements ICart {
 
   public async register() {
 
-    // if (Math.random() > 0.2) {
-    //   throw new Error();
-    // }
+    let idKey = `${CART_STORAGE_PREFIX}.${CART_IDENTIFIER_KEY_NAME}`;
 
-    let idKey = `${cartStorageKey}.${cartIdPostfix}`;
-
-    if (this.storage.has(idKey)) {
-      try {
-        this.id = this.storage.get(idKey);
-      } catch { }
+    try {
+      if (this.storage.has(idKey)) {
+          this.id = this.storage.get(idKey);
+      }
+    } catch {
+      // Just do nothing... If this error will prevent cart registration (we still can obtain a new ID) and user will not be having a
+      // working cart, then it will be blocker issue, but with such handling it will be just a critical or major issue
     }
 
     if (!this.isRegistered()) {
-      this.id = (await this.resources.cart.register() as ICartId).cart_id;
-      this.storage.set(idKey, this.id);
+      // Exceptions must be caught outside, there is no way to make this ID w/o a server
+      this.id = await this.resources.cart.register();
+    }
+
+    if (this.isRegistered()) {
+      try {
+        this.storage.set(idKey, this.id);
+      } catch {
+        // Just do nothing... If this error will fail external more important cases, then it will be a critical issue instead of major issue
+      }
     }
 
   }

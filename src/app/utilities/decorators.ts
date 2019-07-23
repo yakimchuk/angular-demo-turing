@@ -1,13 +1,13 @@
 import { network } from '@app/config';
 
 export function AggregatedRequest()  {
-  return function (target, propertyKey: string, descriptor: TypedPropertyDescriptor<any>) {
+  return (target, propertyKey: string, descriptor: TypedPropertyDescriptor<any>) => {
 
     let original = descriptor.value;
     let last = Date.now();
     let promise;
 
-    let updated = function (...args) {
+    let updated = (...args) => {
 
       if (Date.now() - last > network.aggregation.time) {
         promise = null;

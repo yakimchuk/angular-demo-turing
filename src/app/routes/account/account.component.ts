@@ -1,11 +1,10 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { IUser, User } from '@app/services/user';
+import { UserService, User } from '@app/services/user';
 import { ActivatedRoute, Router } from '@angular/router';
-import { IMessages, UserMessages } from '@app/services/messages';
+import { MessagesService, UserMessages } from '@app/services/messages';
 import { slideRight, slideTop } from '@app/utilities/transitions';
 import { MatDialog } from '@angular/material';
 import { AuthPopupComponent } from '@app/popups/auth-popup/auth-popup.component';
-import { IOrder } from '@app/services/orders';
 import { from } from 'rxjs';
 
 enum AccountTabNames {
@@ -22,20 +21,26 @@ enum AccountTabNames {
 })
 export class AccountRouteComponent implements OnInit {
 
-  public user: IUser;
+  public user: UserService;
   public error: string;
 
   public tabIndex: number = AccountTabNames.profile;
 
   private router: Router;
-  private messages: IMessages;
+  private messages: MessagesService;
   private dialog: MatDialog;
   private route: ActivatedRoute;
 
   @ViewChild('user_logout_success', { static: true }) private userLogoutSuccessToastTemplate: TemplateRef<any>;
   @ViewChild('user_logout_error', { static: true }) private userLogoutErrorToastTemplate: TemplateRef<any>;
 
-  constructor(user: User, router: Router, messages: UserMessages, dialog: MatDialog, route: ActivatedRoute) {
+  constructor(
+    user: User,
+    router: Router,
+    messages: UserMessages,
+    dialog: MatDialog,
+    route: ActivatedRoute
+  ) {
     this.user = user;
     this.router = router;
     this.messages = messages;
@@ -88,7 +93,6 @@ export class AccountRouteComponent implements OnInit {
       if (this.error === 'session') {
         this.user.logout();
       }
-
     });
 
     this.updateTab();

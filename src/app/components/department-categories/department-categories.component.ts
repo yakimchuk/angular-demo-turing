@@ -1,8 +1,8 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { fade, slideTop } from '@app/utilities/transitions';
-import { ICategory } from '@app/services/schemas';
-import { Resources } from '@app/services/resources';
+import { Endpoint } from '@app/services/endpoint';
 import * as _ from 'lodash';
+import { Category } from '@app/services/categories';
 
 @Component({
   selector: 'app-department-categories',
@@ -12,14 +12,14 @@ import * as _ from 'lodash';
 })
 export class DepartmentCategoriesComponent implements OnChanges {
 
-  @Input('departmentId') public departmentId: number;
+  @Input() public departmentId: number;
 
-  public categories: ICategory[];
+  public categories: Category[];
   public error: ErrorEvent;
 
-  private resources: Resources;
+  private resources: Endpoint;
 
-  constructor(resources: Resources) {
+  constructor(resources: Endpoint) {
     this.resources = resources;
   }
 
@@ -28,14 +28,10 @@ export class DepartmentCategoriesComponent implements OnChanges {
     delete this.error;
 
     try {
-      this.categories = await this.resources.categories.getDepartmentCategories(this.departmentId);
+      this.categories = (await this.resources.categories.getDepartmentCategories({ departmentId: this.departmentId })).items;
     } catch (error) {
       this.error = error;
     }
-  }
-
-  ngOnInit() {
-
   }
 
   ngOnChanges() {

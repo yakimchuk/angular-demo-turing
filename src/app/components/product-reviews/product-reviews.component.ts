@@ -1,15 +1,15 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges, TemplateRef, ViewChild } from '@angular/core';
-import { IProduct } from '@app/services/schemas';
 import { Review } from '@app/services/reviews';
 import { fade, slideTop } from '@app/utilities/transitions';
-import { IRemoteData, Resources } from '@app/services/resources';
+import { EndpointGatewayService, Endpoint } from '@app/services/endpoint';
 import { AuthPopupComponent } from '@app/popups/auth-popup/auth-popup.component';
 import { MatDialog, PageEvent } from '@angular/material';
-import { Auth, IAuth } from '@app/services/auth';
-import { IMessages, UserMessages } from '@app/services/messages';
+import { Auth, AuthenticationService } from '@app/services/auth';
+import { MessagesService, UserMessages } from '@app/services/messages';
 import { pagination } from '@app/config';
+import { Product } from '@app/services/products';
 
-const defaultModel = {
+const DEFAULT_FORM_MODEL = {
   text: '',
   rating: 5
 };
@@ -22,7 +22,7 @@ const defaultModel = {
 })
 export class ProductReviewsComponent implements OnInit, OnChanges {
 
-  @Input('product') public product: IProduct;
+  @Input() public product: Product;
 
   public error: boolean;
   public progress: boolean;
@@ -33,19 +33,24 @@ export class ProductReviewsComponent implements OnInit, OnChanges {
   public filter: PageEvent;
 
   public reviews: Review[];
-  public model: { text: string; rating: number } = defaultModel;
+  public model: { text: string; rating: number } = DEFAULT_FORM_MODEL;
 
   @ViewChild('review_create_error', { static: true }) public reviewCreationErrorToastTemplate: TemplateRef<any>;
   @ViewChild('review_create_cancel', { static: true }) public reviewCreationCancelToastTemplate: TemplateRef<any>;
   @ViewChild('review_create_success', { static: true }) public reviewCreationSuccessToastTemplate: TemplateRef<any>;
   @ViewChild('review_auth_message', { static: true }) public reviewAuthMessageTemplate: TemplateRef<any>;
 
-  private resources: IRemoteData;
+  private resources: EndpointGatewayService;
   private dialog: MatDialog;
-  private auth: IAuth;
-  private messages: IMessages;
+  private auth: AuthenticationService;
+  private messages: MessagesService;
 
-  constructor(resources: Resources, dialog: MatDialog, auth: Auth, messages: UserMessages) {
+  constructor(
+    resources: Endpoint,
+    dialog: MatDialog,
+    auth: Auth,
+    messages: UserMessages
+  ) {
     this.resources = resources;
     this.dialog = dialog;
     this.auth = auth;
@@ -54,36 +59,60 @@ export class ProductReviewsComponent implements OnInit, OnChanges {
 
   public async createReview(model) {
 
-    if (!this.auth.isAuthorized()) {
+    try {
 
-      this.dialog.open(AuthPopupComponent, {
-        data: {
-          caption: this.reviewAuthMessageTemplate
-        }
-      }).afterClosed().subscribe(async () => {
+      if (!this.auth.isAuthenticated()) {
 
-        if (!this.auth.isAuthorized()) {
-          this.messages.openFromTemplate(this.reviewCreationCancelToastTemplate);
-          return;
-        }
+        this.dialog.open(AuthPopupComponent, {
+          data: {
+            caption: this.reviewAuthMessageTemplate
+          }
+        }).afterClosed().subscribe(async () => {
 
-        this.createReview(model);
-      });
+          try {
+            if (!this.auth.isAuthenticated()) {
+              this.messages.openFromTemplate(this.reviewCreationCancelToastTemplate);
+              return;
+            }
+          } catch {
 
+            // If there is an error with authentication module, better to notify user than do nothing
+            this.messages.openFromTemplate(this.reviewCreationErrorToastTemplate);
+            return;
+          }
+
+          // Recursive call
+          // At this time the condition above will not be satisfied
+          this.createReview(model);
+        });
+
+        return;
+      }
+
+    } catch {
+
+      // If there is an error with authentication module, better to notify user than do nothing
+      this.messages.openFromTemplate(this.reviewCreationErrorToastTemplate);
       return;
     }
 
     this.progress = true;
 
     try {
-      await this.resources.products.createProductReview(this.product.product_id, model.text, model.rating);
+      await this.resources.products.createProductReview({ productId: this.product.id, review: model.text, rating: model.rating });
     } catch {
       this.error = true;
     } finally {
       this.progress = false;
     }
 
-    this.messages.openFromTemplate(this.error ? this.reviewCreationErrorToastTemplate : this.reviewCreationSuccessToastTemplate);
+    try {
+      this.messages.openFromTemplate(this.error ? this.reviewCreationErrorToastTemplate : this.reviewCreationSuccessToastTemplate);
+    } catch {
+      // In case of error in the messages module, we must reload reviews
+      // Otherwise it will be critical issue
+      // Just do nothing...
+    }
 
     if (this.error) {
       return;
@@ -98,12 +127,13 @@ export class ProductReviewsComponent implements OnInit, OnChanges {
     delete this.error;
 
     try {
-      this.reviews = await this.resources.products.getProductReviews(this.product.product_id);
+      this.reviews = (await this.resources.products.getProductReviews({ productId: this.product.id })).items;
     } catch (e) {
       this.error = true;
     }
   }
 
+  // Hack in order to use number-limited ngFor w/o real array
   public ratingToArray(rating) {
     return Array(rating).fill(null);
   }
@@ -115,7 +145,6 @@ export class ProductReviewsComponent implements OnInit, OnChanges {
     }
 
     this.reload();
-
   }
 
   ngOnInit() {

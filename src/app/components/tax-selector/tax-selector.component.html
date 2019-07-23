@@ -14,7 +14,7 @@
   <mat-label>Taxation option</mat-label>
   <mat-select (valueChange)="onTaxSelection($event)" [value]="tax">
     <mat-option *ngFor="let tax of taxes.list" [value]="tax">
-      {{ tax.tax_type }}
+      {{ tax.name }}
     </mat-option>
   </mat-select>
 </mat-form-field>

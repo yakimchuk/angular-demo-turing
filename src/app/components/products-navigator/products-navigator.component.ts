@@ -1,19 +1,21 @@
 import { Component, EventEmitter, Input, OnInit, Output, TemplateRef, ViewChild } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, Route, Router, RouterEvent } from '@angular/router';
-import { IListResponse, IProduct } from '@app/services/schemas';
+import { ActivatedRoute, Router } from '@angular/router';
+import { TuringListResponse, TuringProduct } from '@app/services/schemas.turing';
 import { MatDialog, PageEvent } from '@angular/material';
 import { extractNaturalNumber } from '@app/utilities/extractor';
 import { pagination } from '@app/config';
-import { from, fromEvent } from 'rxjs';
-import { debounceTime, throttleTime } from 'rxjs/operators';
+import { from } from 'rxjs';
+import { debounceTime } from 'rxjs/operators';
 import { fade, slideTop } from '@app/utilities/transitions';
 import { ProductPurchasePopupComponent } from '@app/popups/product-purchase/product-purchase.component';
-import { IRemoteData, Resources } from '@app/services/resources';
-import { IMessages, UserMessages } from '@app/services/messages';
+import { EndpointGatewayService, Endpoint } from '@app/services/endpoint';
+import { MessagesService, UserMessages } from '@app/services/messages';
+import { List } from '@app/types/common';
+import { Product } from '@app/services/products';
 
 export interface PaginationFilter {
-  page: number,
-  limit: number
+  page: number;
+  limit: number;
 }
 
 @Component({
@@ -24,22 +26,28 @@ export interface PaginationFilter {
 })
 export class ProductsNavigatorComponent implements OnInit {
 
-  @Input('products') products: IListResponse<IProduct>;
+  @Input() products: List<Product>;
 
-  @Input('page') page: number = pagination.page;
-  @Input('limit') limit: number = pagination.limit;
+  @Input() page: number = pagination.page;
+  @Input() limit: number = pagination.limit;
 
   @ViewChild('product_detail_info_load_error', { static: true }) private errorToastTemplate: TemplateRef<any>;
 
   @Output() onPagination: EventEmitter<PaginationFilter> = new EventEmitter();
 
+  private messages: MessagesService;
+  private resources: EndpointGatewayService;
   private router: Router;
-  private resources: IRemoteData;
   private route: ActivatedRoute;
   private dialog: MatDialog;
-  private messages: IMessages;
 
-  constructor(router: Router, route: ActivatedRoute, dialog: MatDialog, resources: Resources, messages: UserMessages) {
+  constructor(
+    router: Router,
+    route: ActivatedRoute,
+    dialog: MatDialog,
+    resources: Endpoint,
+    messages: UserMessages
+  ) {
     this.router = router;
     this.route = route;
     this.dialog = dialog;
@@ -52,7 +60,7 @@ export class ProductsNavigatorComponent implements OnInit {
     try {
       this.dialog.open(ProductPurchasePopupComponent, {
         data: {
-          product: await this.resources.products.getProduct(productId)
+          product: await this.resources.products.getProduct({ productId })
         }
       });
     } catch {
@@ -62,8 +70,6 @@ export class ProductsNavigatorComponent implements OnInit {
   }
 
   public onFilterChange(event: PageEvent) {
-
-    // {previousPageIndex: 1, pageIndex: 2, pageSize: 10, length: 101}
 
     this.router.navigate([], {
       queryParams: {
@@ -78,7 +84,7 @@ export class ProductsNavigatorComponent implements OnInit {
     return {
       page: this.page,
       limit: this.limit
-    }
+    };
   }
 
   private async reload() {
@@ -89,7 +95,6 @@ export class ProductsNavigatorComponent implements OnInit {
 
     this.page = extractNaturalNumber(this.route.snapshot.queryParamMap.get('page'), pagination.page);
     this.limit = extractNaturalNumber(this.route.snapshot.queryParamMap.get('limit'), pagination.limit);
-
   }
 
   ngOnInit() {

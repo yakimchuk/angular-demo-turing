@@ -28,7 +28,7 @@
     </app-component-error>
 
     <div class="image" [@slideTop]="!error ? 'open' : 'closed'">
-      <app-image-large [url]="product?.image"></app-image-large>
+      <app-image-large [url]="product?.images[0]"></app-image-large>
       <p class="text-center text-note mat-body-1">
         <span class="text-danger">*</span> The real T-shirt may differ from this image.<br/>
         It is just a sample of the image on T-shirt.

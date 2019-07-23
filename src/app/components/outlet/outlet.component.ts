@@ -2,7 +2,7 @@ import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { RouterOutlet, UrlSegment } from '@angular/router';
 import { routeTransition } from '@app/utilities/transitions';
 
-// @todo: Fix child routes transitions, for now they do not work due to https://github.com/angular/angular/issues/15477
+// @done&story: Fix child routes transitions, for now they do not work due to https://github.com/angular/angular/issues/15477
 
 @Component({
   selector: 'app-outlet',
@@ -15,6 +15,7 @@ export class OutletComponent implements OnInit {
   constructor() { }
 
   onRouteTransitionStart() {
+    // Required to avoid scroller blinking
     document.body.style.overflowX = 'hidden';
   }
 
@@ -22,6 +23,7 @@ export class OutletComponent implements OnInit {
     document.body.style.overflowX = '';
   }
 
+  // It is required, otherwise router navigation will not start animation (every route must concrete identifier)
   getRouteName(outlet: RouterOutlet) {
 
     if (!outlet.isActivated) {

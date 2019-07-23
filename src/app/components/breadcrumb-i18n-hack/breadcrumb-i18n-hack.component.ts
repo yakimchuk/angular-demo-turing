@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { slideRight } from '@app/utilities/transitions';
 import { ActivatedRoute } from '@angular/router';
-import { IRemoteData, Resources } from '@app/services/resources';
+import { EndpointGatewayService, Endpoint } from '@app/services/endpoint';
 
 @Component({
   selector: 'app-breadcrumb-i18n-hack',
@@ -11,23 +11,28 @@ import { IRemoteData, Resources } from '@app/services/resources';
 })
 export class BreadcrumbI18nHackComponent implements OnInit, OnChanges {
 
-  @Input('routeId') public routeId: string = 'unknown';
-  @Input('resolverId') private resolverId: string;
+  @Input() public routeId: string = 'unknown';
+  @Input() private resolverId: string;
 
   private route: ActivatedRoute;
-  private resources: IRemoteData;
+  private resources: EndpointGatewayService;
 
   public routeName: string;
   public error: boolean;
 
-  constructor(route: ActivatedRoute, resources: Resources) {
+  constructor(
+    route: ActivatedRoute,
+    resources: Endpoint
+  ) {
     this.route = route;
     this.resources = resources;
   }
 
-  private async productResolver() {
 
-    console.log(this.route);
+  // Resolvers are dynamically called (by combined method name)
+  // Methods below may change by different reasons, so they are not copy-pasted
+
+  private async productResolver() {
 
     let id = this.route.snapshot.params.productId;
 

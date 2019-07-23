@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { PaginationFilter } from '@app/components/products-navigator/products-navigator.component';
-import { Resources } from '@app/services/resources';
-import { IListResponse, IProduct } from '@app/services/schemas';
+import { Endpoint } from '@app/services/endpoint';
 import { fade, slideTop } from '@app/utilities/transitions';
+import { List } from '@app/types/common';
+import { Product } from '@app/services/products';
 
 @Component({
   selector: 'app-home',
@@ -12,13 +13,13 @@ import { fade, slideTop } from '@app/utilities/transitions';
 })
 export class HomeRouteComponent implements OnInit {
 
-  public products: IListResponse<IProduct>;
+  public products: List<Product>;
   public error: ErrorEvent;
   public filter: PaginationFilter;
 
-  private resources: Resources;
+  private resources: Endpoint;
 
-  constructor(resources: Resources) {
+  constructor(resources: Endpoint) {
     this.resources = resources;
   }
 

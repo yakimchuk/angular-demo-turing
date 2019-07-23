@@ -46,9 +46,9 @@ import { LargeImageComponent, ThumbnailImageComponent } from '@app/components/im
 import { getPaginationIntl } from '@app/utilities/paginator.i18n';
 import { ExcerptPipe } from '@app/pipes/excerpt';
 import { MoneyPipe } from '@app/pipes/currency';
-import { Resources } from '@app/services/resources';
+import { Endpoint } from '@app/services/endpoint';
 import { UserStorage } from '@app/services/storage';
-import { RemoteCart } from '@app/services/cart';
+import { Cart } from '@app/services/cart';
 import { UserMessages } from '@app/services/messages';
 import { CartRouteComponent } from '@app/routes/cart/cart.component';
 import { OrderSubtotalComponent } from '@app/components/order-subtotal/order-subtotal.component';
@@ -62,12 +62,11 @@ import { Users } from '@app/services/users';
 import { AccountButtonMenuComponent } from '@app/components/account-button-menu/account-button-menu.component';
 import { AuthPopupComponent } from '@app/popups/auth-popup/auth-popup.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Auth, IAuth } from '@app/services/auth';
+import { Auth, AuthenticationService } from '@app/services/auth';
 import { Orders } from '@app/services/orders';
 import { STEPPER_GLOBAL_OPTIONS } from '@angular/cdk/stepper';
 import { OrderComponent } from '@app/components/order/order.component';
 import { AccountRouteComponent } from '@app/routes/account/account.component';
-import { AccountNavigationComponent } from '@app/components/account-navigation/account-navigation.component';
 import { OrdersComponent } from '@app/components/orders/orders.component';
 import { environment } from '@app/config';
 import { ProfileCommonEditorComponent } from '@app/components/profile-common-editor/profile-common-editor.component';
@@ -80,6 +79,7 @@ import { ButtonHomeComponent } from '@app/components/button-home/button-home.com
 import { OutletComponent } from '@app/components/outlet/outlet.component';
 import { ProductPurchasePopupComponent } from '@app/popups/product-purchase/product-purchase.component';
 import { ProductReviewsComponent } from '@app/components/product-reviews/product-reviews.component';
+import { InternalErrorComponent } from '@app/toasts/internal-error/internal-error.component';
 
 const vendor = {
   framework: [
@@ -151,7 +151,6 @@ const components = {
     ShippingSelectorComponent,
     AccountButtonMenuComponent,
     OrderComponent,
-    AccountNavigationComponent,
     OrdersComponent,
     ProfileCommonEditorComponent,
     ProfileShippingEditorComponent,
@@ -167,6 +166,10 @@ const popups = [
   ProductPurchasePopupComponent
 ];
 
+const toasts = [
+  InternalErrorComponent
+];
+
 const pipes = [
   ExcerptPipe,
   MoneyPipe
@@ -177,8 +180,8 @@ const directives = [
 
 const providers = [
   CurrencyPipe,
-  Resources,
-  RemoteCart,
+  Endpoint,
+  Cart,
   UserStorage,
   UserMessages,
   Taxes,
@@ -193,7 +196,7 @@ const providers = [
   },
   {
     provide: HTTP_INTERCEPTORS,
-    useFactory: (auth: IAuth): IAuth => {
+    useFactory: (auth: AuthenticationService): AuthenticationService => {
       return auth;
     },
     deps: [Auth],
@@ -214,6 +217,7 @@ const providers = [
     ...components.routes,
     ...components.ui,
     ...popups,
+    ...toasts,
     ...directives,
     ...pipes
   ],

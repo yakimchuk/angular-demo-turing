@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { from, Observable } from 'rxjs';
-import { IListResponse, IProduct } from '@app/services/schemas';
+import { TuringListResponse, TuringProduct } from '@app/services/schemas.turing';
 import { debounceTime, map, mergeMap, startWith } from 'rxjs/operators';
 import { ui } from '@app/config';
-import { IRemoteData, Resources } from '@app/services/resources';
+import { EndpointGatewayService, Endpoint } from '@app/services/endpoint';
+import { Product } from '@app/services/products';
+import { List } from '@app/types/common';
 
 @Component({
   selector: 'app-search',
@@ -14,11 +16,11 @@ import { IRemoteData, Resources } from '@app/services/resources';
 export class SearchComponent implements OnInit {
 
   public controller = new FormControl();
-  public products: Observable<IProduct[]>;
+  public products: Observable<Product[]>;
 
-  private resources: IRemoteData;
+  private resources: EndpointGatewayService;
 
-  constructor(resources: Resources) {
+  constructor(resources: Endpoint) {
 
     this.resources = resources;
 
@@ -28,11 +30,12 @@ export class SearchComponent implements OnInit {
         debounceTime(ui.autocomplete.debounce),
         mergeMap(query => {
           try {
-            return from(this.resources.products.search(query, {
+            return from(this.resources.products.search({
+              query: query,
               page: 1,
               limit: ui.autocomplete.limit
             })).pipe(
-              map((response: IListResponse<IProduct>) => response.rows)
+              map((response: List<Product>) => response.items)
             );
           } catch {
             return [];
@@ -40,10 +43,6 @@ export class SearchComponent implements OnInit {
         })
       );
 
-  }
-
-  public open() {
-    console.log(arguments);
   }
 
   ngOnInit() {

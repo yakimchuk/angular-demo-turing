@@ -71,7 +71,7 @@
           <div class="mat-title">Tax</div>
 
           <p class="md-body-2">Please select suitable taxation for your order</p>
-          <app-tax-selector [(value)]="tax"></app-tax-selector>
+          <app-tax-selector [(tax)]="tax"></app-tax-selector>
 
           <p class="md-body-2">How you'd like to receive your order?</p>
           <app-shipping-selector [(value)]="shipping"></app-shipping-selector>
@@ -92,7 +92,7 @@
             <button mat-raised-button
                     color="primary"
                     [disabled]="cart.items.length === 0 || !tax || !shipping || progress"
-                    (click)="createOrder(cart.id, tax, shipping)">
+                    (click)="createOrder({ cartId: cart.id, tax: tax, shipping: shipping })">
               <span class="preloader" [@slideRight]="progress ? 'open' : 'closed'">
                 <mat-progress-spinner color="primary" diameter="14" mode="indeterminate"></mat-progress-spinner>
               </span>
@@ -203,7 +203,7 @@
 
         <p class="mat-body-1 text-success">
           We have successfully received your order and payment. You may track your orders (and know
-          when it was shipped to you) in your <a routerLink="/account">account</a> (section "Orders").
+          when it was shipped to you) in your <a routerLink="/account">account</a> (section "OrdersService").
         </p>
 
         <p class="mat-body-1 text-note">

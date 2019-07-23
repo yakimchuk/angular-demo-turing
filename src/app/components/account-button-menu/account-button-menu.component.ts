@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { IUser, User } from '@app/services/user';
+import { UserService, User } from '@app/services/user';
 import { slideRight } from '@app/utilities/transitions';
 import { MatDialog } from '@angular/material';
 import { AuthPopupComponent } from '@app/popups/auth-popup/auth-popup.component';
@@ -12,7 +12,8 @@ import { AuthPopupComponent } from '@app/popups/auth-popup/auth-popup.component'
 })
 export class AccountButtonMenuComponent implements OnInit {
 
-  public user: IUser;
+  public user: UserService;
+
   private dialog: MatDialog;
 
   constructor(user: User, dialog: MatDialog) {

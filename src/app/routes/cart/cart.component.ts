@@ -1,17 +1,18 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { fade, slideRight, slideTop } from '@app/utilities/transitions';
-import { ICart, RemoteCart } from '@app/services/cart';
-import { ITax } from '@app/services/schemas';
-import { IMessages, UserMessages } from '@app/services/messages';
+import { CartService, Cart } from '@app/services/cart';
+import { TuringTax } from '@app/services/schemas.turing';
+import { MessagesService, UserMessages } from '@app/services/messages';
 import { StepperSelectionEvent } from '@angular/cdk/stepper';
 import { ActivatedRoute, Router } from '@angular/router';
 import { from } from 'rxjs';
-import { IShippingSelection } from '@app/components/shipping-selector/shipping-selector.component';
-import { IUser, User } from '@app/services/user';
-import { IOrder, IOrders, Orders, OrderState } from '@app/services/orders';
+import { ShippingSelection } from '@app/components/shipping-selector/shipping-selector.component';
+import { UserService, User } from '@app/services/user';
+import { Order, Orders, OrdersService, OrderState } from '@app/services/orders';
 import { MatDialog, MatStep, MatStepper } from '@angular/material';
 import { AuthPopupComponent } from '@app/popups/auth-popup/auth-popup.component';
-import { Auth, IAuth } from '@app/services/auth';
+import { Auth, AuthenticationService } from '@app/services/auth';
+import { Tax } from '@app/services/taxes';
 
 enum CartSteps {
   Cart = 'cart',
@@ -28,11 +29,11 @@ enum CartSteps {
 })
 export class CartRouteComponent implements OnInit {
 
-  public cart: ICart;
-  public user: IUser;
-  public tax: ITax;
-  public shipping: IShippingSelection;
-  public order: IOrder;
+  public cart: CartService;
+  public user: UserService;
+  public tax: Tax;
+  public shipping: ShippingSelection;
+  public order: Order;
   public progress: boolean = false;
 
   public step: string;
@@ -48,10 +49,10 @@ export class CartRouteComponent implements OnInit {
 
   private router: Router;
   private route: ActivatedRoute;
-  private orders: IOrders;
-  private messages: IMessages;
+  private orders: OrdersService;
+  private messages: MessagesService;
   private dialog: MatDialog;
-  private auth: IAuth;
+  private auth: AuthenticationService;
 
   @ViewChild('stepper', { static: false }) private stepper: MatStepper;
   @ViewChild('stepPayment', { static: false }) private paymentStep: MatStep;
@@ -66,7 +67,7 @@ export class CartRouteComponent implements OnInit {
   @ViewChild('auth_required', { static: false }) private authRequiredToastTemplate: TemplateRef<any>;
 
   constructor(
-    cart: RemoteCart,
+    cart: Cart,
     router: Router,
     route: ActivatedRoute,
     user: User,
@@ -85,27 +86,40 @@ export class CartRouteComponent implements OnInit {
     this.auth = auth;
   }
 
-  public async createOrder(cartId: string, tax: ITax, shipping: IShippingSelection) {
+  public async createOrder(options: { cartId: string, tax: Tax, shipping: ShippingSelection }) {
 
-    let options = arguments;
+    debugger;
 
-    if (!this.auth.isAuthorized()) {
-      // @todo: Auth + createOrder call
+    try {
+      if (!this.auth.isAuthenticated()) {
 
-      this.dialog.open(AuthPopupComponent, {
-        data: {
-          caption: this.authMessageToastTemplate
-        }
-      }).afterClosed().subscribe(() => {
+        this.dialog.open(AuthPopupComponent, {
+          data: {
+            caption: this.authMessageToastTemplate
+          }
+        }).afterClosed().subscribe(() => {
 
-        if (!this.auth.isAuthorized()) {
-          this.messages.openFromTemplate(this.authRequiredToastTemplate);
-          return;
-        }
+          try {
 
-        this.createOrder.apply(this, options);
-      });
+            if (!this.auth.isAuthenticated()) {
+              this.messages.openFromTemplate(this.authRequiredToastTemplate);
+              return;
+            }
 
+          } catch {
+            // In case of problems with authentication, user must know what is going on, instead of waiting for nothing
+            this.messages.openFromTemplate(this.orderCreateErrorToastTemplate);
+            return;
+          }
+
+          this.createOrder.call(this, options);
+        });
+
+        return;
+      }
+    } catch {
+      // In case of problems with authentication, user must know what is going on, instead of waiting for nothing
+      this.messages.openFromTemplate(this.orderCreateErrorToastTemplate);
       return;
     }
 
@@ -114,7 +128,11 @@ export class CartRouteComponent implements OnInit {
     let orderId;
 
     try {
-      orderId = await this.orders.create(cartId, tax.tax_id, shipping.variant.id);
+      orderId = await this.orders.create({
+        cartId: options.cartId,
+        taxId: options.tax.id,
+        shippingVariantId: options.shipping.variant.id
+      });
     } catch (error) {
       this.messages.openFromTemplate(this.orderCreateErrorToastTemplate);
       this.progress = false;
@@ -129,7 +147,7 @@ export class CartRouteComponent implements OnInit {
       return;
     }
 
-    let order = this.user.orders.find((order: IOrder) => order.id === orderId);
+    let order = this.user.orders.find((item: Order) => item.id === orderId);
 
     if (!order) {
       this.messages.openFromTemplate(this.orderFindErrorToastTemplate);
@@ -139,10 +157,9 @@ export class CartRouteComponent implements OnInit {
 
     this.order = order;
     this.progress = false;
-    this.cart.reload();
 
     this.nextStep();
-
+    this.cart.reload();
   }
 
   private nextStep() {
@@ -152,7 +169,7 @@ export class CartRouteComponent implements OnInit {
   }
 
   public getUnpaidOrders() {
-    return this.user.orders.filter((order: IOrder) => order.status === OrderState.Unpaid);
+    return this.user.orders.filter((order: Order) => order.status === OrderState.Unpaid);
   }
 
   public onPaymentSuccess() {

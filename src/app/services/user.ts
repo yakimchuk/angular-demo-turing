@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { IRemoteData, Resources } from '@app/services/resources';
-import { Auth, IAuth } from '@app/services/auth';
-import { IOrder } from '@app/services/orders';
+import { EndpointGatewayService, Endpoint } from '@app/services/endpoint';
+import { Auth, AuthenticationService } from '@app/services/auth';
+import { Order } from '@app/services/orders';
 import { Subject } from 'rxjs';
 import { IEvent, ServiceEvents } from '@app/types/common';
 
-export interface IUserProfile {
+export interface UserPersonalData {
   name: string;
   email: string;
   phone: {
@@ -15,7 +15,7 @@ export interface IUserProfile {
   };
 }
 
-export interface IUserAddress {
+export interface UserAddress {
   address1: string;
   address2: string;
   city: string;
@@ -25,45 +25,54 @@ export interface IUserAddress {
   country: string;
 }
 
-export interface IUserModel extends IUserProfile, IUserAddress {
+export interface UserModel extends UserPersonalData, UserAddress {
   id: number;
   creditCard: string;
 }
 
-export interface IUser extends Subject<IEvent> {
+export interface UserService extends Subject<IEvent> {
 
-  model?: IUserModel;
-  orders?: IOrder[];
+  // User data
+  model?: UserModel;
 
+  // User orders
+  orders?: Order[];
+
+  // Log out from the account
+  // Must be here, as it is a user action
   logout(): Promise<any>;
-  reload(): Promise<any>;
 
+  reload(): Promise<any>;
 }
 
 @Injectable()
-export class User extends Subject<IEvent> implements IUser {
+export class User extends Subject<IEvent> implements UserService {
 
-  private resources: IRemoteData;
-  private auth: IAuth;
+  private resources: EndpointGatewayService;
+  private auth: AuthenticationService;
 
-  constructor(resources: Resources, auth: Auth) {
+  constructor(resources: Endpoint, auth: Auth) {
 
     super();
 
     this.resources = resources;
     this.auth = auth;
 
-    if (this.auth.isAuthorized()) {
-      this.reload();
+    if (!this.auth.isAuthenticated()) {
+      return;
     }
 
+    // Asynchronous process, app must can handle any state of any data
+    this.reload();
   }
 
-  model: IUserModel;
-  orders: IOrder[] = [];
+  model: UserModel;
+  orders: Order[] = [];
 
   async logout(): Promise<any> {
 
+    // Exceptions must be handled outside
+    // Cannot be handled as it is the main action of this method
     await this.auth.logout();
 
     delete this.model;
@@ -74,8 +83,9 @@ export class User extends Subject<IEvent> implements IUser {
 
   async reload() {
 
+    // Exceptions must be handled outside
     this.model = await this.resources.users.get();
-    this.orders = await this.resources.orders.getCurrentUserOrders();
+    this.orders = (await this.resources.orders.getCurrentUserOrders()).items;
 
     this.next({ name: ServiceEvents.Update });
   }

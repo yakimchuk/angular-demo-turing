@@ -1,7 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { IOrder, OrderState } from '@app/services/orders';
+import { Component, OnInit } from '@angular/core';
+import { Order, OrderState } from '@app/services/orders';
 import { slideRight, slideTop } from '@app/utilities/transitions';
-import { IUser, User } from '@app/services/user';
+import { UserService, User } from '@app/services/user';
 
 @Component({
   selector: 'app-orders',
@@ -12,8 +12,8 @@ import { IUser, User } from '@app/services/user';
 export class OrdersComponent implements OnInit {
 
   public states = OrderState;
-  public user: IUser;
-  public order: IOrder | null = null;
+  public user: UserService;
+  public order: Order | null = null;
 
   constructor(user: User) {
     this.user = user;

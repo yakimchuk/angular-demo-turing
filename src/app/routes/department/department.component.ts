@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { PaginationFilter } from '@app/components/products-navigator/products-navigator.component';
-import { Resources } from '@app/services/resources';
-import { IDepartment, IListResponse, IProduct } from '@app/services/schemas';
+import { Endpoint } from '@app/services/endpoint';
 import { fade, slideTop } from '@app/utilities/transitions';
 import { ActivatedRoute } from '@angular/router';
 import { extractNaturalNumber } from '@app/utilities/extractor';
+import { Department } from '@app/services/departments';
+import { List } from '@app/types/common';
+import { Product } from '@app/services/products';
 
 @Component({
   selector: 'app-department',
@@ -14,15 +16,18 @@ import { extractNaturalNumber } from '@app/utilities/extractor';
 })
 export class DepartmentRouteComponent implements OnInit {
 
-  public department: IDepartment;
-  public products: IListResponse<IProduct>;
+  public department: Department;
+  public products: List<Product>;
   public error: boolean = false;
   public filter: PaginationFilter;
 
-  private resources: Resources;
+  private resources: Endpoint;
   private route: ActivatedRoute;
 
-  constructor(resources: Resources, route: ActivatedRoute) {
+  constructor(
+    resources: Endpoint,
+    route: ActivatedRoute
+  ) {
     this.resources = resources;
     this.route = route;
   }
@@ -42,6 +47,8 @@ export class DepartmentRouteComponent implements OnInit {
 
   public async reload(filter: PaginationFilter) {
 
+    // We do not need to handle errors here, they are handled in the user interface
+
     delete this.error;
 
     let departmentId = extractNaturalNumber(this.route.snapshot.paramMap.get('departmentId'), null);
@@ -54,8 +61,8 @@ export class DepartmentRouteComponent implements OnInit {
     try {
 
       let [ department, products ] = await Promise.all([
-        this.resources.departments.getDepartment(departmentId),
-        this.resources.products.getProductsByDepartment(departmentId, filter)
+        this.resources.departments.getDepartment({ departmentId }),
+        this.resources.products.getProductsByDepartment({ departmentId, ...filter })
       ]);
 
       this.department = department;

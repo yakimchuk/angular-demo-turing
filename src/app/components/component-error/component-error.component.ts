@@ -12,7 +12,7 @@ enum ErrorComponentMode {
 })
 export class ComponentErrorComponent implements OnInit {
 
-  @Input('mode') mode: ErrorComponentMode = ErrorComponentMode.Column;
+  @Input() mode: ErrorComponentMode = ErrorComponentMode.Column;
 
   constructor() { }
 

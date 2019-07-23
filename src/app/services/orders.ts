@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { IRemoteData, Resources } from '@app/services/resources';
+import { EndpointGatewayService, Endpoint } from '@app/services/endpoint';
 
 export enum OrderState {
   Unpaid = 0,
   Paid = 2
 }
 
-export interface IOrder {
+export interface Order {
   id: number;
   name: string;
   created: Date;
@@ -15,7 +15,7 @@ export interface IOrder {
   cost: number;
 }
 
-export interface IOrderItem {
+export interface OrderItem {
   productId: number;
   name: string;
   cost: number;
@@ -23,21 +23,21 @@ export interface IOrderItem {
   subtotal: number;
 }
 
-export interface IOrders {
-  create(cartId: string, shippingId: number, taxId: number): Promise<number>;
+export interface OrdersService {
+  create(options: { cartId: string, shippingVariantId: number, taxId: number }): Promise<number>;
 }
 
 @Injectable()
-export class Orders implements IOrders {
+export class Orders implements OrdersService {
 
-  private resources: IRemoteData;
+  private resources: EndpointGatewayService;
 
-  constructor(resources: Resources) {
+  constructor(resources: Endpoint) {
     this.resources = resources;
   }
 
-  async create(cartId: string, shippingId: number, taxId: number) {
-    return await this.resources.orders.create(cartId, shippingId, taxId);
+  async create(options: { cartId: string, shippingVariantId: number, taxId: number }) {
+    return await this.resources.orders.create(options);
   }
 
 }

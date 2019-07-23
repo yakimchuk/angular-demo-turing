@@ -1,63 +1,67 @@
 import { Injectable } from '@angular/core';
-import { IEvent, IServiceState, ServiceEvents } from '@app/types/common';
-import { IRemoteData, Resources } from '@app/services/resources';
+import { IEvent, ServiceState, ServiceEvents } from '@app/types/common';
+import { EndpointGatewayService, Endpoint } from '@app/services/endpoint';
 import { Subject } from 'rxjs';
 
-export interface IShipping extends Subject<IEvent> {
+export interface ShippingService extends Subject<IEvent> {
 
-  state: IServiceState;
-  areas: IShippingArea[];
+  state: ServiceState;
+  areas: ShippingArea[];
 
-  getAreas(): Promise<IShippingArea[]>;
-  getVariantsByArea(areaId: number): Promise<IShippingVariant[]>;
+  getAreas(): Promise<ShippingArea[]>;
+  getVariantsByArea(options: { areaId: number }): Promise<ShippingVariant[]>;
 
   reload(): Promise<any>;
 
 }
 
-export interface IShippingArea {
+export interface ShippingArea {
   id: number;
   name: string;
 }
 
-export interface IShippingVariant {
+export interface ShippingVariant {
   id: number;
   name: string;
   cost: number;
 }
 
-const defaultState: IServiceState = {
+const DEFAULT_SERVICE_STATE: ServiceState = {
   ready: false,
   error: false
 };
 
 @Injectable()
-export class Shipping extends Subject<IEvent> implements IShipping {
+export class Shipping extends Subject<IEvent> implements ShippingService {
 
-  public state: IServiceState = defaultState;
-  public areas: IShippingArea[] = [];
+  public state: ServiceState = DEFAULT_SERVICE_STATE;
+  public areas: ShippingArea[] = [];
 
-  private resources: IRemoteData;
+  private resources: EndpointGatewayService;
 
-  constructor(resources: Resources) {
+  constructor(resources: Endpoint) {
 
     super();
 
     this.resources = resources;
+
+    // Asynchronous process, app must can handle any state of any data
     this.reload();
   }
 
   public async getAreas() {
-    return await this.resources.shipping.getAreas();
+    // There must be external exception handling
+    return (await this.resources.shipping.getAreas()).items;
   }
 
-  public async getVariantsByArea(areaId: number) {
-    return await this.resources.shipping.getVariantsByArea(areaId);
+  public async getVariantsByArea(options: { areaId: number }) {
+    // There must be external exception handling
+    return (await this.resources.shipping.getVariantsByArea(options)).items;
   }
 
   public async reload() {
 
-    this.state = defaultState;
+    this.state = DEFAULT_SERVICE_STATE;
 
     try {
       this.areas = await this.getAreas();

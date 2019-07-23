@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { routeTransition } from '@app/utilities/transitions';
-import {
-  RouterOutlet
-} from '@angular/router';
 
 @Component({
   selector: 'app-template-content',

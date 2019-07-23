@@ -1,51 +1,55 @@
-import { Injectable, OnInit } from '@angular/core';
-import { ITax } from '@app/services/schemas';
-import { IRemoteData, Resources } from '@app/services/resources';
+import { Injectable } from '@angular/core';
+import { EndpointGatewayService, Endpoint } from '@app/services/endpoint';
 import { Subject } from 'rxjs';
-import { IEvent, IServiceState, ServiceEvents } from '@app/types/common';
+import { IEvent, ServiceState, ServiceEvents } from '@app/types/common';
 
-
-export interface ITaxes extends Subject<IEvent> {
-
-  state: IServiceState;
-  reload(): Promise<any>;
-
-  list: ITax[];
-  total: number;
+export interface Tax {
+  id: number;
+  name: string;
+  percent: number;
 }
 
-const defaultState: IServiceState = {
+export interface TaxesService extends Subject<IEvent> {
+
+  state: ServiceState;
+  list: Tax[];
+
+  reload(): Promise<any>;
+}
+
+const DEFAULT_SERVICE_STATE: ServiceState = {
   ready: false,
   error: false
 };
 
 
 @Injectable()
-export class Taxes extends Subject<IEvent> implements ITaxes {
+export class Taxes extends Subject<IEvent> implements TaxesService {
 
-  public state: IServiceState = defaultState;
+  public state: ServiceState = DEFAULT_SERVICE_STATE;
 
-  public list: ITax[] = [];
-  public total: number;
+  public list: Tax[] = [];
 
-  private resources: IRemoteData;
+  private resources: EndpointGatewayService;
 
-  constructor(resources: Resources) {
+  constructor(resources: Endpoint) {
 
     super();
 
     this.resources = resources;
+
+    // Asynchronous process, app must can handle any state of any data
     this.reload();
   }
 
   public async reload() {
 
-    this.state = defaultState;
+    this.state = DEFAULT_SERVICE_STATE;
 
     try {
 
-      this.list = await this.resources.taxes.getTaxes();
-      this.total = this.list.reduce((sum: number, tax: ITax) => sum + parseFloat(tax.tax_percentage), 0);
+      // Exceptions cannot be handled, taxation will be broken without this list
+      this.list = (await this.resources.taxes.getTaxes()).items;
 
     } catch {
       this.state.error = true;

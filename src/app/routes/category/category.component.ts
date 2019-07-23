@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { PaginationFilter } from '@app/components/products-navigator/products-navigator.component';
-import { Resources } from '@app/services/resources';
-import { ICategory, IDepartment, IListResponse, IProduct } from '@app/services/schemas';
+import { Endpoint } from '@app/services/endpoint';
 import { fade, slideRight, slideTop } from '@app/utilities/transitions';
 import { ActivatedRoute } from '@angular/router';
 import { extractNaturalNumber } from '@app/utilities/extractor';
+import { Category } from '@app/services/categories';
+import { Product } from '@app/services/products';
+import { List } from '@app/types/common';
 
 @Component({
   selector: 'app-category',
@@ -14,15 +16,18 @@ import { extractNaturalNumber } from '@app/utilities/extractor';
 })
 export class CategoryRouteComponent implements OnInit {
 
-  public category: ICategory;
-  public products: IListResponse<IProduct>;
+  public category: Category;
+  public products: List<Product>;
   public error: boolean = false;
   public filter: PaginationFilter;
 
-  private resources: Resources;
+  private resources: Endpoint;
   private route: ActivatedRoute;
 
-  constructor(resources: Resources, route: ActivatedRoute) {
+  constructor(
+    resources: Endpoint,
+    route: ActivatedRoute
+  ) {
     this.resources = resources;
     this.route = route;
   }
@@ -42,6 +47,8 @@ export class CategoryRouteComponent implements OnInit {
 
   public async reload(filter: PaginationFilter) {
 
+    // We do not need to handle errors here, they are handled in the user interface
+
     delete this.error;
 
     let categoryId = extractNaturalNumber(this.route.snapshot.paramMap.get('categoryId'), null);
@@ -54,8 +61,8 @@ export class CategoryRouteComponent implements OnInit {
     try {
 
       let [ category, products ] = await Promise.all([
-        this.resources.categories.getCategory(categoryId),
-        this.resources.products.getProductsByCategory(categoryId, filter)
+        this.resources.categories.getCategory({ categoryId }),
+        this.resources.products.getProductsByCategory({ categoryId, ...filter })
       ]);
 
       this.category = category;

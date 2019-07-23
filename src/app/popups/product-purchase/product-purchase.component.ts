@@ -1,14 +1,10 @@
-import { Component, Inject, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { IUser, User } from '@app/services/user';
+import { Component, Inject, OnInit } from '@angular/core';
 import { slideRight, slideTop } from '@app/utilities/transitions';
-import { IUsers, Users } from '@app/services/users';
-import { IMessages, UserMessages } from '@app/services/messages';
-import { Auth, IAuth } from '@app/services/auth';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
-import { IProduct } from '@app/services/schemas';
+import { Product } from '@app/services/products';
 
 class DialogData {
-  product: IProduct
+  product: Product;
 }
 
 @Component({
@@ -19,7 +15,7 @@ class DialogData {
 })
 export class ProductPurchasePopupComponent implements OnInit {
 
-  public product: IProduct;
+  public product: Product;
   private dialog: MatDialogRef<ProductPurchasePopupComponent>;
 
   constructor(dialog: MatDialogRef<ProductPurchasePopupComponent>, @Inject(MAT_DIALOG_DATA) public data: DialogData) {

@@ -52,9 +52,9 @@ abstract class ImageComponent implements OnInit, OnChanges {
   styleUrls: ['./image.large.component.scss'],
   animations: [fade, zoom]
 })
-export class LargeImageComponent extends ImageComponent {
+export class LargeImageComponent extends ImageComponent implements OnChanges {
 
-  @Input('url') url: string;
+  @Input() url: string;
 
   ngOnChanges(changes: SimpleChanges) {
     super.ngOnChanges(changes);
@@ -67,9 +67,9 @@ export class LargeImageComponent extends ImageComponent {
   styleUrls: ['./image.thumbnail.component.scss'],
   animations: [fade, zoom]
 })
-export class ThumbnailImageComponent extends ImageComponent {
+export class ThumbnailImageComponent extends ImageComponent implements OnChanges {
 
-  @Input('url') url: string;
+  @Input() url: string;
 
   ngOnChanges(changes: SimpleChanges) {
     super.ngOnChanges(changes);

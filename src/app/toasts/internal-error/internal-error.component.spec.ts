@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AccountNavigationComponent } from './account-navigation.component';
+import { InternalErrorComponent } from './internal-error.component';
 
-describe('AccountNavigationComponent', () => {
-  let component: AccountNavigationComponent;
-  let fixture: ComponentFixture<AccountNavigationComponent>;
+describe('InternalErrorComponent', () => {
+  let component: InternalErrorComponent;
+  let fixture: ComponentFixture<InternalErrorComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AccountNavigationComponent ]
+      declarations: [ InternalErrorComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AccountNavigationComponent);
+    fixture = TestBed.createComponent(InternalErrorComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

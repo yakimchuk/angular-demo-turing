@@ -15,18 +15,18 @@
   (page)="onFilterChange($event)"></mat-paginator>
 
 <div class="products row justify-space-around" [@slideTop]="products ? 'open' : 'closed'">
-  <div class="product mat-card" *ngFor="let product of products?.rows;">
+  <div class="product mat-card" *ngFor="let product of products?.items;">
     <div class="title mat-body-2 text-overflow no-margin">{{ product.name }}</div>
     <mat-divider></mat-divider>
-    <app-image-large [url]="product.thumbnail"></app-image-large>
+    <app-image-large [url]="product.images[0]"></app-image-large>
     <mat-divider></mat-divider>
     <div class="description mat-body-1">{{ product.description | excerpt:40 }}</div>
     <mat-divider></mat-divider>
     <div class="actions">
-      <button mat-stroked-button color="primary" class="col" routerLink="products/{{ product.product_id }}">
+      <button mat-stroked-button color="primary" class="col" routerLink="products/{{ product.id }}">
         Know more
       </button>
-      <button mat-stroked-button color="primary" class="col" (click)="add(product.product_id)">
+      <button mat-stroked-button color="primary" class="col" (click)="add(product.id)">
         Buy, {{ product.price | money }}
       </button>
     </div>

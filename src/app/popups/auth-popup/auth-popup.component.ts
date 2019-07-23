@@ -1,22 +1,22 @@
 import { Component, Inject, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { IUser, User } from '@app/services/user';
+import { UserService, User } from '@app/services/user';
 import { slideRight, slideTop } from '@app/utilities/transitions';
-import { IUsers, Users } from '@app/services/users';
-import { IMessages, UserMessages } from '@app/services/messages';
-import { Auth, IAuth } from '@app/services/auth';
+import { UsersService, Users } from '@app/services/users';
+import { MessagesService, UserMessages } from '@app/services/messages';
+import { Auth, AuthenticationService } from '@app/services/auth';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
 
-interface IUserCredentials {
+interface UserCredentials {
   email: string;
   password: string;
 }
 
-interface IUserData extends IUserCredentials {
+interface UserData extends UserCredentials {
   name: string;
 }
 
 class DialogData {
-  caption?: TemplateRef<any>
+  caption?: TemplateRef<any>;
 }
 
 @Component({
@@ -27,13 +27,13 @@ class DialogData {
 })
 export class AuthPopupComponent implements OnInit {
 
-  public user: IUser;
+  public user: UserService;
   public progress: boolean = false;
   public caption: TemplateRef<any>;
 
   public models: {
-    login: IUserCredentials;
-    registration: IUserData;
+    login: UserCredentials;
+    registration: UserData;
   } = {
     login: {
       email: '',
@@ -46,9 +46,9 @@ export class AuthPopupComponent implements OnInit {
     }
   };
 
-  private users: IUsers;
-  private messages: IMessages;
-  private auth: IAuth;
+  private users: UsersService;
+  private messages: MessagesService;
+  private auth: AuthenticationService;
   private dialog: MatDialogRef<AuthPopupComponent>;
 
   @ViewChild('register_success', { static: true }) private registrationSuccessToastTemplate: TemplateRef<any>;
@@ -80,14 +80,12 @@ export class AuthPopupComponent implements OnInit {
 
   }
 
-  public async register(model: IUserData) {
+  public async register(model: UserData) {
 
     this.progress = true;
 
     try {
-
-      await this.users.create(model.name, model.email, model.password);
-
+      await this.users.create(model);
     } catch (error) {
 
       this.progress = false;
@@ -115,15 +113,14 @@ export class AuthPopupComponent implements OnInit {
     this.messages.openFromTemplate(this.registrationSuccessToastTemplate);
 
     await this.login(model);
-
   }
 
-  public async login(model: IUserCredentials) {
+  public async login(model: UserCredentials) {
 
     this.progress = true;
 
     try {
-      await this.auth.login(model.email, model.password);
+      await this.auth.login(model);
     } catch (error) {
 
       this.progress = false;
@@ -156,7 +153,6 @@ export class AuthPopupComponent implements OnInit {
     this.messages.openFromTemplate(this.loginSuccessToastTemplate);
 
     this.dialog.close();
-
   }
 
   ngOnInit() {

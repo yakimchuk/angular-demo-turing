@@ -1,14 +1,14 @@
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
-import { IUser, IUserModel, IUserProfile, User } from '@app/services/user';
+import { UserService, UserModel, User } from '@app/services/user';
 import { IEvent, ServiceEvents } from '@app/types/common';
 import { slideTop } from '@app/utilities/transitions';
-import { IRemoteData, Resources } from '@app/services/resources';
-import { IMessages, UserMessages } from '@app/services/messages';
-import { IShipping, IShippingArea, IShippingVariant, Shipping } from '@app/services/shipping';
+import { EndpointGatewayService, Endpoint } from '@app/services/endpoint';
+import { MessagesService, UserMessages } from '@app/services/messages';
+import { ShippingService, ShippingArea, ShippingVariant, Shipping } from '@app/services/shipping';
 
 interface UserStub {
-  [key:string]: any,
-  fake: boolean
+  [key: string]: any;
+  fake: boolean;
 }
 
 @Component({
@@ -19,18 +19,24 @@ interface UserStub {
 })
 export class ProfileShippingEditorComponent implements OnInit {
 
-  public model: IUserModel | UserStub = { fake: true };
+  // @todo: Rethink this usage of stub, I think it has problems and there must be more elegant solution
+  public model: UserModel | UserStub = { fake: true };
   public progress: boolean = false;
-  public shipping: IShipping;
+  public shipping: ShippingService;
 
   @ViewChild('update_error', { static: false }) private updateErrorToastTemplate: TemplateRef<any>;
   @ViewChild('update_success', { static: false }) private updateSuccessToastTemplate: TemplateRef<any>;
 
-  private user: IUser;
-  private resources: IRemoteData;
-  private messages: IMessages;
+  private user: UserService;
+  private resources: EndpointGatewayService;
+  private messages: MessagesService;
 
-  constructor(user: User, resources: Resources, messages: UserMessages, shipping: Shipping) {
+  constructor(
+    user: User,
+    resources: Endpoint,
+    messages: UserMessages,
+    shipping: Shipping
+  ) {
     this.user = user;
     this.resources = resources;
     this.messages = messages;
@@ -42,7 +48,7 @@ export class ProfileShippingEditorComponent implements OnInit {
     this.progress = true;
 
     try {
-      await this.resources.users.updateShipping(this.model as IUserModel);
+      await this.resources.users.updateShipping(this.model as UserModel);
     } catch {
       this.messages.openFromTemplate(this.updateErrorToastTemplate);
       return;
@@ -64,14 +70,19 @@ export class ProfileShippingEditorComponent implements OnInit {
 
   ngOnInit() {
 
-    this.user.subscribe((event: IEvent) => {
+    try {
+      this.user.subscribe((event: IEvent) => {
 
-      if (event.name !== ServiceEvents.Update || !(this.model as UserStub).fake) {
-        return;
-      }
+        if (event.name !== ServiceEvents.Update || !(this.model as UserStub).fake) {
+          return;
+        }
 
-      this.reload();
-    });
+        this.reload();
+      });
+    } catch {
+      // In case of error in the user service, we must reload model, otherwise it will be a blocking issue
+      // Just do nothing...
+    }
 
     this.reload();
   }

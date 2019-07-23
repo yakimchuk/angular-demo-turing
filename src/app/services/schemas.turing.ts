@@ -1,4 +1,4 @@
-// @todo (by-needs): Split external interfaces from inner interfaces and make adapters
+/* tslint:disable:object-literal-key-quotes quotemark max-line-length */
 
 export interface TuringProductAttribute {
   attribute_name: string;
@@ -6,59 +6,59 @@ export interface TuringProductAttribute {
   attribute_value: string;
 }
 
-export interface ITax {
+export interface TuringTax {
   tax_id: number;
   tax_type: string;
   tax_percentage: string;
 }
 
-export interface IShippingRegion {
+export interface TuringShippingRegion {
   shipping_region_id: number;
   shipping_region: string;
 }
 
-export interface IShippingVariant {
+export interface TuringShippingVariant {
   shipping_id: number;
   shipping_type: string;
   shipping_cost: string;
   shipping_region_id: number;
 }
 
-export interface IDepartment {
-  department_id: number,
-  name: string,
-  description: string
+export interface TuringDepartment {
+  department_id: number;
+  name: string;
+  description: string;
 }
 
-export interface ICategory {
-  category_id: number,
-  name: string,
-  description: string,
-  department_id: number
+export interface TuringCategory {
+  category_id: number;
+  name: string;
+  description: string;
+  department_id: number;
 }
 
-export interface IProduct {
-  product_id: number,
-  name: string,
-  description: string,
-  price: number,
-  discounted_price?: number,
-  thumbnail: string
+export interface TuringProduct {
+  product_id: number;
+  name: string;
+  description: string;
+  price: number;
+  discounted_price?: number;
+  thumbnail: string;
 }
 
-export interface IProductDetails {
-  product_id: number,
-  name: string,
-  description: string,
-  price: number,
-  discounted_price?: number,
-  image: string,
-  image_2: string
+export interface TuringProductDetails {
+  product_id: number;
+  name: string;
+  description: string;
+  price: number;
+  discounted_price?: number;
+  image: string;
+  image_2: string;
 }
 
-export type IAccessToken = string;
+export type AuthenticationToken = string;
 
-export interface IUserProfile {
+export interface TuringUserPersonalData {
   name: string;
   email: string;
   day_phone: string;
@@ -66,7 +66,7 @@ export interface IUserProfile {
   mob_phone: string;
 }
 
-export interface IUserAddress {
+export interface TuringUserAddress {
   address_1: string;
   address_2: string;
   city: string;
@@ -76,38 +76,38 @@ export interface IUserAddress {
   shipping_region_id: number;
 }
 
-export interface IUser extends IUserProfile, IUserAddress {
+export interface TuringUser extends TuringUserPersonalData, TuringUserAddress {
   customer_id: number;
   credit_card: string;
 }
 
-export interface IAuthCredentials {
-  customer: IUser;
-  accessToken: IAccessToken;
+export interface TuringAuthenticationCredentials {
+  customer: TuringUser;
+  accessToken: AuthenticationToken;
   expires_in: string;
 }
 
-export interface IListResponse <T> {
-  count: number,
-  rows: T[]
+export interface TuringListResponse <T> {
+  count: number;
+  rows: T[];
 }
 
-export interface ICartItem {
-  item_id: number,
-  name: string,
-  attributes: string,
-  product_id: number,
-  price: string,
-  quantity: number,
-  image: string,
-  subtotal: string
+export interface TuringCartItem {
+  item_id: number;
+  name: string;
+  attributes: string;
+  product_id: number;
+  price: string;
+  quantity: number;
+  image: string;
+  subtotal: string;
 }
 
-export interface ICartId {
-  cart_id: string
+export interface TuringCartId {
+  cart_id: string;
 }
 
-export interface IOrder {
+export interface TuringOrder {
   order_id: number;
   total_amount: string;
   created_on: string;
@@ -116,7 +116,7 @@ export interface IOrder {
   name: string;
 }
 
-export interface IOrderItem {
+export interface TuringOrderItem {
   order_id: number;
   product_id: number;
   attributes: string;
@@ -126,7 +126,7 @@ export interface IOrderItem {
   subtotal: string;
 }
 
-export interface IPaymentResponse {
+export interface TuringPaymentResponse {
   paid: boolean;
 }
 
@@ -137,6 +137,7 @@ export interface TuringReview {
   created_on: string;
 }
 
+// @todo: Replace with fine JSON schemas from Turing
 export const schemas = {
   attributes: {
     product: {

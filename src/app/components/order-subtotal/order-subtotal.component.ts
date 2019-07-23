@@ -1,10 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ICart, RemoteCart } from '@app/services/cart';
-import { ITaxes, Taxes } from '@app/services/taxes';
+import { CartService, Cart } from '@app/services/cart';
+import { TaxesService, Taxes, Tax } from '@app/services/taxes';
 import { fade, slideTop } from '@app/utilities/transitions';
-import { IShippingVariant } from '@app/services/shipping';
-import { ITax } from '@app/services/schemas';
-import { IShippingSelection } from '@app/components/shipping-selector/shipping-selector.component';
+import { TuringTax } from '@app/services/schemas.turing';
+import { ShippingSelection } from '@app/components/shipping-selector/shipping-selector.component';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-order-subtotal',
@@ -14,25 +14,29 @@ import { IShippingSelection } from '@app/components/shipping-selector/shipping-s
 })
 export class OrderSubtotalComponent implements OnInit {
 
-  public cart: ICart;
-  public taxes: ITaxes;
+  public cart: CartService;
+  public taxes: TaxesService;
 
-  @Input('shipping') shipping: IShippingSelection;
-  @Input('tax') tax: ITax;
+  @Input() shipping: ShippingSelection;
+  @Input() tax: Tax;
 
-  constructor(cart: RemoteCart, taxes: Taxes) {
+  constructor(cart: Cart, taxes: Taxes) {
     this.cart = cart;
     this.taxes = taxes;
   }
 
   public getSubtotal() {
 
+    if (!_.isNumber(this.cart.total)) {
+      return;
+    }
+
     let price = 0;
 
     price += this.cart.total;
 
     if (this.tax) {
-      price += price * parseFloat(this.tax.tax_percentage) / 100;
+      price += price * this.tax.percent / 100;
     }
 
     if (this.shipping) {

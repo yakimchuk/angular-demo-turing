@@ -1,8 +1,8 @@
 import { ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output, ViewRef } from '@angular/core';
-import { ITax } from '@app/services/schemas';
-import { ITaxes, Taxes } from '@app/services/taxes';
+import { TuringTax } from '@app/services/schemas.turing';
+import { TaxesService, Taxes, Tax } from '@app/services/taxes';
 import { slideTop } from '@app/utilities/transitions';
-import { IStorage, UserStorage } from '@app/services/storage';
+import { StorageService, UserStorage } from '@app/services/storage';
 import * as _ from 'lodash';
 import { ServiceEvents } from '@app/types/common';
 
@@ -14,22 +14,22 @@ import { ServiceEvents } from '@app/types/common';
 })
 export class TaxSelectorComponent implements OnInit {
 
-  public taxes: ITaxes;
+  public taxes: TaxesService;
 
-  private store: IStorage<string,number>;
+  private store: StorageService<string, number>;
 
-  @Input('value') tax: ITax;
-  @Output('valueChange') taxChange = new EventEmitter<ITax>();
+  @Input() tax: Tax;
+  @Output() taxChange = new EventEmitter<Tax>();
 
   constructor(taxes: Taxes, store: UserStorage) {
     this.taxes = taxes;
     this.store = store;
   }
 
-  public onTaxSelection(tax: ITax) {
+  public onTaxSelection(tax: Tax) {
     this.tax = tax;
     this.taxChange.emit(tax);
-    this.store.set(`${this.constructor.name}.tax.id`, this.tax.tax_id);
+    this.store.set(`${this.constructor.name}.tax.id`, this.tax.id);
   }
 
   public async reload() {
@@ -48,7 +48,7 @@ export class TaxSelectorComponent implements OnInit {
       return;
     }
 
-    let tax: ITax = this.taxes.list.find((tax: ITax) => tax.tax_id == taxId);
+    let tax: Tax = this.taxes.list.find((item: Tax) => item.id === taxId);
 
     if (!tax) {
       return;
@@ -70,7 +70,6 @@ export class TaxSelectorComponent implements OnInit {
       }
 
       this.loadLocalValue();
-
     });
 
   }

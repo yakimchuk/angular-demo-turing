@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-button-close-website',
@@ -7,10 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ButtonCloseWebsiteComponent implements OnInit {
 
-  constructor() { }
+  private router: Router;
+
+  constructor(
+    router: Router
+  ) {
+    this.router = router;
+  }
 
   public close() {
-    history.go(-(history.length - 1));
+    try {
+      history.go(-(history.length - 1));
+    } catch {
+      // There may be external exceptions as it is an external API
+      // In such case better to move user to any place, instead of doing nothing
+      this.router.navigate(['/']);
+    }
   }
 
   ngOnInit() {

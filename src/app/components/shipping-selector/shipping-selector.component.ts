@@ -1,12 +1,12 @@
 import { Component, EventEmitter, Input, OnChanges, OnInit, Output, SimpleChanges } from '@angular/core';
-import { IShipping, IShippingArea, IShippingVariant, Shipping } from '@app/services/shipping';
+import { ShippingService, ShippingArea, ShippingVariant, Shipping } from '@app/services/shipping';
 import { slideTop } from '@app/utilities/transitions';
 import * as _ from 'lodash';
-import { IUser, User } from '@app/services/user';
+import { UserService, User } from '@app/services/user';
 
-export interface IShippingSelection {
-  area: IShippingArea;
-  variant: IShippingVariant;
+export interface ShippingSelection {
+  area: ShippingArea;
+  variant: ShippingVariant;
 }
 
 @Component({
@@ -17,43 +17,40 @@ export interface IShippingSelection {
 })
 export class ShippingSelectorComponent implements OnInit, OnChanges {
 
-  public shipping: IShipping;
-  public variants: IShippingVariant[];
-  public variant: IShippingVariant;
+  public shipping: ShippingService;
+  public variants: ShippingVariant[];
+  public variant: ShippingVariant;
   public error: boolean;
 
-  @Input('area') public area: IShippingArea;
-  @Output('areaChange') public areaChange = new EventEmitter<IShippingArea>();
+  @Input() public area: ShippingArea;
+  @Output() public areaChange = new EventEmitter<ShippingArea>();
 
-  @Input('value') selection: IShippingSelection;
-  @Output('valueChange') selectionChange = new EventEmitter<IShippingSelection>();
+  @Input('value') selection: ShippingSelection;
+  @Output('valueChange') selectionChange = new EventEmitter<ShippingSelection>();
 
-  private user: IUser;
+  private user: UserService;
 
-  constructor(shipping: Shipping, user: User) {
+  constructor(
+    shipping: Shipping,
+    user: User
+  ) {
     this.shipping = shipping;
     this.user = user;
   }
 
-  public async reloadVariants(areaId: number) {
+  public async reloadVariants(options: { areaId: number }) {
 
     this.error = false;
 
     try {
-      this.variants = await this.shipping.getVariantsByArea(areaId);
+      this.variants = await this.shipping.getVariantsByArea(options);
     } catch {
       this.error = true;
     }
-
   }
 
-  public onVariantSelection(area: IShippingArea, variant: IShippingVariant) {
-
-    this.selection = {
-      area: area,
-      variant: variant
-    };
-
+  public onVariantSelection(options: { area: ShippingArea, variant: ShippingVariant }) {
+    this.selection = options;
     this.selectionChange.emit(this.selection);
   }
 
@@ -64,9 +61,8 @@ export class ShippingSelectorComponent implements OnInit, OnChanges {
   ngOnChanges(changes: SimpleChanges) {
 
     if (changes.area && this.area) {
-      this.reloadVariants(this.area.id);
+      this.reloadVariants({ areaId: this.area.id });
     }
-
   }
 
   private reloadUserArea() {
@@ -79,7 +75,7 @@ export class ShippingSelectorComponent implements OnInit, OnChanges {
       return;
     }
 
-    let area = this.shipping.areas.find((area: IShippingArea) => area.id === this.user.model.shippingRegionId);
+    let area = this.shipping.areas.find((item: ShippingArea) => item.id === this.user.model.shippingRegionId);
 
     if (!area) {
       return;
@@ -102,7 +98,7 @@ export class ShippingSelectorComponent implements OnInit, OnChanges {
         return;
       }
 
-      this.reloadVariants(this.area.id);
+      this.reloadVariants({ areaId: this.area.id });
     });
   }
 

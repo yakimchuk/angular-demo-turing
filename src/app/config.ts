@@ -16,6 +16,10 @@ export const network = {
   }
 };
 
+export const navigation = {
+  loginRedirectUrl: '/account?error=session'
+};
+
 export const ui = {
   toasts: {
     duration: 5000,

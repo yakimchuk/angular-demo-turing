@@ -18,9 +18,9 @@
       <div class="mat-body-2">{{ cart.total | money }}</div>
     </li>
     <li class="row align-center" [@slideTop]="tax ? 'open' : 'closed'">
-      <div class="mat-body-1">{{ tax?.tax_type }}</div>
+      <div class="mat-body-1">{{ tax?.name }}</div>
       <div class="col"></div>
-      <div class="mat-body-2"><span class="sign">+</span> {{ cart.total * (tax?.tax_percentage / 100) | money }}</div>
+      <div class="mat-body-2"><span class="sign">+</span> {{ cart.total * (tax?.percent / 100) | money }}</div>
     </li>
     <li class="shipping row align-flex-start justify-space-between" [@slideTop]="shipping ? 'open' : 'closed'">
       <div class="mat-body-1">

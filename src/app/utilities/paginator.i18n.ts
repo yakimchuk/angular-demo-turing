@@ -5,6 +5,14 @@ class PaginatorI18n implements MatPaginatorIntl {
 
   constructor() {}
 
+  changes: Subject<void> = new Subject();
+
+  firstPageLabel: string = '';
+  itemsPerPageLabel: string = '';
+  lastPageLabel: string = '';
+  nextPageLabel: string = '';
+  previousPageLabel: string = '';
+
   // Got from https://stackoverflow.com/questions/47593692/how-to-translate-mat-paginator-in-angular-4
   public getRangeLabel(page: number, pageSize: number, length: number): string {
 
@@ -19,14 +27,6 @@ class PaginatorI18n implements MatPaginatorIntl {
 
     return `${startIndex + 1} - ${endIndex} / ${length}`;
   }
-
-  changes: Subject<void> = new Subject();
-
-  firstPageLabel: string = '';
-  itemsPerPageLabel: string = '';
-  lastPageLabel: string = '';
-  nextPageLabel: string = '';
-  previousPageLabel: string = '';
 }
 
 export function getPaginationIntl() {
