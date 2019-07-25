@@ -5,6 +5,7 @@ import { UsersService, Users } from '@app/services/users';
 import { MessagesService, UserMessages } from '@app/services/messages';
 import { Auth, AuthenticationService } from '@app/services/auth';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material';
+import { ui } from '@app/config';
 
 interface UserCredentials {
   email: string;
@@ -78,6 +79,10 @@ export class AuthPopupComponent implements OnInit {
       this.caption = data.caption;
     }
 
+  }
+
+  public isMobileDevice() {
+    return window.innerWidth <= ui.mobile.maxWidth;
   }
 
   public async register(model: UserData) {

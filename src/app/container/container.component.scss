@@ -9,6 +9,30 @@ app-container {
   width: 100%;
 }
 
+@media (min-width: 576px) {
+  app-container {
+    bottom: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  app-container {
+    bottom: 0;
+  }
+}
+
+@media (min-width: 1001px) {
+  app-container {
+    bottom: -10px;
+  }
+}
+
+@media (min-width: 1200px) {
+  app-container {
+    bottom: -10px;
+  }
+}
+
 .container {
   background: white;
 }

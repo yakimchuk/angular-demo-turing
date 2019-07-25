@@ -1,5 +1,4 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { DeviceDetectorService } from 'ngx-device-detector';
 
 @Component({
   selector: 'app-container',
@@ -9,21 +8,9 @@ import { DeviceDetectorService } from 'ngx-device-detector';
 })
 export class ContainerComponent implements OnInit {
 
-  private device: DeviceDetectorService;
-  public isOpenedMenu: boolean;
-
-  constructor(device: DeviceDetectorService) {
-    this.device = device;
-    this.isOpenedMenu = this.isAlwaysVisibleMenu();
+  constructor() {
   }
 
-  public isAlwaysVisibleMenu() {
-    return this.device.isDesktop();
-  }
-
-  public onMenuStateChange(visibility: boolean) {
-    this.isOpenedMenu = visibility;
-  }
 
   ngOnInit() {
   }

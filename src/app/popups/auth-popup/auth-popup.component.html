@@ -5,9 +5,9 @@
   <mat-divider></mat-divider>
 </div>
 
-<div class="row align-flex-start container">
+<div class="row align-flex-start container" [ngClass]="{ mobile: isMobileDevice() }">
 
-  <div class="col-6">
+  <div class="col-lg-6">
 
     <div class="mat-title" i18n="@@popup.auth.login.caption">Sign In</div>
 
@@ -51,7 +51,7 @@
 
   </div>
 
-  <div class="col-6">
+  <div class="col-lg-6">
 
     <div class="mat-title" i18n="@@popup.auth.registration.caption">Sign Up</div>
 

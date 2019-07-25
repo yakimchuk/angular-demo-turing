@@ -67,7 +67,7 @@ export class TuringEndpoint implements EndpointGatewayService {
             stripeToken: options.token,
             order_id: options.orderId,
             description: options.description,
-            amount: options.amount * 100, // Stripe receives amount in cents
+            amount: Math.round(options.amount * 100), // Stripe receives amount in cents
             currency: options.currency
           })
         )

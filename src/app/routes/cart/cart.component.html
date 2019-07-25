@@ -24,7 +24,7 @@
   </div>
 </div>
 
-<div [@slideTop]="(cart.state.ready && cart.items.length > 0 && stepIndex >= 0) || (stepIndex > 1) ? 'open' : 'closed'">
+<div [@slideTop]="(cart.state.ready && cart.items.length > 0 && stepIndex >= 0) || (stepIndex > 1) ? 'open' : 'closed'" [ngClass]="{ mobile: isMobileDevice() }">
 
   <mat-horizontal-stepper #stepper [linear]="true" (selectionChange)="onStepChange($event)" [selectedIndex]="stepIndex" *ngIf="stepIndex >= 0">
 
@@ -35,7 +35,7 @@
       [hasError]="step === stepNames.Checkout && cart.items.length === 0">
       <ng-template matStepLabel i18n="@@route.cart.step.cart.caption">Cart</ng-template>
       <div class="cart__items row">
-        <div class="col-8">
+        <div class="col-lg-8">
 
           <div *ngIf="cart.items" class="mat-title" i18n="@@route.cart.step.cart.items.count">
             There are {cart.items.length, plural, =1 {one item} other {{{cart.items.length}} items}} in your cart
@@ -44,7 +44,7 @@
           <app-cart-editor></app-cart-editor>
 
         </div>
-        <div class="col-4">
+        <div class="col-lg-4">
 
           <div class="mat-title" i18n="@@route.cart.subtotal.caption">Subtotal</div>
 
@@ -66,7 +66,7 @@
       [completed]="(step === stepNames.Payment || step === stepNames.Done) || (tax && shipping && order)">
       <ng-template matStepLabel i18n="@@route.cart.step.checkout.caption">Checkout</ng-template>
       <div class="cart__checkout row">
-        <div class="col-8">
+        <div class="col-lg-8">
 
           <div class="mat-title" i18n="@@route.cart.step.checkout.form.tax.caption">Tax</div>
 
@@ -77,7 +77,7 @@
           <app-shipping-selector [(value)]="shipping"></app-shipping-selector>
 
         </div>
-        <div class="col-4">
+        <div class="col-lg-4">
 
           <div class="mat-title" i18n="@@route.cart.subtotal.caption">Subtotal</div>
 

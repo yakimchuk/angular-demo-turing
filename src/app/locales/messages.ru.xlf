@@ -1743,7 +1743,7 @@
       </trans-unit>
       <trans-unit id="product.purchase.form.submit" datatype="html">
         <source>Add to cart</source>
-        <target>Добавить в корзину</target>
+        <target>В корзину</target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/product-purchase-form/product-purchase-form.component.html</context>
           <context context-type="linenumber">45</context>
@@ -1938,6 +1938,22 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/departments-navigation/departments-navigation.component.html</context>
           <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="sidebar.mobile.menu.caption" datatype="html">
+        <source>Menu</source>
+        <target>Меню</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/template-sidebar/template-sidebar.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="order.subtotal.total" datatype="html">
+        <source><x id="INTERPOLATION" equiv-text="{{ order?.cost | money }}"/> in total</source>
+        <target>Итого <x id="INTERPOLATION" equiv-text="{{ order?.cost | money }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order/order.component.html</context>
+          <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
     </body>

@@ -13,7 +13,7 @@
 </app-route-navigation>
 
 <div class="row">
-  <div class="col-7 column">
+  <div class="col-lg-7 column">
 
     <app-component-error [@slideTop]="error ? 'open' : 'closed'">
       <span message i18n="@@route.product.error">
@@ -35,12 +35,14 @@
       </p>
     </div>
 
+    <app-product-purchase-form [product]="product" class="hidden-lg-up mobile mat-elevation-z1"></app-product-purchase-form>
+
     <mat-divider></mat-divider>
 
     <app-product-reviews [product]="product"></app-product-reviews>
 
   </div>
-  <div class="col-5 column">
+  <div class="col-lg-5 column hidden-lg-down">
 
     <app-product-purchase-form [product]="product"></app-product-purchase-form>
 

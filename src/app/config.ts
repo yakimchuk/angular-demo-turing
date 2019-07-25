@@ -21,6 +21,9 @@ export const navigation = {
 };
 
 export const ui = {
+  mobile: {
+    maxWidth: 991,
+  },
   toasts: {
     duration: 5000,
     delay: 1000

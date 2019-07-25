@@ -13,6 +13,7 @@ import { MatDialog, MatStep, MatStepper } from '@angular/material';
 import { AuthPopupComponent } from '@app/popups/auth-popup/auth-popup.component';
 import { Auth, AuthenticationService } from '@app/services/auth';
 import { Tax } from '@app/services/taxes';
+import { ui } from '@app/config';
 
 enum CartSteps {
   Cart = 'cart',
@@ -84,6 +85,10 @@ export class CartRouteComponent implements OnInit {
     this.messages = messages;
     this.dialog = dialog;
     this.auth = auth;
+  }
+
+  public isMobileDevice() {
+    return window.innerWidth <= ui.mobile.maxWidth;
   }
 
   public async createOrder(options: { cartId: string, tax: Tax, shipping: ShippingSelection }) {

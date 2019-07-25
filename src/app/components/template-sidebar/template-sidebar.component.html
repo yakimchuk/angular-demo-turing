@@ -1,5 +1,8 @@
-<mat-toolbar color="primary" class="row justify-space-between align-center" routerLink="/">
-  <div i18n="@@project.name">Buy & Try E-Commerce</div>
+<mat-toolbar color="primary" class="row justify-space-between align-center">
+  <div i18n="@@project.name" routerLink="/">Buy & Try E-Commerce</div>
+  <button mat-button *ngIf="isMobileDevice()" (click)="expanded = !expanded">
+    <mat-icon>expand_{{ expanded ? 'less' : 'more' }}</mat-icon> <span i18n="@@sidebar.mobile.menu.caption">Menu</span>
+  </button>
 </mat-toolbar>
 
-<app-departments-navigation></app-departments-navigation>
+<app-departments-navigation [@slideTop]="!isMobileDevice() || expanded ? 'open' : 'closed'"></app-departments-navigation>

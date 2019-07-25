@@ -30,7 +30,7 @@
         <tr>
           <td class="mat-cell" colspan="3"></td>
           <td class="mat-cell mat-body-2 total">
-            {{ order?.cost | money }} in total<br/>
+            <span i18n="@@order.subtotal.total">{{ order?.cost | money }} in total</span><br/>
             <small class="mat-body-1 text-note" i18n="@@order.subtotal.note">Products + Tax + Shipping</small>
           </td>
         </tr>
