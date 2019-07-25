@@ -1,4 +1,14 @@
 app-container {
   display: block;
+
+  // There is afwul bug with css grid, layout cannot reach bottom of the page (there are always space of ~20px)
+  // Turning bug into feature (instead of reworking whole app layout), make space at all sides
+  position: relative;
+  bottom: -10px;
+
   width: 100%;
+}
+
+.container {
+  background: white;
 }

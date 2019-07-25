@@ -1,3 +1,17 @@
+:host {
+  display: block;
+}
+
 .routes {
   width: 100%;
+  position: relative;
+  overflow: hidden;
+
+  // The only way to make hidden overflow for an absolute element
+  // @todo: Bad solution, find a better way
+  min-height: 700px;
+}
+
+::ng-deep .routes > .ng-animating {
+  position: absolute;
 }
