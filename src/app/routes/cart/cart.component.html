@@ -2,7 +2,7 @@
   <div caption i18n="@@route.cart.caption">Cart</div>
   <div description i18n="@@route.cart.description">Your online shopping basket</div>
   <div actions>
-    <button mat-raised-button color="primary">
+    <button mat-raised-button color="primary" (click)="clear()" [@slideRight]="step === stepNames.Cart && cart.items?.length > 0 ? 'open' : 'closed'">
       <mat-icon>delete_sweep</mat-icon> <span i18n="@@route.cart.clear.submit">Clear cart</span>
     </button>
   </div>
@@ -224,6 +224,14 @@
   </mat-horizontal-stepper>
 
 </div>
+
+<ng-template #clear_error i18n="@@route.cart.clear.error">
+  Cannot clear your cart at this time. Try do remove items one by one, or try later
+</ng-template>
+
+<ng-template #clear_success i18n="@@route.cart.clear.success">
+  Your cart has been successfully cleaned
+</ng-template>
 
 <ng-template #auth_message i18n="@@route.cart.note.auth">
   Sign in or register in order to continue creation of your order

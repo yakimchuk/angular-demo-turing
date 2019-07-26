@@ -1,11 +1,10 @@
-<!--<div class="grid">-->
-  <!--<div class="col-md-4">-->
-  <!--</div>-->
-  <!--<div class="col-md-8">-->
-  <!--</div>-->
-<!--</div>-->
-
 <div class="container row mat-elevation-z1">
-  <app-template-sidebar class="col-lg-3"></app-template-sidebar>
+  <app-template-sidebar class="col-lg-3" joyrideStep="tourDepartmentsDescription" [stepContent]="tourDepartmentsDescription"></app-template-sidebar>
   <app-template-content class="col-lg-9"></app-template-content>
 </div>
+
+<ng-template #tourDepartmentsDescription>
+  <p i18n="@@tour.departments.description">
+    This online store sells T-shirts, and you able to navigate through their categories using this menu.
+  </p>
+</ng-template>

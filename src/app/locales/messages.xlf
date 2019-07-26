@@ -2,6 +2,25 @@
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
   <file source-language="en" datatype="plaintext" original="ng2.template">
     <body>
+      <trans-unit id="tour.departments.description" datatype="html">
+        <source>
+    This online store sells T-shirts, and you able to navigate through their categories using this left menu.
+  </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/container/container.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="tour.ending" datatype="html">
+        <source>
+    This online store was completed in July 2019 by Roman Yakimchuk (yakimchuk.ry@gmail.com).<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/>
+    Thanks for coming to our online store J
+  </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/container/container.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="toast.error.internal" datatype="html">
         <source>We found the problem, the website may be working unexpectedly</source>
         <context-group purpose="location">
@@ -15,7 +34,7 @@
       </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/products-navigator/products-navigator.component.html</context>
-          <context context-type="linenumber">30</context>
+          <context context-type="linenumber">31</context>
         </context-group>
       </trans-unit>
       <trans-unit id="navigator.products.item.load.error" datatype="html">
@@ -24,28 +43,39 @@
 </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/products-navigator/products-navigator.component.html</context>
-          <context context-type="linenumber">43</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="tour.product.description" datatype="html">
+        <source>
+    You may get acquainted with the product. They all are T-shirts, but the images on them are
+    different (this is a T-shirt prints online store). Find the one interested to you, and then add
+    it to your cart or open the details page to learn more about this product.
+  </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/products-navigator/products-navigator.component.html</context>
+          <context context-type="linenumber">49</context>
         </context-group>
       </trans-unit>
       <trans-unit id="route.home.caption" datatype="html">
         <source>Grand new E-Commerce, Buy &amp; Try!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/routes/home/home.component.html</context>
-          <context context-type="linenumber">2</context>
+          <context context-type="linenumber">4</context>
         </context-group>
       </trans-unit>
       <trans-unit id="route.home.description" datatype="html">
         <source>We sell the most inspiration ideas</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/routes/home/home.component.html</context>
-          <context context-type="linenumber">3</context>
+          <context context-type="linenumber">5</context>
         </context-group>
       </trans-unit>
       <trans-unit id="route.home.tour.submit" datatype="html">
         <source>Make a tour!</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/routes/home/home.component.html</context>
-          <context context-type="linenumber">7</context>
+          <context context-type="linenumber">8</context>
         </context-group>
       </trans-unit>
       <trans-unit id="route.home.error" datatype="html">
@@ -55,14 +85,44 @@
   </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/routes/home/home.component.html</context>
-          <context context-type="linenumber">15</context>
+          <context context-type="linenumber">17</context>
         </context-group>
       </trans-unit>
       <trans-unit id="route.home.reload" datatype="html">
         <source>Reload catalog</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/routes/home/home.component.html</context>
-          <context context-type="linenumber">20</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="tour.project.description" datatype="html">
+        <source>
+    Welcome to the new <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>magnificent demo<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> for Turing.ly!<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/>
+    <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/>It developed with Angular selected as the framework and Google Material as UI Kit.<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>
+  </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/home/home.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="tour.project.description.candidate" datatype="html">
+        <source>
+    This application is not a real product, it is just a live demo of an online store in order to demonstrate
+    the candidate&apos;s technical skills.
+  </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/home/home.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="tour.products.description" datatype="html">
+        <source>
+    Every department or category has an interface to navigate over store/categories contents
+    and select your interested products.
+  </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/home/home.component.html</context>
+          <context context-type="linenumber">38</context>
         </context-group>
       </trans-unit>
       <trans-unit id="shipping.selector.error.areas" datatype="html">
@@ -127,18 +187,18 @@
         <source>Sign In</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
-          <context context-type="linenumber">12</context>
+          <context context-type="linenumber">14</context>
         </context-group>
       </trans-unit>
       <trans-unit id="form.field.email" datatype="html">
         <source>E-Mail</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
-          <context context-type="linenumber">25</context>
+          <context context-type="linenumber">27</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
-          <context context-type="linenumber">79</context>
+          <context context-type="linenumber">81</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/profile-common-editor/profile-common-editor.component.html</context>
@@ -149,11 +209,11 @@
         <source>Password</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
-          <context context-type="linenumber">35</context>
+          <context context-type="linenumber">37</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
-          <context context-type="linenumber">90</context>
+          <context context-type="linenumber">92</context>
         </context-group>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/profile-common-editor/profile-common-editor.component.html</context>
@@ -164,28 +224,28 @@
         <source>Sign In</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
-          <context context-type="linenumber">44</context>
+          <context context-type="linenumber">46</context>
         </context-group>
       </trans-unit>
       <trans-unit id="popup.auth.registration.caption" datatype="html">
         <source>Sign Up</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
-          <context context-type="linenumber">56</context>
+          <context context-type="linenumber">58</context>
         </context-group>
       </trans-unit>
       <trans-unit id="form.field.username" datatype="html">
         <source>Username</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
-          <context context-type="linenumber">68</context>
+          <context context-type="linenumber">70</context>
         </context-group>
       </trans-unit>
       <trans-unit id="popup.auth.registration.submit" datatype="html">
         <source>Sign Up</source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
-          <context context-type="linenumber">99</context>
+          <context context-type="linenumber">101</context>
         </context-group>
       </trans-unit>
       <trans-unit id="popup.auth.toast.login.success" datatype="html">
@@ -194,7 +254,7 @@
 </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
-          <context context-type="linenumber">111</context>
+          <context context-type="linenumber">113</context>
         </context-group>
       </trans-unit>
       <trans-unit id="popup.auth.toast.login.error.unknown" datatype="html">
@@ -203,7 +263,7 @@
 </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
-          <context context-type="linenumber">115</context>
+          <context context-type="linenumber">117</context>
         </context-group>
       </trans-unit>
       <trans-unit id="popup.auth.toast.login.error.invalid" datatype="html">
@@ -212,7 +272,7 @@
 </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
-          <context context-type="linenumber">119</context>
+          <context context-type="linenumber">121</context>
         </context-group>
       </trans-unit>
       <trans-unit id="popup.auth.toast.registration.success" datatype="html">
@@ -221,7 +281,7 @@
 </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
-          <context context-type="linenumber">123</context>
+          <context context-type="linenumber">125</context>
         </context-group>
       </trans-unit>
       <trans-unit id="popup.auth.toast.registration.error.unknown" datatype="html">
@@ -230,7 +290,7 @@
 </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
-          <context context-type="linenumber">127</context>
+          <context context-type="linenumber">129</context>
         </context-group>
       </trans-unit>
       <trans-unit id="popup.auth.toast.registration.error.used" datatype="html">
@@ -239,7 +299,7 @@
 </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
-          <context context-type="linenumber">131</context>
+          <context context-type="linenumber">133</context>
         </context-group>
       </trans-unit>
       <trans-unit id="popup.auth.toast.registration.error.invalid" datatype="html">
@@ -248,7 +308,7 @@
 </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
-          <context context-type="linenumber">135</context>
+          <context context-type="linenumber">137</context>
         </context-group>
       </trans-unit>
       <trans-unit id="route.cart.caption" datatype="html">
@@ -519,13 +579,31 @@
           <context context-type="linenumber">217</context>
         </context-group>
       </trans-unit>
+      <trans-unit id="route.cart.clear.error" datatype="html">
+        <source>
+  Cannot clear your cart at this time. Try do remove items one by one, or try later
+</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">228</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.clear.success" datatype="html">
+        <source>
+  Your cart has been successfully cleaned
+</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">232</context>
+        </context-group>
+      </trans-unit>
       <trans-unit id="route.cart.note.auth" datatype="html">
         <source>
   Sign in or register in order to continue creation of your order
 </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
-          <context context-type="linenumber">228</context>
+          <context context-type="linenumber">236</context>
         </context-group>
       </trans-unit>
       <trans-unit id="route.cart.toast.order.cancel" datatype="html">
@@ -534,7 +612,7 @@
 </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
-          <context context-type="linenumber">232</context>
+          <context context-type="linenumber">240</context>
         </context-group>
       </trans-unit>
       <trans-unit id="route.cart.toast.order.error" datatype="html">
@@ -543,7 +621,7 @@
 </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
-          <context context-type="linenumber">236</context>
+          <context context-type="linenumber">244</context>
         </context-group>
       </trans-unit>
       <trans-unit id="route.cart.toast.reload.error" datatype="html">
@@ -552,7 +630,7 @@
 </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
-          <context context-type="linenumber">240</context>
+          <context context-type="linenumber">248</context>
         </context-group>
       </trans-unit>
       <trans-unit id="route.cart.toast.order.error.notFound" datatype="html">
@@ -561,7 +639,7 @@
 </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
-          <context context-type="linenumber">244</context>
+          <context context-type="linenumber">252</context>
         </context-group>
       </trans-unit>
       <trans-unit id="route.cart.toast.order.success" datatype="html">
@@ -570,7 +648,7 @@
 </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
-          <context context-type="linenumber">248</context>
+          <context context-type="linenumber">256</context>
         </context-group>
       </trans-unit>
       <trans-unit id="route.cart.toast.payment.error" datatype="html">
@@ -579,7 +657,7 @@
 </source>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
-          <context context-type="linenumber">252</context>
+          <context context-type="linenumber">260</context>
         </context-group>
       </trans-unit>
       <trans-unit id="route.account.caption" datatype="html">
@@ -776,6 +854,30 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/template-sidebar/template-sidebar.component.html</context>
           <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="tour.search.description" datatype="html">
+        <source>
+    If you are looking for something in particular, you may also use the global search over the whole T-shirts variants.<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/>
+    This search is predictive so you may access every product from any page of the application.
+  </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/template-content/template-content.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="tour.cart.description" datatype="html">
+        <source>
+    When you will select all you need, you may open your cart and proceed to the checkout process and pay order. The
+    most interesting part is an exception handling. Just try to break this checkout process.
+  </source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/template-content/template-content.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/template-content/template-content.component.html</context>
+          <context context-type="linenumber">28</context>
         </context-group>
       </trans-unit>
       <trans-unit id="navigator.departments.caption" datatype="html">

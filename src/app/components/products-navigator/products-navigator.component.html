@@ -15,7 +15,8 @@
   (page)="onFilterChange($event)"></mat-paginator>
 
 <div class="products row justify-space-around" [@slideTop]="products ? 'open' : 'closed'">
-  <div class="product mat-card" *ngFor="let product of products?.items;">
+  <div class="product mat-card" *ngFor="let product of products?.items; let i = index;"
+       [joyrideStep]="i === 0 ? 'tourProductDescription' : 'unused'" [stepContent]="tourProductDescription">
     <div class="title mat-body-2 text-overflow no-margin">{{ product.name }}</div>
     <mat-divider></mat-divider>
     <app-image-large [url]="product.images[0]"></app-image-large>
@@ -42,4 +43,12 @@
 
 <ng-template #product_detail_info_load_error i18n="@@navigator.products.item.load.error">
   We cannot load detailed info about this product, please, try again or later
+</ng-template>
+
+<ng-template #tourProductDescription>
+  <p i18n="@@tour.product.description">
+    You may get acquainted with the product. They all are T-shirts, but the images on them are
+    different (this is a T-shirt prints online store). Find the one interested to you, and then add
+    it to your cart or open the details page to learn more about this product.
+  </p>
 </ng-template>

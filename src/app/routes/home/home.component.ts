@@ -4,6 +4,7 @@ import { Endpoint } from '@app/services/endpoint';
 import { fade, slideTop } from '@app/utilities/transitions';
 import { List } from '@app/types/common';
 import { Product } from '@app/services/products';
+import { JoyrideService } from 'ngx-joyride';
 
 @Component({
   selector: 'app-home',
@@ -18,12 +19,29 @@ export class HomeRouteComponent implements OnInit {
   public filter: PaginationFilter;
 
   private resources: Endpoint;
+  private tour: JoyrideService;
 
-  constructor(resources: Endpoint) {
+  constructor(resources: Endpoint, tour: JoyrideService) {
     this.resources = resources;
+    this.tour = tour;
   }
 
   ngOnInit() {
+  }
+
+  public openTour() {
+    this.tour.startTour({
+      steps: [
+        'tourProjectDescription',
+        'tourDepartmentsDescription',
+        'tourProductsDescription',
+        'tourProductDescription',
+        'tourSearchDescription',
+        'tourCartDescription',
+        'tourAccountDescription',
+        'tourEnding'
+      ]
+    });
   }
 
   public async reload(filter: PaginationFilter) {

@@ -33,6 +33,9 @@ export interface CartEndpointGateway {
   // Delete item from a cart
   removeItem(options: { cartId: string, itemId: number }): Promise<any>;
 
+  // Clear a cart
+  clear(options: { cartId: string }): Promise<any>;
+
   // Make new cart on the server
   register(): Promise<string>;
 }

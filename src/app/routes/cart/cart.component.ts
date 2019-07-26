@@ -58,6 +58,9 @@ export class CartRouteComponent implements OnInit {
   @ViewChild('stepper', { static: false }) private stepper: MatStepper;
   @ViewChild('stepPayment', { static: false }) private paymentStep: MatStep;
 
+  @ViewChild('clear_error', { static: false }) private clearErrorToastTemplate: TemplateRef<any>;
+  @ViewChild('clear_success', { static: false }) private clearSuccessToastTemplate: TemplateRef<any>;
+
   @ViewChild('order_create_error', { static: false }) private orderCreateErrorToastTemplate: TemplateRef<any>;
   @ViewChild('order_reload_error', { static: false }) private orderReloadErrorToastTemplate: TemplateRef<any>;
   @ViewChild('order_find_error', { static: false }) private orderFindErrorToastTemplate: TemplateRef<any>;
@@ -85,6 +88,18 @@ export class CartRouteComponent implements OnInit {
     this.messages = messages;
     this.dialog = dialog;
     this.auth = auth;
+  }
+
+  public async clear() {
+
+    try {
+      await this.cart.clear();
+    } catch {
+      this.messages.openFromTemplate(this.clearErrorToastTemplate);
+      return;
+    }
+
+    this.messages.openFromTemplate(this.clearSuccessToastTemplate);
   }
 
   public isMobileDevice() {

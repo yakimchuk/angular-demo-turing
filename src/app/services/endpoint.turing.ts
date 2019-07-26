@@ -339,6 +339,15 @@ export class TuringEndpoint implements EndpointGatewayService {
         request: this.http.delete<void>(this.toResourceUrl({ resource: `/shoppingcart/removeProduct/${itemId}` }))
       });
     },
+
+    clear: async ({ cartId }: { cartId: string }) => {
+      return this.guard<void>({
+        request: this.http.delete<void>(
+          this.toResourceUrl({ resource: `/shoppingcart/empty/${cartId}` })
+        )
+      });
+    },
+
     register: async () => {
       return (await this.guard<TuringCartId>({
         request: this.http.get<TuringCartId>(this.toResourceUrl({ resource: '/shoppingcart/generateUniqueId' })),

@@ -1,15 +1,18 @@
 <app-route-navigation>
-  <div caption i18n="@@route.home.caption">Grand new E-Commerce, Buy & Try!</div>
-  <div description i18n="@@route.home.description">We sell the most inspiration ideas</div>
+  <div caption i18n="@@route.home.caption"
+       joyrideStep="tourProjectDescription"
+       [stepContent]="tourStepTitle">Grand new E-Commerce, Buy & Try!</div>
+  <div description i18n="@@route.home.description"
+       joyrideStep="tourEnding" [stepContent]="tourEnding">We sell the most inspiration ideas</div>
   <div actions>
-    <!-- @todo Finish this feature -->
-    <button mat-raised-button color="primary">
+    <button mat-raised-button color="primary" (click)="openTour()">
       <mat-icon>360</mat-icon> <span i18n="@@route.home.tour.submit">Make a tour!</span>
     </button>
   </div>
 </app-route-navigation>
 
-<app-products-navigator (onPagination)="onPagination($event)" [products]="products" [@slideTop]="!error ? 'open' : 'closed'"></app-products-navigator>
+<app-products-navigator (onPagination)="onPagination($event)" [products]="products" [@slideTop]="!error ? 'open' : 'closed'"
+                        joyrideStep="tourProductsDescription" [stepContent]="tourProductsDescription"></app-products-navigator>
 
 <app-component-error [@fade]="!products && error ? 'open' : 'closed'">
   <span message i18n="@@route.home.error">
@@ -20,3 +23,29 @@
     <app-button-reload (click)="reload(filter)" i18n="@@route.home.reload">Reload catalog</app-button-reload>
   </div>
 </app-component-error>
+
+<ng-template #tourStepTitle>
+  <p i18n="@@tour.project.description">
+    Welcome to the new <b>magnificent demo</b> for Turing.ly!<br/>
+    <span class="text-note">It developed with Angular selected as the framework and Google Material as UI Kit.</span>
+  </p>
+  <p i18n="@@tour.project.description.candidate">
+    This application is not a real product, it is just a live demo of an online store in order to demonstrate
+    the candidate's technical skills.
+  </p>
+</ng-template>
+
+<ng-template #tourProductsDescription>
+  <p i18n="@@tour.products.description">
+    Every department or category has an interface to navigate over store/categories contents
+    and select your interested products.
+  </p>
+</ng-template>
+
+<ng-template #tourEnding>
+  <p i18n="@@tour.ending">
+    This online store was completed in July 2019 by Roman Yakimchuk (yakimchuk.ry@gmail.com).<br/>
+    Thanks for coming to our online store J
+  </p>
+</ng-template>
+

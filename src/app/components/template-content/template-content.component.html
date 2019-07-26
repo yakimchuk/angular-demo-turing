@@ -1,11 +1,31 @@
 <app-template-header>
   <div class="col">
-    <app-search></app-search>
+    <app-search joyrideStep="tourSearchDescription" [stepContent]="tourSearchDescription"></app-search>
   </div>
   <div class="row align-center justify-flex-end">
-    <app-cart-button-menu></app-cart-button-menu>
-    <app-account-button-menu></app-account-button-menu>
+    <app-cart-button-menu joyrideStep="tourCartDescription" [stepContent]="tourCartDescription"></app-cart-button-menu>
+    <app-account-button-menu joyrideStep="tourAccountDescription" [stepContent]="tourAccountDescription"></app-account-button-menu>
   </div>
 </app-template-header>
 
 <app-outlet></app-outlet>
+
+<ng-template #tourSearchDescription>
+  <p i18n="@@tour.search.description">
+    If you are looking for something in particular, you may also use the global search over the whole T-shirts variants.<br/>
+    This search is predictive so you may access every product from any page of the application.
+  </p>
+</ng-template>
+
+<ng-template #tourCartDescription>
+  <p i18n="@@tour.cart.description">
+    When you will select all you need, you may open your cart and proceed to the checkout process and pay order. The
+    most interesting part is an exception handling. Just try to break this checkout process.
+  </p>
+</ng-template>
+
+<ng-template #tourAccountDescription>
+  <p i18n="@@tour.cart.description">
+    Your account may be accessed here. You may edit your personal data, shipping information or manage your orders.
+  </p>
+</ng-template>

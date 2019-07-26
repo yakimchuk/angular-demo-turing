@@ -80,6 +80,7 @@ import { OutletComponent } from '@app/components/outlet/outlet.component';
 import { ProductPurchasePopupComponent } from '@app/popups/product-purchase/product-purchase.component';
 import { ProductReviewsComponent } from '@app/components/product-reviews/product-reviews.component';
 import { InternalErrorComponent } from '@app/toasts/internal-error/internal-error.component';
+import { JoyrideModule } from 'ngx-joyride';
 
 const vendor = {
   framework: [
@@ -113,6 +114,7 @@ const vendor = {
     MatDialogModule,
     MatSliderModule,
     MatAutocompleteModule,
+    JoyrideModule.forRoot(),
     DeviceDetectorModule.forRoot()
   ]
 };

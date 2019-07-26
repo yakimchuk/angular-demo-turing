@@ -1,3 +1,16 @@
 mat-accordion {
   display: block; /* otherwise it does not have height and cannot be hidden */
 }
+
+.joyride-step__container {
+  max-width: 90vw;
+  border-radius: 6px;
+  padding: 0 20px 13px 20px;
+  font-family: Roboto, serif;
+  font-size: 14px;
+}
+
+.joyride-button {
+  background-color: rgb(69, 166, 230) !important;
+  border-radius: 4px !important;
+}

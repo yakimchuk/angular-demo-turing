@@ -27,6 +27,8 @@ export interface CartService extends Subject<IEvent> {
   total: number;
 
   reload(): Promise<any>;
+
+  clear(): Promise<any>;
   addItem(options: { productId: number, attributes: string }): Promise<any>;
   updateItem(item: CartItem): Promise<any>;
   removeItem(item: CartItem): Promise<any>;
@@ -76,6 +78,18 @@ export class Cart extends Subject<IEvent> implements CartService {
 
     // Asynchronous process, app must can handle any state of any data
     this.reload();
+  }
+
+  public async clear() {
+
+    // Exceptions must be caught outside
+    await this.resources.cart.clear({ cartId: this.id });
+
+    try {
+      await this.reload();
+    } catch {
+      this.messages.openFromComponent(InternalErrorComponent);
+    }
   }
 
   public async addItem(item: CartItem) {
