@@ -31,6 +31,62 @@
             "scripts": []
           },
           "configurations": {
+            "production-en": {
+              "outputPath": "dist/turing-demo-angular/production/en",
+              "i18nFile": "src/app/locales/messages.en.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "en",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.en.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            },
+            "dev-en": {
+              "outputPath": "dist/turing-demo-angular/dev/en",
+              "i18nFile": "src/app/locales/messages.en.xlf",
+              "i18nFormat": "xlf",
+              "i18nLocale": "en",
+              "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.dev.en.ts"
+                }
+              ],
+              "optimization": false,
+              "outputHashing": "none",
+              "sourceMap": true,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": false,
+              "vendorChunk": true,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            },
             "production-ru": {
               "outputPath": "dist/turing-demo-angular/production/ru",
               "i18nFile": "src/app/locales/messages.ru.xlf",
@@ -92,18 +148,21 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "turing-demo-angular:build:dev-ru"
+            "browserTarget": "turing-demo-angular:build:dev-en"
           },
           "configurations": {
             "ru": {
               "browserTarget": "turing-demo-angular:build:dev-ru"
+            },
+            "en": {
+              "browserTarget": "turing-demo-angular:build:dev-en"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "turing-demo-angular:build:dev-ru"
+            "browserTarget": "turing-demo-angular:build:dev-en"
           }
         },
         "test": {

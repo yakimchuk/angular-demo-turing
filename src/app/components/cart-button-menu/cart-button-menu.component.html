@@ -14,7 +14,7 @@
   </span>
   </app-component-error>
 
-  <button mat-button color="primary" [@slideRight]="cart.state.ready && cart.items ? 'open' : 'closed'" routerLink="/cart">
+  <button mat-button color="primary" [@slideRight]="cart.state.ready && !cart.state.error && cart.items ? 'open' : 'closed'" routerLink="/cart">
     <mat-icon>shopping_cart</mat-icon> <span i18n="@@cart.button.items.count">{{ cart.items?.length }} {cart.items?.length, plural, one {item} other {items}} in your cart</span>
   </button>
 

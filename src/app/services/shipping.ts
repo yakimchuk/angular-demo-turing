@@ -61,7 +61,8 @@ export class Shipping extends Subject<IEvent> implements ShippingService {
 
   public async reload() {
 
-    this.state = DEFAULT_SERVICE_STATE;
+    delete this.state.error;
+    delete this.state.ready;
 
     try {
       this.areas = await this.getAreas();

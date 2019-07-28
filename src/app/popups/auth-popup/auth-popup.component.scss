@@ -1,6 +1,5 @@
 :host {
   display: block;
-  width: 500px;
 }
 
 .container {
@@ -25,8 +24,12 @@
   padding: 0 15px;
   border: none;
 
+  .mat-title {
+    margin: 0;
+  }
+
   &:first-of-type {
-    padding: 15px 0;
+    padding: 0 0 15px 0;
   }
 
   &:last-of-type {

@@ -3,7 +3,7 @@ app-component-error {
 }
 
 :host ::ng-deep app-route-navigation .header {
-  height: 102px;
+  min-height: 102px;
 }
 
 :host ::ng-deep app-component-preloader {

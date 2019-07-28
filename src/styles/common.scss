@@ -9,7 +9,7 @@ body {
   height: 100%;
   overflow-y: scroll;
   background: rgba(0,0,0,0.1);
-  min-width: 600px;
+  min-width: 375px;
 }
 
 a {
@@ -83,4 +83,17 @@ fieldset {
 
 .mat-form-field-appearance-legacy .mat-hint.text-danger {
   color: #e64727;
+}
+
+@media(max-width: 990px)  {
+  mat-form-field.field_short {
+
+    .mat-form-field-wrapper {
+      padding-bottom: 4px;
+    }
+
+    .mat-form-field-underline {
+      bottom: 8px;
+    }
+  }
 }

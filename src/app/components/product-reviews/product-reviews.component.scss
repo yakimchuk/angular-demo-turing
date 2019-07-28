@@ -1,5 +1,6 @@
 :host {
   display: block;
+  min-height: 202px;
 }
 
 app-component-preloader {
@@ -42,7 +43,6 @@ app-component-error {
 
   button {
     margin-left: 16px;
-    margin-bottom: 19px;
     height: 46px;
   }
 }

@@ -43,7 +43,7 @@ export class ProductPurchaseFormComponent implements OnInit, OnChanges {
     this.cart = cart;
   }
 
-  private async reload() {
+  public async reload() {
 
     delete this.error;
 

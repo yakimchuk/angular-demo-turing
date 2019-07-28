@@ -17,7 +17,7 @@
 
       <fieldset [disabled]="progress">
 
-        <mat-form-field>
+        <mat-form-field class="field_short">
           <input name="email"
                  type="text"
                  [(ngModel)]="models.login.email"
@@ -28,7 +28,7 @@
                  required />
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field class="field_short">
           <input name="password"
                  type="password"
                  matInput
@@ -61,7 +61,7 @@
 
       <fieldset [disabled]="progress">
 
-        <mat-form-field>
+        <mat-form-field class="field_short">
           <input name="username"
                  type="text"
                  [(ngModel)]="models.registration.name"
@@ -71,7 +71,7 @@
                  required />
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field class="field_short">
           <input
             name="email"
             type="email"
@@ -83,7 +83,7 @@
             required />
         </mat-form-field>
 
-        <mat-form-field>
+        <mat-form-field class="field_short">
           <input name="password"
                  type="password"
                  matInput

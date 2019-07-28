@@ -7,3 +7,14 @@ app-search {
 app-outlet {
   border-right: 1px solid rgba(0,0,0,0.1);
 }
+
+@media(max-width: 990px) {
+  .actions {
+    width: 100%;
+    padding-bottom: 15px;
+  }
+
+  app-search {
+    width: 100%;
+  }
+}

@@ -27,7 +27,7 @@
         </mat-form-field>
       </div>
       <div class="row align-center">
-        <div class="mat-body-1 text-note rate-caption" i18n="@@product.reviews.form.rate.caption">Rate this product — </div>
+        <div class="mat-body-1 text-note rate-caption" i18n="@@product.reviews.form.rate.caption">Rating — </div>
         <mat-icon class="star"
                   *ngFor="let rating of ratingToArray(5); let i = index;" (click)="model.rating = i + 1"
                   [ngClass]="{ 'star_rated': model.rating > i }">star_rate</mat-icon>

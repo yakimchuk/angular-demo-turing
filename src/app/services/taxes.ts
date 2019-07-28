@@ -44,7 +44,8 @@ export class Taxes extends Subject<IEvent> implements TaxesService {
 
   public async reload() {
 
-    this.state = DEFAULT_SERVICE_STATE;
+    delete this.state.error;
+    delete this.state.ready;
 
     try {
 

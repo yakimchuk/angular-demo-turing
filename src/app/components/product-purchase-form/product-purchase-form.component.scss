@@ -1,5 +1,6 @@
 :host {
   display: block;
+  min-height: 390px;
 }
 
 mat-form-field {
@@ -8,4 +9,17 @@ mat-form-field {
 
 .image {
   margin-bottom: 15px;
+}
+
+app-component-preloader, app-component-error {
+  position: absolute;
+  width: calc(100% - 30px);
+  min-height: 80px;
+}
+
+@media(max-width: 990px) {
+  app-component-preloader, app-component-error {
+    width: 100%;
+    padding: 0 15px;
+  }
 }

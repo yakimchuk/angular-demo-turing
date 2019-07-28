@@ -152,7 +152,8 @@ export class Cart extends Subject<IEvent> implements CartService {
 
   public async reload() {
 
-    this.state = DEFAULT_CART_STATE;
+    delete this.state.error;
+    delete this.state.ready;
 
     try {
 

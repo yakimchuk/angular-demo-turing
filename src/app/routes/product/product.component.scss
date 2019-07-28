@@ -1,5 +1,6 @@
 :host ::ng-deep .header {
   height: 62px;
+  min-height: 0;
 }
 
 :host ::ng-deep .mat-tab-body-content {

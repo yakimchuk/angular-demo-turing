@@ -1815,7 +1815,7 @@
       </trans-unit>
       <trans-unit id="product.reviews.form.rate.caption" datatype="html">
         <source>Rate this product — </source>
-        <target>Оцените товар — </target>
+        <target>Оценка — </target>
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/product-reviews/product-reviews.component.html</context>
           <context context-type="linenumber">30</context>
@@ -2095,6 +2095,22 @@
         <context-group purpose="location">
           <context context-type="sourcefile">src/app/components/template-content/template-content.component.html</context>
           <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="product.attributes.error" datatype="html">
+        <source>We cannot load order form at this time. Please, try again or later</source>
+        <target>Не удалось загрузить форму заказа. Попробуйте еще раз, или вернитесь позже</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-purchase-form/product-purchase-form.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="product.attributes.reload" datatype="html">
+        <source>Reload form</source>
+        <target>Перезагрузить форму</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-purchase-form/product-purchase-form.component.html</context>
+          <context context-type="linenumber">33</context>
         </context-group>
       </trans-unit>
     </body>

@@ -18,12 +18,21 @@
     <app-image-large [url]="product?.images[1]"></app-image-large>
   </div>
 
-  <div [@slideTop]="!attributes ? 'open' : 'closed'">
+  <div [@slideTop]="!error && !attributes ? 'open' : 'closed'">
     <app-component-preloader>
       <app-fake-placeholder type="line"></app-fake-placeholder>
       <app-fake-placeholder type="line"></app-fake-placeholder>
       <app-fake-placeholder type="line"></app-fake-placeholder>
     </app-component-preloader>
+  </div>
+
+  <div [@slideTop]="error ? 'open' : 'closed'">
+    <app-component-error>
+      <span message i18n="@@product.attributes.error">We cannot load order form at this time. Please, try again or later</span>
+      <div actions>
+        <app-button-reload (click)="reload()" i18n="@@product.attributes.reload">Reload form</app-button-reload>
+      </div>
+    </app-component-error>
   </div>
 
   <form [@slideTop]="attributes ? 'open' : 'closed'">

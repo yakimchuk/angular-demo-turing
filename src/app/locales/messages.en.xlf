@@ -1,0 +1,1694 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="tour.departments.description" datatype="html">
+        <target>
+          This online store sells T-shirts, and you able to navigate through their categories using this left menu.
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/container/container.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="tour.ending" datatype="html">
+        <target>
+          This online store was completed in July 2019 by Roman Yakimchuk (yakimchuk.ry@gmail.com).<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/>
+          Thanks for coming to our online store J
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/container/container.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="toast.error.internal" datatype="html">
+        <target>We found the problem, the website may be working unexpectedly</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/toasts/internal-error/internal-error.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="navigator.products.item.more" datatype="html">
+        <target>
+          Know more
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/products-navigator/products-navigator.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="navigator.products.item.load.error" datatype="html">
+        <target>
+          We cannot load detailed info about this product, please, try again or later
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/products-navigator/products-navigator.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="tour.product.description" datatype="html">
+        <target>
+          You may get acquainted with the product. They all are T-shirts, but the images on them are
+          different (this is a T-shirt prints online store). Find the one interested to you, and then add
+          it to your cart or open the details page to learn more about this product.
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/products-navigator/products-navigator.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.home.caption" datatype="html">
+        <target>Grand new E-Commerce, Buy &amp; Try!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/home/home.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.home.description" datatype="html">
+        <target>We sell the most inspiration ideas</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/home/home.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.home.tour.submit" datatype="html">
+        <target>Make a tour!</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/home/home.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.home.error" datatype="html">
+        <target>
+          We encountered problems while loading catalog<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/>
+          Press the button below to try to load this catalog again
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/home/home.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.home.reload" datatype="html">
+        <target>Reload catalog</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/home/home.component.html</context>
+          <context context-type="linenumber">22</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="tour.project.description" datatype="html">
+        <target>
+          Welcome to the new <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>magnificent demo<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/> for Turing.ly!<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/>
+          <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/>It developed with Angular selected as the framework and Google Material as UI Kit.<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/>
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/home/home.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="tour.project.description.candidate" datatype="html">
+        <target>
+          This application is not a real product, it is just a live demo of an online store in order to demonstrate
+          the candidate&apos;s technical skills.
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/home/home.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="tour.products.description" datatype="html">
+        <target>
+          Every department or category has an interface to navigate over store/categories contents
+          and select your interested products.
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/home/home.component.html</context>
+          <context context-type="linenumber">38</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shipping.selector.error.areas" datatype="html">
+        <target>Something goes wrong, we cannot find shipping areas</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/shipping-selector/shipping-selector.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shipping.selector.reload.areas" datatype="html">
+        <target>Reload shipping areas</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/shipping-selector/shipping-selector.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shipping.selector.form.selector.area.caption" datatype="html">
+        <target>Select your area</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/shipping-selector/shipping-selector.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shipping.selector.hint.areas" datatype="html">
+        <target>Where do you want to receive your order?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/shipping-selector/shipping-selector.component.html</context>
+          <context context-type="linenumber">20</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shipping.selector.error.variants" datatype="html">
+        <target>Something goes wrong, we cannot find shipping variants to the selected area</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/shipping-selector/shipping-selector.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shipping.selector.form.selector.variant.caption" datatype="html">
+        <target>Select shipping variant</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/shipping-selector/shipping-selector.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shipping.selector.hint.variants" datatype="html">
+        <target>How do you want to receive your order?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/shipping-selector/shipping-selector.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="shipping.selector.note" datatype="html">
+        <target>
+          If you do not see your area or suitable shipping option, please contact us at shipping@turing-demo.world
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/shipping-selector/shipping-selector.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="popup.auth.login.caption" datatype="html">
+        <target>Sign In</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="form.field.email" datatype="html">
+        <target>E-Mail</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
+          <context context-type="linenumber">81</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile-common-editor/profile-common-editor.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="form.field.password" datatype="html">
+        <target>Password</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
+          <context context-type="linenumber">37</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
+          <context context-type="linenumber">92</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile-common-editor/profile-common-editor.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="popup.auth.login.submit" datatype="html">
+        <target>Sign In</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="popup.auth.registration.caption" datatype="html">
+        <target>Sign Up</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="form.field.username" datatype="html">
+        <target>Username</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="popup.auth.registration.submit" datatype="html">
+        <target>Sign Up</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
+          <context context-type="linenumber">101</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="popup.auth.toast.login.success" datatype="html">
+        <target>
+          You have been successfully singed in
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
+          <context context-type="linenumber">113</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="popup.auth.toast.login.error.unknown" datatype="html">
+        <target>
+          We cannot authorize you at this time, please try again or later
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
+          <context context-type="linenumber">117</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="popup.auth.toast.login.error.invalid" datatype="html">
+        <target>
+          Such combination of email and password is not found, please check entered data
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
+          <context context-type="linenumber">121</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="popup.auth.toast.registration.success" datatype="html">
+        <target>
+          You have been successfully registered
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
+          <context context-type="linenumber">125</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="popup.auth.toast.registration.error.unknown" datatype="html">
+        <target>
+          We cannot register you at this time, please try again or later
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
+          <context context-type="linenumber">129</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="popup.auth.toast.registration.error.used" datatype="html">
+        <target>
+          This email is already in use, please use other one or sign in using the left form
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
+          <context context-type="linenumber">133</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="popup.auth.toast.registration.error.invalid" datatype="html">
+        <target>
+          You have entered incorrect email (incorrect characters)
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/popups/auth-popup/auth-popup.component.html</context>
+          <context context-type="linenumber">137</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.caption" datatype="html">
+        <target>Cart</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.description" datatype="html">
+        <target>Your online shopping basket</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.clear.submit" datatype="html">
+        <target>Clear cart</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.loading" datatype="html">
+        <target>We are loading your cart</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.empty.description" datatype="html">
+        <target>
+          Cart <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>is empty!<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/>
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.empty.action.submit" datatype="html">
+        <target>
+          Begin shopping!
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.step.cart.caption" datatype="html">
+        <target>Cart</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">36</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.step.cart.items.count" datatype="html">
+        <target>
+          There are <x id="ICU" equiv-text="{cart.items.length, plural, =1 {...} other {...}}"/> in your cart
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="b2c2afdb3a4805e2d51ca7cce06b206509c75574" datatype="html">
+        <target>{VAR_PLURAL, plural, =1 {one item} other {<x id="INTERPOLATION" equiv-text="{{cart.items.length}}"/> items} }</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.subtotal.caption" datatype="html">
+        <target>Subtotal</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.step.cart.submit" datatype="html">
+        <target>Checkout</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.step.checkout.caption" datatype="html">
+        <target>Checkout</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">67</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.step.checkout.form.tax.caption" datatype="html">
+        <target>Tax</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">71</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.step.checkout.form.tax.description" datatype="html">
+        <target>Please select suitable taxation for your order</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.step.form.shipping.description" datatype="html">
+        <target>How you&apos;d like to receive your order?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">76</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.step.checkout.user.description" datatype="html">
+        <target>
+          You are logged in as:<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/>
+          <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/><x id="INTERPOLATION" equiv-text="{{ user.model?.email }}"/><x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/>
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">86</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.step.checkout.submit" datatype="html">
+        <target>Confirm order</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">100</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.step.payment.caption" datatype="html">
+        <target>Payment</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">111</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.step.payment.error.description" datatype="html">
+        <target>
+          We have experienced issues at try to allow you to pay your order.<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/>
+          However, we will try to display you all of your orders.
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">116</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.step.payment.error.noOrder.empty" datatype="html">
+        <target>
+          We cannot find any of your unpaid orders. You can open your <x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/>account<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> and try to find
+          and pay your order manually. Anyway, please write to us to support@turing-demo.world.
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">122</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.step.payment.error.noOrder.oneFound" datatype="html">
+        <target>
+          We found the only one unpaid order, if it is your just confirmed order, you can pay it now. Otherwise
+          please open your <x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/>account<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> and pay your order, or write to us to
+          support@turing-demo.world to get qualified support.
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">129</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.step.payment.error.noOrder.manyFound" datatype="html">
+        <target>
+          We have found many unpaid orders and cannot determine which of them is your just confirmed order. Please,
+          open your <x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/>account<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> page, then find your order and pay it.
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">145</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.step.payment.error.noOrder.manyFound.submit" datatype="html">
+        <target>
+          Open your account
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">151</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.step.payment.description" datatype="html">
+        <target>
+          We have successfully received your order #<x id="INTERPOLATION" equiv-text="{{ order?.id }}"/>.<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/>
+          At any time you can manage your orders and account in the <x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/>account<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> area.
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">161</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.step.done.caption" datatype="html">
+        <target>Done</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">178</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.step.done.error.description" datatype="html">
+        <target>
+          We cannot find just paid order, but it seems everything fine and you paid your order. We will try to show
+          you all of your orders so you can check payment result yourself.
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">182</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.step.done.error.notFound" datatype="html">
+        <target>
+          We cannot find any of your orders. It seems like you opened this pages accidentally. If you not, then
+          please check your orders manually in your <x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/>account<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> and write to us to
+          support@turing-demo.world, we will help you.
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">188</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.step.done.thanks" datatype="html">
+        <target>
+          Thank you for using our online store!
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">196</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">213</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.step.done.error.submit" datatype="html">
+        <target>
+          Back to the catalog
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">200</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.step.done.description" datatype="html">
+        <target>
+          We have successfully received your order and payment. You may track your orders (and know
+          when it was shipped to you) in your <x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/>account<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/> (section &quot;OrdersService&quot;).
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">208</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.step.done.submit" datatype="html">
+        <target>
+          Back to the catalog
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">217</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.clear.error" datatype="html">
+        <target>
+          Cannot clear your cart at this time. Try do remove items one by one, or try later
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">228</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.clear.success" datatype="html">
+        <target>
+          Your cart has been successfully cleaned
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">232</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.note.auth" datatype="html">
+        <target>
+          Sign in or register in order to continue creation of your order
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">236</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.toast.order.cancel" datatype="html">
+        <target>
+          Order was not confirmed due to canceled authorization
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">240</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.toast.order.error" datatype="html">
+        <target>
+          We cannot register your order at this time, please, try again or later
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">244</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.toast.reload.error" datatype="html">
+        <target>
+          We have registered your order, but we cannot download its data, please, reload the page and open your account
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">248</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.toast.order.error.notFound" datatype="html">
+        <target>
+          We have registered your order, but we faced some technical errors, please, reload the page and open your account
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">252</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.toast.order.success" datatype="html">
+        <target>
+          You have successfully paid your order
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">256</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.toast.payment.error" datatype="html">
+        <target>
+          We faced some issues at your try to pay your order, please, try again or later
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/cart/cart.component.html</context>
+          <context context-type="linenumber">260</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.account.caption" datatype="html">
+        <target>Account</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/account/account.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.account.description" datatype="html">
+        <target>Your personal data (orders and information management)</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/account/account.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="button.logout" datatype="html">
+        <target>Logout</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/account/account.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.account.error.session" datatype="html">
+        <target>
+          Your session has expired, sign in again, please
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/account/account.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.account.error.auth" datatype="html">
+        <target>
+          You must sign in in order manage your account
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/account/account.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.account.auth.submit" datatype="html">
+        <target>Sign In</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/account/account.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.account.section.profile.caption" datatype="html">
+        <target>
+          Profile
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/account/account.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/account/account.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.account.section.shipping.caption" datatype="html">
+        <target>
+          Shipping
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/account/account.component.html</context>
+          <context context-type="linenumber">49</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/account/account.component.html</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.account.section.orders.caption" datatype="html">
+        <target>
+          Orders
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/account/account.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/account/account.component.html</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.account.toast.logout.success" datatype="html">
+        <target>
+          You have successfully logged out from the account
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/account/account.component.html</context>
+          <context context-type="linenumber">79</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.account.toast.logout.error" datatype="html">
+        <target>
+          Cannot log you out at this time, please try again or later
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/account/account.component.html</context>
+          <context context-type="linenumber">83</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.department.caption" datatype="html">
+        <target>
+          <x id="INTERPOLATION" equiv-text="{{ department?.name }}"/> T-shirts
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/department/department.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.department.error" datatype="html">
+        <target>
+          We encountered problems while loading catalog<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/>
+          Press the button below to try to load this catalog again
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/department/department.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.department.reload" datatype="html">
+        <target>Reload catalog</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/department/department.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.category.caption" datatype="html">
+        <target>
+          <x id="INTERPOLATION" equiv-text="{{ category?.name }}"/> T-shirts
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/category/category.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.category.error" datatype="html">
+        <target>
+          We encountered problems while loading catalog<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/>
+          Press the button below to try to load this catalog again
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/category/category.component.html</context>
+          <context context-type="linenumber">24</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/department-categories/department-categories.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.category.reload" datatype="html">
+        <target>Reload catalog</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/category/category.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/department-categories/department-categories.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.product.error" datatype="html">
+        <target>
+          We cannot load this offer, please reload the page or open it later
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/product/product.component.html</context>
+          <context context-type="linenumber">19</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.product.image.note" datatype="html">
+        <target>
+          <x id="START_TAG_SPAN" ctype="x-span" equiv-text="&lt;span&gt;"/>*<x id="CLOSE_TAG_SPAN" ctype="x-span" equiv-text="&lt;/span&gt;"/> The real T-shirt may differ from this image.<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/>
+          It is just a sample of the image on T-shirt.
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/routes/product/product.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="project.name" datatype="html">
+        <target>Buy &amp; Try E-Commerce</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/template-sidebar/template-sidebar.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="sidebar.mobile.menu.caption" datatype="html">
+        <target>Menu</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/template-sidebar/template-sidebar.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="tour.search.description" datatype="html">
+        <target>
+          If you are looking for something in particular, you may also use the global search over the whole T-shirts variants.<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/>
+          This search is predictive so you may access every product from any page of the application.
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/template-content/template-content.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="tour.cart.description" datatype="html">
+        <target>
+          When you will select all you need, you may open your cart and proceed to the checkout process and pay order. The
+          most interesting part is an exception handling. Just try to break this checkout process.
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/template-content/template-content.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/template-content/template-content.component.html</context>
+          <context context-type="linenumber">28</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="navigator.departments.caption" datatype="html">
+        <target>Departments</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/departments-navigation/departments-navigation.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="navigator.departments.error" datatype="html">
+        <target>
+          We cannot load departments list<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/>
+          Please, press the button to try again<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/>
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/departments-navigation/departments-navigation.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="navigator.departments.reload" datatype="html">
+        <target>Reload departments</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/departments-navigation/departments-navigation.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="website.close" datatype="html">
+        <target>Close website</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/button-close-website/button-close-website.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="search.label" datatype="html">
+        <target>Search for T-shirts</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/search/search.component.html</context>
+          <context context-type="linenumber">4</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cart.loading" datatype="html">
+        <target>Loading cart</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cart-button-menu/cart-button-menu.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cart.button.error" datatype="html">
+        <target>Cart is not available</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cart-button-menu/cart-button-menu.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cart.button.items.count" datatype="html">
+        <target><x id="INTERPOLATION" equiv-text="{{ cart.items?.length }}"/> <x id="ICU" equiv-text="{cart.items?.length, plural, one {...} other {...}}"/> in your cart</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cart-button-menu/cart-button-menu.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="f9ada9f951c4b8c9e8487770e72c116ff1da418b" datatype="html">
+        <target>{VAR_PLURAL, plural, one {item} other {items} }</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cart-button-menu/cart-button-menu.component.html</context>
+          <context context-type="linenumber">18</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="breadcrumb.divider" datatype="html">
+        <target>&gt;</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/route-navigation/route-navigation.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="breadcrumb.toParent" datatype="html">
+        <target>Jump into parent page</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/route-navigation/route-navigation.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.root.breadcrumb" datatype="html">
+        <target>Store</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/breadcrumb-i18n-hack/breadcrumb-i18n-hack.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.home.breadcrumb" datatype="html">
+        <target>Catalog</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/breadcrumb-i18n-hack/breadcrumb-i18n-hack.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.cart.breadcrumb" datatype="html">
+        <target>Cart</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/breadcrumb-i18n-hack/breadcrumb-i18n-hack.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="route.account.breadcrumb" datatype="html">
+        <target>Account</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/breadcrumb-i18n-hack/breadcrumb-i18n-hack.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="breadcrumb.unknown" datatype="html">
+        <target>Unknown page</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/breadcrumb-i18n-hack/breadcrumb-i18n-hack.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="breadcrumb.error" datatype="html">
+        <target>Unknown page</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/breadcrumb-i18n-hack/breadcrumb-i18n-hack.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="image.error" datatype="html">
+        <target>
+          Could not load an image<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/>
+          <x id="START_BOLD_TEXT" ctype="x-b" equiv-text="&lt;b&gt;"/>You can try load this image again by pressing the button below<x id="CLOSE_BOLD_TEXT" ctype="x-b" equiv-text="&lt;/b&gt;"/>
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/image/image.large.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="image.reload" datatype="html">
+        <target>Reload image</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/image/image.large.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="order.subtotal.error" datatype="html">
+        <target>We could not load data to calculate total price</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order-subtotal/order-subtotal.component.html</context>
+          <context context-type="linenumber">6</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="order.subtotal.reload" datatype="html">
+        <target>Reload</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order-subtotal/order-subtotal.component.html</context>
+          <context context-type="linenumber">8</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="order.subtotal.item.subtotal.caption" datatype="html">
+        <target>Cart subtotal</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order-subtotal/order-subtotal.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="order.subtotal.item.shipping.caption" datatype="html">
+        <target>Shipping</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order-subtotal/order-subtotal.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="tax.selector.error" datatype="html">
+        <target>Something goes wrong, we cannot find taxes for your order</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/tax-selector/tax-selector.component.html</context>
+          <context context-type="linenumber">7</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="tax.selector.reload" datatype="html">
+        <target>Reload</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/tax-selector/tax-selector.component.html</context>
+          <context context-type="linenumber">9</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="tax.selector.form.taxes.caption" datatype="html">
+        <target>Taxation option</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/tax-selector/tax-selector.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cart.items.column.row" datatype="html">
+        <target>#</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cart-editor/cart-editor.component.html</context>
+          <context context-type="linenumber">5</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cart.items.column.image" datatype="html">
+        <target>Pic.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cart-editor/cart-editor.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cart.items.column.name" datatype="html">
+        <target>Name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cart-editor/cart-editor.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cart.items.column.price" datatype="html">
+        <target>Price</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cart-editor/cart-editor.component.html</context>
+          <context context-type="linenumber">27</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cart.items.column.quantity" datatype="html">
+        <target>Quan.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cart-editor/cart-editor.component.html</context>
+          <context context-type="linenumber">32</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="cart.items.column.subtotal" datatype="html">
+        <target>Subt.</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cart-editor/cart-editor.component.html</context>
+          <context context-type="linenumber">53</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="product.update.quantity.success" datatype="html">
+        <target>
+          The product quantity has been updated
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cart-editor/cart-editor.component.html</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="product.update.quantity.error" datatype="html">
+        <target>
+          We unable to update the product quantity at this time
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cart-editor/cart-editor.component.html</context>
+          <context context-type="linenumber">66</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="product.remove.success" datatype="html">
+        <target>
+          The product has been removed from your cart
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cart-editor/cart-editor.component.html</context>
+          <context context-type="linenumber">70</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="product.remove.error" datatype="html">
+        <target>
+          We unable to remove product from your cart at this time
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/cart-editor/cart-editor.component.html</context>
+          <context context-type="linenumber">74</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="order.error" datatype="html">
+        <target>
+          We cannot show you information about the order at this time.<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/>
+          Please, reopen this page or try later
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order/order.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="order.items.column.name" datatype="html">
+        <target>Product</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order/order.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="order.items.column.cost" datatype="html">
+        <target>Cost</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order/order.component.html</context>
+          <context context-type="linenumber">15</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="order.items.column.quantity" datatype="html">
+        <target>Quantity</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order/order.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="order.items.column.subtotal" datatype="html">
+        <target>Subtotal</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order/order.component.html</context>
+          <context context-type="linenumber">17</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="order.subtotal.total" datatype="html">
+        <target><x id="INTERPOLATION" equiv-text="{{ order?.cost | money }}"/> in total</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order/order.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="order.subtotal.note" datatype="html">
+        <target>Products + Tax + Shipping</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order/order.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="order.error.items" datatype="html">
+        <target>
+          For some reasons we cannot load list with your ordered items, but do not worry, we know your order contents
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order/order.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="order.message.state.paid" datatype="html">
+        <target>
+
+          Your order has been successfully paid!<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/>
+          Await for delivery, please. Shipping date will be available above.
+
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order/order.component.html</context>
+          <context context-type="linenumber">46</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="order.payment.caption" datatype="html">
+        <target>Pay your order #<x id="INTERPOLATION" equiv-text="{{ order?.id }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order/order.component.html</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="order.payment.method.card.caption" datatype="html">
+        <target>
+          Credit or debit card
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order/order.component.html</context>
+          <context context-type="linenumber">62</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="order.payment.method.card.submit" datatype="html">
+        <target>Submit Payment</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order/order.component.html</context>
+          <context context-type="linenumber">72</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="order.message.state.unknown" datatype="html">
+        <target>
+          Your order is in unknown status.<x id="LINE_BREAK" ctype="lb" equiv-text="&lt;br/&gt;"/>
+          Please send us a message to the email support@turing-demo.world.
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order/order.component.html</context>
+          <context context-type="linenumber">79</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="order.toast.payment.success" datatype="html">
+        <target>
+          Your order has been successfully paid
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order/order.component.html</context>
+          <context context-type="linenumber">86</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="order.toast.payment.error" datatype="html">
+        <target>
+          We faced issues at try to process your order
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order/order.component.html</context>
+          <context context-type="linenumber">90</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="order.toast.data.reload.error" datatype="html">
+        <target>
+          You have paid your order, but we cannot reload it to show you its new status, please, reload the page manually
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/order/order.component.html</context>
+          <context context-type="linenumber">94</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="orders.empty" datatype="html">
+        <target>
+          At this moment you did not order anything... <x id="START_LINK" ctype="x-a" equiv-text="&lt;a&gt;"/>Begin shopping?<x id="CLOSE_LINK" ctype="x-a" equiv-text="&lt;/a&gt;"/>
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.component.html</context>
+          <context context-type="linenumber">3</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="orders.items.column.id" datatype="html">
+        <target>Number</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="orders.items.column.name" datatype="html">
+        <target>Name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="orders.items.column.created" datatype="html">
+        <target>Created</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.component.html</context>
+          <context context-type="linenumber">21</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="orders.items.column.shipped" datatype="html">
+        <target>Shipped</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.component.html</context>
+          <context context-type="linenumber">26</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="orders.items.column.cost" datatype="html">
+        <target>Cost</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.component.html</context>
+          <context context-type="linenumber">34</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="orders.items.column.status" datatype="html">
+        <target>Status</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.component.html</context>
+          <context context-type="linenumber">39</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="orders.items.column.status.unpaid" datatype="html">
+        <target>Unpaid</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.component.html</context>
+          <context context-type="linenumber">42</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="orders.items.column.status.paid" datatype="html">
+        <target>Paid</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.component.html</context>
+          <context context-type="linenumber">43</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="orders.items.column.status.unknown" datatype="html">
+        <target>Unknown</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/orders/orders.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="form.field.name" datatype="html">
+        <target>Name</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile-common-editor/profile-common-editor.component.html</context>
+          <context context-type="linenumber">11</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="form.field.phone.day" datatype="html">
+        <target>Day phone</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile-common-editor/profile-common-editor.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="form.field.hint.phone" datatype="html">
+        <target>You can enter number in any format with leading plus</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile-common-editor/profile-common-editor.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile-common-editor/profile-common-editor.component.html</context>
+          <context context-type="linenumber">55</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile-common-editor/profile-common-editor.component.html</context>
+          <context context-type="linenumber">69</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="form.field.error.pattern.phone" datatype="html">
+        <target>You can enter only plus, brackets, numbers and hyphen</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile-common-editor/profile-common-editor.component.html</context>
+          <context context-type="linenumber">44</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile-common-editor/profile-common-editor.component.html</context>
+          <context context-type="linenumber">59</context>
+        </context-group>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile-common-editor/profile-common-editor.component.html</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="form.field.phone.evening" datatype="html">
+        <target>Evening phone</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile-common-editor/profile-common-editor.component.html</context>
+          <context context-type="linenumber">50</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="form.field.phone.primary" datatype="html">
+        <target>Primary mobile phone</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile-common-editor/profile-common-editor.component.html</context>
+          <context context-type="linenumber">64</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="profile.editor.personal.form.submit" datatype="html">
+        <target>Save</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile-common-editor/profile-common-editor.component.html</context>
+          <context context-type="linenumber">78</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="profile.editor.personal.error" datatype="html">
+        <target>
+          For now we cannot find your profile. Did you forget to sign in?
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile-common-editor/profile-common-editor.component.html</context>
+          <context context-type="linenumber">88</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="profile.editor.personal.toast.update.error" datatype="html">
+        <target>
+          We could not update your profile at this time, please try again or later
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile-common-editor/profile-common-editor.component.html</context>
+          <context context-type="linenumber">93</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="profile.editor.personal.toast.update.success" datatype="html">
+        <target>
+          Your profile has been successfully updated
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile-common-editor/profile-common-editor.component.html</context>
+          <context context-type="linenumber">97</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="form.field.address1" datatype="html">
+        <target>Address Line 1</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile-shipping-editor/profile-shipping-editor.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="form.field.address2" datatype="html">
+        <target>Address Line 2</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile-shipping-editor/profile-shipping-editor.component.html</context>
+          <context context-type="linenumber">23</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="form.field.city" datatype="html">
+        <target>City</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile-shipping-editor/profile-shipping-editor.component.html</context>
+          <context context-type="linenumber">29</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="form.field.region" datatype="html">
+        <target>Region</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile-shipping-editor/profile-shipping-editor.component.html</context>
+          <context context-type="linenumber">35</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="form.field.postalCode" datatype="html">
+        <target>Postal code</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile-shipping-editor/profile-shipping-editor.component.html</context>
+          <context context-type="linenumber">41</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="form.field.country" datatype="html">
+        <target>Country</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile-shipping-editor/profile-shipping-editor.component.html</context>
+          <context context-type="linenumber">47</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="profile.editor.shipping.note.address" datatype="html">
+        <target>Where do you want to receive your order?</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile-shipping-editor/profile-shipping-editor.component.html</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="profile.editor.shipping.form.submit" datatype="html">
+        <target>Save</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile-shipping-editor/profile-shipping-editor.component.html</context>
+          <context context-type="linenumber">63</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="profile.editor.shipping.error" datatype="html">
+        <target>
+          For now we cannot find your profile. Did you forget to sign in?
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile-shipping-editor/profile-shipping-editor.component.html</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="profile.editor.shipping.toast.update.error" datatype="html">
+        <target>
+          We could not update your shipping details at this time, please try again or later
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile-shipping-editor/profile-shipping-editor.component.html</context>
+          <context context-type="linenumber">78</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="profile.editor.shipping.toast.update.success" datatype="html">
+        <target>
+          Your shipping details has been successfully updated
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/profile-shipping-editor/profile-shipping-editor.component.html</context>
+          <context context-type="linenumber">82</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="product.purchase.form.caption" datatype="html">
+        <target>Construct your T-shirt</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-purchase-form/product-purchase-form.component.html</context>
+          <context context-type="linenumber">13</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="product.purchase.form.description" datatype="html">
+        <target>Select options for your T-shirt: image, color and other options</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-purchase-form/product-purchase-form.component.html</context>
+          <context context-type="linenumber">14</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="product.purchase.form.step.image.caption" datatype="html">
+        <target>Image on T-shirt</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-purchase-form/product-purchase-form.component.html</context>
+          <context context-type="linenumber">16</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="product.purchase.form.step.attribute.caption" datatype="html">
+        <target>Select <x id="INTERPOLATION" equiv-text="{{ attribute.name }}"/></target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-purchase-form/product-purchase-form.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="product.purchase.form.submit" datatype="html">
+        <target>Add to cart</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-purchase-form/product-purchase-form.component.html</context>
+          <context context-type="linenumber">45</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="product.purchase.toast.success" datatype="html">
+        <target>
+          The product was added to your cart
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-purchase-form/product-purchase-form.component.html</context>
+          <context context-type="linenumber">54</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="product.purchase.toast.error" datatype="html">
+        <target>
+          We unable to add your product to the cart at this time
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-purchase-form/product-purchase-form.component.html</context>
+          <context context-type="linenumber">58</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="home.link" datatype="html">
+        <target>Open the catalog</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/button-home/button-home.component.html</context>
+          <context context-type="linenumber">2</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="product.reviews.caption" datatype="html">
+        <target>Reviews about the product</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-reviews/product-reviews.component.html</context>
+          <context context-type="linenumber">1</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="product.reviews.error" datatype="html">
+        <target>We cannot load product reviews at this time, please try again or later</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-reviews/product-reviews.component.html</context>
+          <context context-type="linenumber">10</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="product.reviews.reload" datatype="html">
+        <target>Reload reviews</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-reviews/product-reviews.component.html</context>
+          <context context-type="linenumber">12</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="product.reviews.form.review.placeholder" datatype="html">
+        <target>Leave a review</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-reviews/product-reviews.component.html</context>
+          <context context-type="linenumber">25</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="product.reviews.form.rate.caption" datatype="html">
+        <target>Rating — </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-reviews/product-reviews.component.html</context>
+          <context context-type="linenumber">30</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="product.reviews.form.submit" datatype="html">
+        <target>
+          Send
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-reviews/product-reviews.component.html</context>
+          <context context-type="linenumber">40</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="product.reviews.empty" datatype="html">
+        <target>
+          At this time there are no any comments...
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-reviews/product-reviews.component.html</context>
+          <context context-type="linenumber">73</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="product.reviews.toast.post.error" datatype="html">
+        <target>
+          We unable to create review at this time, please, try again or later
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-reviews/product-reviews.component.html</context>
+          <context context-type="linenumber">79</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="product.reviews.toast.post.success" datatype="html">
+        <target>
+          Your review has been successfully posted
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-reviews/product-reviews.component.html</context>
+          <context context-type="linenumber">83</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="product.reviews.toast.post.cancel" datatype="html">
+        <target>
+          Post was not sent due to canceled authorization
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-reviews/product-reviews.component.html</context>
+          <context context-type="linenumber">87</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="product.reviews.note.authentication" datatype="html">
+        <target>
+          Please sign in or register in order to post your review
+        </target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-reviews/product-reviews.component.html</context>
+          <context context-type="linenumber">91</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="product.attributes.error" datatype="html">
+        <target>We cannot load order form at this time. Please, try again or later</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-purchase-form/product-purchase-form.component.html</context>
+          <context context-type="linenumber">31</context>
+        </context-group>
+      </trans-unit>
+      <trans-unit id="product.attributes.reload" datatype="html">
+        <target>Reload form</target>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/components/product-purchase-form/product-purchase-form.component.html</context>
+          <context context-type="linenumber">33</context>
+        </context-group>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

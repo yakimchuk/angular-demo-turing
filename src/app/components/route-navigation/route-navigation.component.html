@@ -30,7 +30,7 @@
 
   </div>
 
-  <button mat-button color="primary" (click)="goToParent()" [@slideRight]="breadcrumbs.length > 1 ? 'open' : 'closed'">
+  <button class="button_parent" mat-button color="primary" (click)="goToParent()" [@slideRight]="breadcrumbs.length > 1 ? 'open' : 'closed'">
     <mat-icon>arrow_upward</mat-icon> <span i18n="@@breadcrumb.toParent">Jump into parent page</span>
   </button>
 </div>
